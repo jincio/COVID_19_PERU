@@ -1,0 +1,22 @@
+---
+title: "Fuentes OFICIALES"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Fuentes Oficiales
+
+Página del CDC en español
+![](https://www.cdc.gov/coronavirus/2019-ncov/index-sp.html)
+
+OMS:
+![](https://www.who.int/…/novel-coronavirus-2…/advice-for-public)
+
+MINSA:
+![](https://www.gob.pe/…/699-conoce-que-es-el-coronavirus-covid…)
+
+## Legislación especial
+
+
