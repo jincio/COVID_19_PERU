@@ -8,8 +8,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## COVID19-PERU
 
-Este es un esfuerzo que tiene como finalidad agrupar la información e iniciativas existentes sobre la pandemia COVID-19 en Perú.
-
+El objetivo es crear un portal de consulta fiable donde usuarios puedan encontrar información relevante sobre el COVID-19. Con esto podemos apoyar contra la desinformación, y facilitar la búsqueda de noticias y datos. 
+Así mismo, puede servir a investigadores/estudiantes para conocer diversas iniciativas a las que pueda sumarse. 
 
 Secciones:
 
@@ -17,7 +17,7 @@ Secciones:
 
 - **Noticias Falsas**: Lista de noticias falsas que se difunden por diferentes medios. La idea es poder mostrar las noticias falsas y si se puede a los responsables de diseminarlas. 
 
-- **Propagación**: Estadísticas y mapas de la propagación del COVID-19
+- **Propagación**: Estadísticas y mapas de la propagación del COVID-19 en Perú y el mundo.
 
 - **Material Educativo**: Lista de videos/infografías y otros que resuman la información de manera amigable. 
 

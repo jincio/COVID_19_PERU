@@ -6,8 +6,12 @@ title: "Noticias_historias"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 
+## Objetivo
+
+Noticias con información relevante sobre la pandemia. 
+
+### Ingles:
 
 [How to "flatten the curve- Washington Post](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/)
 
-
+[Patient 31-South Corea](https://graphics.reuters.com/CHINA-HEALTH-SOUTHKOREA-CLUSTERS/0100B5G33SB/index.html)
