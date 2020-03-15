@@ -54,4 +54,20 @@ p4=data%>%group_by(Dia)%>%
 grid.arrange(p3, p4, nrow = 1)
 ```
 
+## Tabla
+
+```{r}
+data%>%group_by(Dia)%>%
+  summarise(Positivos=max(Positivos),
+            Pruebas_aplicadas=max(Total_Pruebas))%>%
+            mutate(  
+            lag=lag(Pruebas_aplicadas),
+            lag2=lag(Positivos),
+            Pruebas_XDia=Pruebas_aplicadas-lag,
+            Nuevos_Positivos=Positivos-lag2)%>%
+  dplyr::select(-c(lag,lag2))
+            
+```
+
+
 ## Mapa
