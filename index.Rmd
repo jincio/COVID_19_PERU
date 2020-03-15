@@ -32,7 +32,7 @@ Secciones:
 - Editores:
     - José Incio (github: jincio, twitter: @jlincio)
     - Bryan Lucero
-    - XXXX
+    - David Requena (github: davidrequena)
 
 - El portal tiene un grupo de "editores" que aprueban la publicación y/o actualización de la información en el portal. No es un grupo estatico, siempre puede crecer más. La idea es que los editores esten disponibles para revisar la veracidad y pertinencia de la información.
 
