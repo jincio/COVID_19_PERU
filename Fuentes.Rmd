@@ -8,6 +8,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Fuentes Oficiales
 
+### Página del Gobierno 
+
+[Coronavirus](https://www.gob.pe/coronavirus)
+
 ### Página del CDC en español:
 
 [CDC](https://www.cdc.gov/coronavirus/2019-ncov/index-sp.html)
