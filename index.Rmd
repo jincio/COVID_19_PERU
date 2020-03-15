@@ -1,0 +1,39 @@
+---
+title: "Handbook Covid-19 Perú"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## COVID19-PERU
+
+Este es un esfuerzo que tiene como finalidad agrupar la información e iniciativas existentes sobre la pandemia COVID-19 en Perú.
+
+
+Secciones:
+
+- **Fuentes oficiales**: links a fuentes oficiales tanto del gobierno peruano como de organismos multilaterales. También links que estas fuentes difundan sobre el COVID-19
+
+- **Noticias Falsas**: Lista de noticias falsas que se difunden por diferentes medios. La idea es poder mostrar las noticias falsas y si se puede a los responsables de diseminarlas. 
+
+- **Propagación**: Estadísticas y mapas de la propagación del COVID-19
+
+- **Material Educativo**: Lista de videos/infografías y otros que resuman la información de manera amigable. 
+
+- **Notas Periodisticas**: Notas destacadas 
+
+- **Proyectos**: Proyectos individuales o colectivos que exploten la información. 
+
+- Todos pueden colaborar, el repositorio en github: 
+- Agregate en slack
+- Curadores:
+    - XXXX
+    - XXXX
+    - XXXX
+
+Puedes ser curador/editor escribe a alguno de los editores y curadores. 
+
+
+
+

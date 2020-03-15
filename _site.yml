@@ -1,0 +1,34 @@
+name: Covid19-Peru
+navbar: 
+  left: 
+    - 
+      href: index.html
+      icon: fa-home
+      text: Home
+    - 
+      href: Fuentes.html
+      text: Fuentes Oficiales
+    -
+      href: Fake.html
+      text: Noticias Falsas
+    -
+      href: Propagacion.html
+      text: Propagación
+    - 
+      href: Investigaciones.html
+      text: Investigaciones Científicas
+    - 
+      href: Noticias_historias.html
+      text: Notas periodisticas
+    - 
+      href: Proyectos.html
+      text: Proyectos
+  title: ""
+output:
+  bookdown::html_document2:
+    theme: cosmo
+    toc: yes
+    toc_depth: 3
+    toc_float: true
+    highlight: haddock
+output_dir: docs
