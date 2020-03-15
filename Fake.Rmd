@@ -1,0 +1,15 @@
+---
+title: "Noticias Falsas"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Noticias Falsas
+
+En esta página listasmo las noticias falsas que están circulando. Si se puede identificar quien las propaga o genera aun mejor. 
+
+
+
+

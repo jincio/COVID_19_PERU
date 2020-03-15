@@ -1,0 +1,12 @@
+---
+title: "Investigaciones"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Idea
+
+Aquí podemos listas papers/links/findings de revistas científicas. 
+

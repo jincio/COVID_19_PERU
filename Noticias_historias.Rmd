@@ -1,0 +1,13 @@
+---
+title: "Noticias_historias"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 
+
+[How to "flatten the curve- Washington Post](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/)
+
+
