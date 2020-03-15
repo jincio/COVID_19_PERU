@@ -6,7 +6,12 @@ title: "Investigaciones"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Idea
+Papers/links/findings de revistas científicas. 
 
-Aquí podemos listas papers/links/findings de revistas científicas. 
+## Coronavirus puts drugs repurposing on the fast track [link](https://www.nature.com/articles/d41587-020-00003-1) 
+
+
+
+
+
 
