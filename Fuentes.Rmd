@@ -20,7 +20,9 @@ knitr::opts_chunk$set(echo = TRUE)
 [MINSA-PERU](https://www.gob.pe/…/699-conoce-que-es-el-coronavirus-covid…)
 
 ### Ensayos clínicos en humanos
-[OMS](http://apps.who.int/trialsearch/AdvSearch.aspx?SearchTermStat=117&ReturnUrl=%7e%2fListBy.aspx%3fTypeListing%3d0)
+[Organizacion Mundial de la Salud](http://apps.who.int/trialsearch/AdvSearch.aspx?SearchTermStat=117&ReturnUrl=%7e%2fListBy.aspx%3fTypeListing%3d0)
+###### 392 estudios sobre diagnóstico, medicamentos y vacunas al 15 de Marzo del 2020.
+
 [Clinical-trials](https://clinicaltrials.gov)
 
 
