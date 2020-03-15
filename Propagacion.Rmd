@@ -1,0 +1,57 @@
+---
+title: "Propagacion"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Casos Reportados
+
+```{r, echo=FALSE, message=FALSE}
+library(rio)
+library(dplyr)
+library(ggplot2)
+library(gridExtra)
+data=import("reportes_minsa.xlsx")
+```
+
+### Número de pacientes positivos (acumulados)
+
+```{r}
+p1=data%>%group_by(Dia)%>%
+  summarise(Positivos=max(Positivos))%>%
+  ggplot(aes(x=Dia,y=Positivos, label=Positivos))+
+  ggtitle("Pacientes positivos (acumulados)")+
+  geom_line()+geom_label()
+p2=data%>%group_by(Dia)%>%
+  summarise(Positivos=max(Positivos))%>%
+  mutate(lag=lag(Positivos),
+         Nuevos=Positivos-lag)%>%
+  ggplot(aes(x=Dia,y=Nuevos, label=Nuevos))+
+  ggtitle("Pacientes nuevos por dia")+
+  geom_line()+geom_label()
+grid.arrange(p1, p2, nrow = 1)
+```
+
+### Pruebas
+
+```{r, message=FALSE}
+p3=data%>%group_by(Dia)%>%
+  summarise(Pruebas=max(Total_Pruebas))%>%
+  ggplot(aes(x=Dia,y=Pruebas, label=Pruebas))+
+  ggtitle("Total de pruebas aplicadas")+
+  geom_line()+geom_label()
+
+p4=data%>%group_by(Dia)%>%
+  summarise(Pruebas=max(Total_Pruebas))%>%
+  mutate(lag=lag(Pruebas),
+         Nuevas=Pruebas-lag)%>%
+  ggplot(aes(x=Dia,y=Nuevas, label=Nuevas))+
+  ggtitle("Pruebas aplicadas por dia")+
+  geom_line()+geom_label()
+
+grid.arrange(p3, p4, nrow = 1)
+```
+
+## Mapa

@@ -27,11 +27,11 @@ Secciones:
 
 ## Colaborar
 
-- Todos pueden colaborar, el repositorio en github: 
-- Agregate en slack
+- Todos pueden colaborar, el repositorio en github (https://github.com/jincio/COVID_19_PERU): 
+- Agregate en slack para coordinar
 - Curadores:
-    - XXXX
-    - XXXX
+    - José Incio (github: jincio, twitter: @jlincio)
+    - XXX
     - XXXX
 
 Puedes ser curador/editor escribe a alguno de los editores y curadores. 

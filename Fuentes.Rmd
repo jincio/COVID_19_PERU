@@ -8,15 +8,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Fuentes Oficiales
 
-Página del CDC en español
-![](https://www.cdc.gov/coronavirus/2019-ncov/index-sp.html)
+### Página del CDC en español:
 
-OMS:
-![](https://www.who.int/…/novel-coronavirus-2…/advice-for-public)
+[CDC](https://www.cdc.gov/coronavirus/2019-ncov/index-sp.html)
 
-MINSA:
-![](https://www.gob.pe/…/699-conoce-que-es-el-coronavirus-covid…)
+### OMS:
+
+[OMS](https://www.who.int/…/novel-coronavirus-2…/advice-for-public)
+
+### MINSA:
+[MINSA-PERU](https://www.gob.pe/…/699-conoce-que-es-el-coronavirus-covid…)
 
 ## Legislación especial
 
+### Medidas Económicas
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Ante el avance del COVID-19 a nivel mundial, venimos trabajando medidas que permitan amortiguar sus efectos sobre la ciudadanía y las mipymes,importantes fuentes de empleo y uno de los motores de nuestra economía. Abro hilo con las acciones recientes. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a>.1/7</p>&mdash; María Antonieta Alva Luperdi (@ToniAlvaL) <a href="https://twitter.com/ToniAlvaL/status/1239189178866425856?ref_src=twsrc%5Etfw">March 15, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
