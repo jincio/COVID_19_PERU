@@ -10,6 +10,11 @@ Papers/links/findings de revistas científicas.
 
 ## Coronavirus puts drugs repurposing on the fast track [link](https://www.nature.com/articles/d41587-020-00003-1) 
 
+Resumen elaborado por **Cleidy Osorio**:
+
+La empresa Ascletis Pharma fue autorizada por el gobierno chino para probar medicamentos contra el VIH para el tratamiento del nuevo COVID-19. Kaletra es una de estos medicamentos, con la cual se reportó que un paciente con COVID-19 mejoró rápidamente con dicho fármaco. Por otro lado, la empresa BrightGene Bio-Medical Technology anunció que a inicios de febrero fabricaría el antiviral remdesivir. Este medicamento tiene acción para diversos virus, entre ellos MERS Y SARS, los cuales son virus biológicamente parecidos a Covid-19, y por tal motivo podría tener un efecto positivo para tratar esta nueva pandemia. De hecho, el primer paciente en los Estados Unidos con COVID-19 confirmado mejoró después de haber sido durante un día con remdesivir, y aunque no se ha podido demostrar si este medicamento tuvo un efecto directo en la recuperación, lo cierto es que las pruebas con medicamente ya conocidos que son parte del tratamiento de otros virus similares al COVID-19, podrían ayudar a tener una respuesta rápida en el tratamiento de los infectados.
+Por otro lado, el conocimiento de la estructura de diferentes proteínas del COVID-19, que también son similares en otros virus, son también de suma importancia para confirmar mediante la predicción con herramientas computacionales, la reutilización de fármacos ya conocidos.
+ En palabras de Bryan Mounce, profesor asistente del Departamento de Microbiología e Inmunología, Universidad de Loyola, Chicago: "Los agentes (medicamentos) de amplio espectro (amplia acción) son ideales para situaciones de brotes [epidémicos] en las que no sabemos completamente a qué nos enfrentamos…"
 
 
 

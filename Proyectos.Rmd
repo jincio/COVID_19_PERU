@@ -2,7 +2,13 @@
 title: "Proyectos"
 ---
 
-## IDEAS
+# IDEAS
 
 Dejar ideas de proyectos y contacto del que propone la idea si alguien se quiere sumar se ponen en contacto. 
+
+## Simulaciones
+
+@fjsistemas compartió esta simulación inspirada en el artículo de washington post. Si estas interesado en colaborar con esto mándale un DM. 
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">¿Saben por qué funciona el aislamiento social? Porque evita que mucha gente se contagie. Inspirado en la simulación de este artículo: <a href="https://t.co/kHabGyBrNf">https://t.co/kHabGyBrNf</a> hice la siguiente simulación agregando una mortalidad de 1% y un tope en la capacidad de atención. <a href="https://twitter.com/hashtag/COVID%E3%83%BC19?src=hash&amp;ref_src=twsrc%5Etfw">#COVIDー19</a> <a href="https://t.co/Xht1ZuOvkR">pic.twitter.com/Xht1ZuOvkR</a></p>&mdash; FJ RA (@fjsistemas) <a href="https://twitter.com/fjsistemas/status/1239390168848707585?ref_src=twsrc%5Etfw">March 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
