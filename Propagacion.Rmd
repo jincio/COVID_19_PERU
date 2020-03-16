@@ -103,7 +103,7 @@ dat2 %>%
        title = paste0("Numero de pruebas aplicadas \nhasta: ", Sys.Date())) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
-  scale_y_continuous(sec.axis = sec_axis(~ .)) +
+  #scale_y_continuous(sec.axis = sec_axis(~ .)) +
   theme_minimal() +
   theme(legend.position="bottom")
 ```
