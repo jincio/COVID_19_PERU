@@ -19,6 +19,7 @@ library(JLutils)
 library(tidyverse)
 library(sf)
 library(readxl)
+library(cowplot)
 data=import("reportes_minsa.xlsx")
 ```
 
@@ -31,7 +32,7 @@ Código elaborado por Gabriel Carrasco Escobar (http://gcarrasco.rbind.io/blog/c
 dat2 <- data %>%
   dplyr::group_by(Dia)%>%
   dplyr::summarise(Total_Pruebas=max(Total_Pruebas),
-            Positivos=max(Positivos))%>%
+                   Positivos=max(Positivos))%>%
   mutate(pos_new=Positivos-lag(Positivos,default = 0),
          pruebas_dia=Total_Pruebas-lag(Total_Pruebas,default = 0))
 
@@ -45,7 +46,7 @@ f1=dat2 %>%
   geom_label(aes(Dia, Positivos, label = Positivos), vjust = -0.3,
              label.size = 0.20)+
   labs(y = "Numero de casos reportados", color = " Casos", fill = " ", 
-       title = paste0("Numero de casos confirmados \nhasta: ", Sys.Date())) +
+       title = paste0("Numero de casos confirmados \nhasta: ", format(as.Date(max(data$Dia)),"%d/%m"))) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
   #scale_y_continuous() +
@@ -62,16 +63,19 @@ f2=data %>%
   stat_fill_labels(size=2)+
   #scale_fill_discrete_sequential(palette="BluGrn") +
   labs(y = "proportion", fill = "Resultado",
-       title = paste0("Proporcion de positivos del total \nde muestras analizadas hasta: ", Sys.Date())) +
+       title = paste0("Proporcion de positivos del total \nde muestras analizadas hasta: ", format(as.Date(max(data$Dia)),"%d/%m"))) +
   theme_bw() +
   theme(legend.position="bottom")
 
-library(cowplot)
+#library(cowplot)
 
-plot_grid(f1,f2, rel_widths = c(4,3), labels = c("A","B"))
+plot_grid(f1)
 ```
 
 
+```{r}
+plot_grid(f2)
+```
 
 ```{r, eval=FALSE}
 #Gráfico de líneas antiguo
@@ -127,7 +131,6 @@ data%>%dplyr::group_by(Dia)%>%
             
 ```
 
-
 ## Mapa
 
 ```{r}
@@ -162,7 +165,7 @@ departamento%>%left_join(data3,
   geom_sf(aes(fill = casos))+
   scale_x_discrete()+
   scale_fill_manual(values = colores)+
-  labs(title = paste0("Proporcion de positivos del total \nde muestras analizadas hasta: ", Sys.Date()),
+  labs(title = paste0("Proporcion de positivos del total \nde muestras analizadas hasta: ", format(as.Date(max(data$Dia)),"%d/%m")),
        caption = "Callao se suma a Lima",
        fill="Casos")+
   theme(plot.title = element_text(hjust = 0.5),

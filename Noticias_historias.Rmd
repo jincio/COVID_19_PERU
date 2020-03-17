@@ -6,29 +6,36 @@ title: "Noticias_historias"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Objetivo
+# Objetivo
 
 Noticias con información relevante sobre la pandemia. 
 
-### Español 
+## Español 
 
 [Berlin intenta detener que USA compre la investigación de una empresa alemana que trabaja en la vacuna contra el coronavirus](https://elpais.com/sociedad/2020-03-15/berlin-trata-de-impedir-que-ee-uu-compre-la-investigacion-de-una-empresa-alemana-que-trabaja-en-la-vacuna-contra-el-virus.html?ssm=TW_CC)
 
 
-### Ingles:
+## Ingles:
 
-**La importancia de la distancia social y cuarentena**
+### La importancia de la distancia social y cuarentena**
 
 [How to "flatten the curve- Washington Post](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/)
 
 [Patient 31-South Corea](https://graphics.reuters.com/CHINA-HEALTH-SOUTHKOREA-CLUSTERS/0100B5G33SB/index.html)
 
-***Vacuna para el COVID19***
+
+
+### Vacuna para el COVID19?
 
 [biotechnology companies rush to complete coronavirus vaccine](https://www.wbur.org/commonhealth/2020/02/21/were-racing-time-biotechnology-companies-rush-to-complete-coronavirus-vaccine)
 
 
 [Germany tries to stop US luring away firm seeking vaccine](https://www.cnbc.com/2020/03/15/coronavirus-germany-tries-to-stop-us-luring-away-firm-seeking-vaccine.html?fbclid=IwAR0Z7cEGB4TG6jAHHO3IHGnIe6M4QpLwMyIq1x6kGF87FIMJRt8EO81Cfkw)
+
+### Respuestas de gobiernos 
+
+[U.S Lags ins Coronavirus Testing After Slow Response to Outbreak](https://www.nytimes.com/interactive/2020/03/17/us/coronavirus-testing-data.html?action=click&module=Top%20Stories&pgtype=Homepage)
+
 
 ## Videos informativos 
 
