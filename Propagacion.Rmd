@@ -145,7 +145,7 @@ data3=data2%>%
   mutate(Departamento=ifelse(Departamento=="CALLAO","LIMA",
                              Departamento))%>%
   dplyr::group_by(Departamento)%>%
-  dplyr::summarise(casos=sum(Positivos))
+  dplyr::summarise(casos=max(Positivos))
 
 
 colores<- c("grey80",
