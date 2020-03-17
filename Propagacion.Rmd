@@ -16,6 +16,9 @@ library(ggplot2)
 library(gridExtra)
 library(kableExtra)
 library(JLutils)
+library(tidyverse)
+library(sf)
+library(readxl)
 data=import("reportes_minsa.xlsx")
 ```
 
@@ -112,8 +115,8 @@ dat2 %>%
 ## Tabla
 
 ```{r}
-data%>%group_by(Dia)%>%
-  summarise(Positivos=max(Positivos),
+data%>%dplyr::group_by(Dia)%>%
+  dplyr::summarise(Positivos=max(Positivos),
             Pruebas_aplicadas=max(Total_Pruebas))%>%
             mutate(  
             lag=lag(Pruebas_aplicadas),
@@ -127,14 +130,57 @@ data%>%group_by(Dia)%>%
 
 ## Mapa
 
+```{r}
+departamento<- read_sf("~/Box Sync/BD/Shapes/LIMITES INEI_2016/DEPARTAMENTO_30_JULIO_2016.shp")%>%
+  select(Departamento = NOMBDEP, 
+         geometry)
+
+data2=import("reportes_minsa.xlsx", sheet=2)
+data3=data2%>%
+  mutate(Departamento=ifelse(Departamento=="CALLAO","LIMA",
+                             Departamento))%>%
+  dplyr::group_by(Departamento)%>%
+  dplyr::summarise(casos=sum(Positivos))
+
+
+colores<- c("grey80",
+                      "dodgerblue4",
+                      "forestgreen",
+                      "deepskyblue3",
+                      "darkred"
+                      # "mediumpurple4",
+                      # "royalblue3",
+                      # "brown3",
+                      # "gold2",
+                      # "grey80"
+                      )
+departamento%>%left_join(data3, 
+                         by="Departamento")%>%
+  mutate(casos=replace_na(casos,0))%>%
+  mutate(casos=as.factor(casos))%>%
+  ggplot()+
+  geom_sf(aes(fill = casos))+
+  scale_x_discrete()+
+  scale_fill_manual(values = colores)+
+  labs(title = paste0("Proporcion de positivos del total \nde muestras analizadas hasta: ", Sys.Date()),
+       caption = "Callao se suma a Lima",
+       fill="Casos")+
+  theme(plot.title = element_text(hjust = 0.5),
+        panel.background = element_blank())  
+```
 
 ## Fuentes
 
 Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru)
 
+03/16
+
+{{< tweet 1196831115899785216 >}}
+
 03/16 
 
-<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Ministra <a href="https://twitter.com/EHinostrozaP?ref_src=twsrc%5Etfw">@EHinostrozaP</a>: Hasta el corte de la mañana, se tienen 86 casos confirmados de <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> de 2315 casos investigados. La mayor parte de casos se concentra en Lima. <a href="https://t.co/7AaHtMNrXw">pic.twitter.com/7AaHtMNrXw</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1239548049191550978?ref_src=twsrc%5Etfw">March 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 8:46 horas del 16 de marzo. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrvulE">https://t.co/F4GaDrvulE</a> <a href="https://t.co/fsY4PTgtFL">pic.twitter.com/fsY4PTgtFL</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1239569760704253952?ref_src=twsrc%5Etfw">March 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 
 03/15
 
