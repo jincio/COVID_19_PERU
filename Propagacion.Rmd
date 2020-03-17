@@ -25,7 +25,7 @@ data=import("reportes_minsa.xlsx")
 
 ### Número de pacientes positivos
 
-Código elaborado por Gabriel Carrasco Escobar (http://gcarrasco.rbind.io/blog/covid19_viz/)
+Código adaptado del post de Gabriel Carrasco Escobar (http://gcarrasco.rbind.io/blog/covid19_viz/)
 
 
 ```{r}
@@ -79,13 +79,15 @@ plot_grid(f2)
 
 ```{r, eval=FALSE}
 #Gráfico de líneas antiguo
-p1=data%>%group_by(Dia)%>%
-  summarise(Positivos=max(Positivos))%>%
+p1=data%>%
+  dplyr::group_by(Dia)%>%
+  dplyr::summarise(Positivos=max(Positivos))%>%
   ggplot(aes(x=Dia,y=Positivos, label=Positivos))+
   ggtitle("Pacientes positivos (acumulados)")+
   geom_line()+geom_label()
-p2=data%>%group_by(Dia)%>%
-  summarise(Positivos=max(Positivos))%>%
+p2=data%>%
+  dplyr::group_by(Dia)%>%
+  dplyr::summarise(Positivos=max(Positivos))%>%
   mutate(lag=lag(Positivos),
          Nuevos=Positivos-lag)%>%
   ggplot(aes(x=Dia,y=Nuevos, label=Nuevos))+
@@ -95,7 +97,7 @@ grid.arrange(p1, p2, ncol = 1)
 ```
 
 ### Pruebas
-Código elaborado por Gabriel Carrasco Escobar (http://gcarrasco.rbind.io/blog/covid19_viz/)
+Código adaptado del post de Gabriel Carrasco Escobar (http://gcarrasco.rbind.io/blog/covid19_viz/)
 
 ```{r, message=FALSE}
 dat2 %>%
@@ -123,8 +125,8 @@ data%>%dplyr::group_by(Dia)%>%
   dplyr::summarise(Positivos=max(Positivos),
             Pruebas_aplicadas=max(Total_Pruebas))%>%
             mutate(  
-            lag=lag(Pruebas_aplicadas),
-            lag2=lag(Positivos),
+            lag=lag(Pruebas_aplicadas, default = 0),
+            lag2=lag(Positivos,default = 0),
             Pruebas_XDia=Pruebas_aplicadas-lag,
             Nuevos_Positivos=Positivos-lag2)%>%
   dplyr::select(-c(lag,lag2))%>%kable()
@@ -150,14 +152,15 @@ colores<- c("grey80",
                       "dodgerblue4",
                       "forestgreen",
                       "deepskyblue3",
-                      "darkred"
-                      # "mediumpurple4",
-                      # "royalblue3",
+                      "mediumpurple4",
+                      "royalblue3",
+            "darkred"
                       # "brown3",
                       # "gold2",
                       # "grey80"
                       )
-departamento%>%left_join(data3, 
+departamento%>%
+  left_join(data3, 
                          by="Departamento")%>%
   mutate(casos=replace_na(casos,0))%>%
   mutate(casos=as.factor(casos))%>%
@@ -165,7 +168,7 @@ departamento%>%left_join(data3,
   geom_sf(aes(fill = casos))+
   scale_x_discrete()+
   scale_fill_manual(values = colores)+
-  labs(title = paste0("Proporcion de positivos del total \nde muestras analizadas hasta: ", format(as.Date(max(data$Dia)),"%d/%m")),
+  labs(title = paste0("Proporcion de positivos del total \nde muestras analizadas hasta: ", format(as.Date(max(data2$Fecha)),"%d/%m")),
        caption = "Callao se suma a Lima",
        fill="Casos")+
   theme(plot.title = element_text(hjust = 0.5),
@@ -176,9 +179,9 @@ departamento%>%left_join(data3,
 
 Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru)
 
-03/16
+03/17 
 
-{{< tweet 1196831115899785216 >}}
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 8:20 horas del 17 de marzo. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrvulE">https://t.co/F4GaDrvulE</a> <a href="https://t.co/8yojgp7eYw">pic.twitter.com/8yojgp7eYw</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1239982787404455940?ref_src=twsrc%5Etfw">March 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 03/16 
 
