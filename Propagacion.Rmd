@@ -168,7 +168,7 @@ departamento%>%
   geom_sf(aes(fill = casos))+
   scale_x_discrete()+
   scale_fill_manual(values = colores)+
-  labs(title = paste0("Proporcion de positivos del total \nde muestras analizadas hasta: ", format(as.Date(max(data2$Fecha)),"%d/%m")),
+  labs(title = paste0("Número de casos positivos al: ", format(as.Date(max(data2$Fecha)),"%d/%m")),
        caption = "Callao se suma a Lima",
        fill="Casos")+
   theme(plot.title = element_text(hjust = 0.5),
