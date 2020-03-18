@@ -6,8 +6,9 @@ title: "Investigaciones"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Papers/links/findings de revistas científicas. 
-#Links útiles 
+Papers/links/findings de revistas científicas.
+
+# Links útiles 
 
 [Biblioteca-UPC-Coronavirus](https://biblioteca.upc.edu.pe/covid-19/)
 
