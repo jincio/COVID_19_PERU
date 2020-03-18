@@ -7,6 +7,15 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 Papers/links/findings de revistas científicas. 
+#Links útiles 
+
+[Biblioteca-UPC-Coronavirus](https://biblioteca.upc.edu.pe/covid-19/)
+
+# Artículos y resumenes
+
+## Sobre el origen del virus
+
+[The proximal origin of SARS-COV-2](https://www.nature.com/articles/s41591-020-0820-9?utm_source=twitter&utm_medium=social&utm_content=organic&utm_campaign=NGMT_USG_JC01_GL_NRJournals)
 
 ## Coronavirus puts drugs repurposing on the fast track [link](https://www.nature.com/articles/d41587-020-00003-1) 
 

@@ -91,7 +91,7 @@ f4=dat2 %>%
   geom_point(aes(y = Total_Pruebas), col = "#8B1C62") +
   geom_label(aes(Dia, Total_Pruebas, label = Total_Pruebas), vjust = -0.5,
              label.size = 0.07)+
-  labs(y = "Numero de pruebas reportadas", color = " Casos", fill = " ",
+  labs(y = "Numero de pruebas reportadas", color = " Pruebas", fill = " ",
        title = paste0("Numero de pruebas aplicadas"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +

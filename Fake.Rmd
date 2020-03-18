@@ -18,6 +18,22 @@ En esta página listasmo las noticias falsas que están circulando. Si se puede 
 
 <blockquote class="twitter-tweet"><p lang="es" dir="ltr"><a href="https://twitter.com/hashtag/PNPInforma?src=hash&amp;ref_src=twsrc%5Etfw">#PNPInforma</a>📢| Con relación a una cartilla que viene circulando por redes sociales, sobre instrucciones para el Estado de Emergencia Nacional, informamos a la opinión pública que dicha información es falsa. <a href="https://twitter.com/hashtag/FakeNews?src=hash&amp;ref_src=twsrc%5Etfw">#FakeNews</a> <a href="https://twitter.com/hashtag/NoCaigas?src=hash&amp;ref_src=twsrc%5Etfw">#NoCaigas</a> <a href="https://t.co/W9QCarA3DG">pic.twitter.com/W9QCarA3DG</a></p>&mdash; Policía Nacional del Perú (@PoliciaPeru) <a href="https://twitter.com/PoliciaPeru/status/1239752286001397762?ref_src=twsrc%5Etfw">March 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+### Mascarillas
+
+Aclaración: Las mascarillas hechas en casa no previenen el coronovirus. 
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr"><a href="https://twitter.com/hashtag/MGPVideo?src=hash&amp;ref_src=twsrc%5Etfw">#MGPVideo</a> ¿Sabes cómo hacer una mascarilla? Nosotros te enseñamos 👇 <a href="https://twitter.com/hashtag/YoMeQuedoEnCasa?src=hash&amp;ref_src=twsrc%5Etfw">#YoMeQuedoEnCasa</a><a href="https://twitter.com/hashtag/Per%C3%BAEstaEnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstaEnNuestrasManos</a><a href="https://twitter.com/hashtag/ManteniendolaCalmaloVenceremos?src=hash&amp;ref_src=twsrc%5Etfw">#ManteniendolaCalmaloVenceremos</a> <a href="https://t.co/BEaHr3CBVj">pic.twitter.com/BEaHr3CBVj</a></p>&mdash; Marina de Guerra (@naval_peru) <a href="https://twitter.com/naval_peru/status/1239580746072891393?ref_src=twsrc%5Etfw">March 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+### Gárgaras 
+
+FALSO: 
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/fake1.jpg')
+```
+
+## Noticias engañosas
+
+
 
 
 
