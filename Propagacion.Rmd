@@ -223,6 +223,11 @@ data%>%dplyr::group_by(Dia)%>%
 
 Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru)
 
+
+03/18
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 7:00 horas del 18 de marzo. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrvulE">https://t.co/F4GaDrvulE</a> <a href="https://t.co/pPPwxu13dG">pic.twitter.com/pPPwxu13dG</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1240305962256343040?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 03/17 
 
 <blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 8:20 horas del 17 de marzo. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrvulE">https://t.co/F4GaDrvulE</a> <a href="https://t.co/8yojgp7eYw">pic.twitter.com/8yojgp7eYw</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1239982787404455940?ref_src=twsrc%5Etfw">March 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
