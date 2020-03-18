@@ -10,6 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 En esta página listasmo las noticias falsas que están circulando. Si se puede identificar quien las propaga o genera aun mejor. 
 
+### Mensaje sobre Bono
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">📢<a href="https://twitter.com/hashtag/MEFInforma?src=hash&amp;ref_src=twsrc%5Etfw">#MEFInforma</a> que este mensaje de texto es falso. <br>Pedimos a la población no dejarse sorprender con noticias falsas. <br>La información sobre la asignación del bono anunciado se dará a conocer a través de los canales oficiales.<a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> <a href="https://t.co/Ubq6UMq7hF">pic.twitter.com/Ubq6UMq7hF</a></p>&mdash; Ministerio de Economía y Finanzas (@MEF_Peru) <a href="https://twitter.com/MEF_Peru/status/1240372186801754112?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 ### Whatssapp sobre Estado de Emergencia
 
 <blockquote class="twitter-tweet"><p lang="es" dir="ltr">Este mensaje que circula por WhatsApp es falso. <br>Pedimos a la población no dejarse sorprender por información anónima que circula por medios digitales. ¡Acude siempre a fuentes oficiales!<a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> <a href="https://t.co/iGX5cwfzCX">pic.twitter.com/iGX5cwfzCX</a></p>&mdash; MINDEF PERU (@MindefPeru) <a href="https://twitter.com/MindefPeru/status/1240103199433994240?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

@@ -1,10 +1,16 @@
 ---
 title: "Proyectos"
 ---
+IDEAS
 
-# IDEAS
+Ideas y proyectos en algunos casos te puedes sumar a ellos, revisa la información de contacto en cada entrada. 
 
-Dejar ideas de proyectos y contacto del que propone la idea si alguien se quiere sumar se ponen en contacto. 
+## Lista de proyectos 
+
+Base de datos de proyectos (hardware, software, bio) para la población general y personal de salud
+
+[Google Docs con la lista de proyectos](https://docs.google.com/spreadsheets/d/1b6pNTaSLhot0tKwDuhXCh9glBSZZ7TR2QPnloMGLS-Q/edit#gid=1567877262)
+
 
 ## Voluntariados/Servicios
 
