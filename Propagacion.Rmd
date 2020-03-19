@@ -223,6 +223,9 @@ data%>%dplyr::group_by(Dia)%>%
 
 Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru)
 
+03/19 
+
+https://www.gob.pe/8662
 
 03/18
 
