@@ -14,6 +14,18 @@ Base de datos de proyectos (hardware, software, bio) para la población general 
 
 ## Voluntariados/Servicios
 
+### Para sesiones de consejería virtuales 
+
+Detalles 
+
+```{r echo=FALSE, out.width='60%'}
+knitr::include_graphics('./Imagenes/proyecto1.jpg')
+```
+
+[REPO GITHUB](https://github.com/BenjiSantos/callme-for-covit19)
+
+### Lista de personal medico
+
 Pierre Padilla-Huamantinco organizó una lista de personal médico voluntario que está disponible para atender consultas.  [Post-Facebook](https://www.facebook.com/pierre.padilla/posts/10218763295786247?comment_id=10218775110481607&notif_id=1584453404437361&notif_t=mentions_comment)
 
 Puedes consultar o agregar información a la lista.  [Lista de google-docs](https://docs.google.com/spreadsheets/d/1Ol06VJ6KD0GcRtjmWy_e58ZxY2yngEawJN9S8GW26Mw/edit?fbclid=IwAR2PS3VXDh2ZEcbzOArZWVD-3bpQdNyPoxt-kI3rAN_8k6BtrBIu7te0QK4#gid=0)

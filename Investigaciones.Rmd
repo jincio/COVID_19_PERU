@@ -14,6 +14,14 @@ Papers/links/findings de revistas científicas.
 
 # Artículos y resumenes
 
+## Modelos sobre contagio
+
+[Nowcasting and forecasting the potential domestic and international spread of the 2019-nCoV outbreak originating in Wuhan, China: a modelling study](https://www.thelancet.com/pdfs/journals/lancet/PIIS0140-6736(20)30260-9.pdf)
+
+## Cuanto dura el SARS-COV-2 (Coronavirus) en superficies
+
+[Aerosol and Surface Stability of SARS-CoV-2 as Compared with SARS-CoV-1](https://www.nejm.org/doi/full/10.1056/NEJMc2004973)
+
 ## Sobre el origen del virus
 
 [The proximal origin of SARS-COV-2](https://www.nature.com/articles/s41591-020-0820-9?utm_source=twitter&utm_medium=social&utm_content=organic&utm_campaign=NGMT_USG_JC01_GL_NRJournals)
