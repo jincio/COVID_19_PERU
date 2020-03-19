@@ -149,13 +149,12 @@ data3=data2%>%
 
 colores<- c("grey80",
                       "dodgerblue4",
-                      "forestgreen",
+                      "gold2",
                       "deepskyblue3",
                       "mediumpurple4",
                       "royalblue3",
-            "darkred"
-                      # "brown3",
-                      # "gold2",
+                      "brown3",
+                        "darkred"
                       # "grey80"
                       )
 m1=departamento%>%

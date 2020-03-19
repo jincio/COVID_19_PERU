@@ -74,6 +74,24 @@ f4=dat2 %>%
   theme_minimal() +
   theme(legend.position="bottom")
 
+
+f5=dat2 %>%
+  ggplot(aes(x = Dia)) +
+  ylim(0,max(dat2$pruebas_dia)*1.05)+
+  geom_bar(aes(y = pos_new, fill = "Casos Positivos"), stat = "identity", alpha=.5)+
+  geom_label(aes(Dia, pos_new, label = pos_new), vjust = 0.5)+
+  geom_line(aes(y = pruebas_dia, col = "Pruebas"), size=1) +
+  geom_point(aes(y = pruebas_dia), col = "#8B1C62") +
+  geom_label(aes(Dia, pruebas_dia, label = pruebas_dia), vjust = -0.5,
+             label.size = 0.07)+
+  labs(y = "Numero de pruebas reportadas", color = " Casos", fill = " ",
+       title = paste0("Pruebas y casos positivos por dia"),
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+  scale_fill_manual(values = c("Casos Positivos" = "#43CD80")) +
+  scale_color_manual(values = c("Pruebas" = "#8B1C62")) +
+  #scale_y_continuous(sec.axis = sec_axis(~ .)) +
+  theme_minimal() +
+  theme(legend.position="bottom")
 #plot_grid(f1,f3,f2,f4)
 
 panel=ggarrange(f1,f4,f2,f3,
