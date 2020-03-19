@@ -10,6 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 En esta página listasmo las noticias falsas que están circulando. Si se puede identificar quien las propaga o genera aun mejor. 
 
+### Huida de ciudadanos
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">⚠ ATENCIÓN | Respecto a publicaciones en redes sociales que señalan la huida de ciudadanos con casos confirmados de <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> del <a href="https://twitter.com/HospitalOficial?ref_src=twsrc%5Etfw">@HospitalOficial</a>, el <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> informa que son FALSAS. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información ➡ <a href="https://t.co/F4GaDrN5dc">https://t.co/F4GaDrN5dc</a> <a href="https://t.co/uzBOiCr23K">pic.twitter.com/uzBOiCr23K</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1240466773704507392?ref_src=twsrc%5Etfw">March 19, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 ### Mensaje sobre Bono
 
 <blockquote class="twitter-tweet"><p lang="es" dir="ltr">📢<a href="https://twitter.com/hashtag/MEFInforma?src=hash&amp;ref_src=twsrc%5Etfw">#MEFInforma</a> que este mensaje de texto es falso. <br>Pedimos a la población no dejarse sorprender con noticias falsas. <br>La información sobre la asignación del bono anunciado se dará a conocer a través de los canales oficiales.<a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> <a href="https://t.co/Ubq6UMq7hF">pic.twitter.com/Ubq6UMq7hF</a></p>&mdash; Ministerio de Economía y Finanzas (@MEF_Peru) <a href="https://twitter.com/MEF_Peru/status/1240372186801754112?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
