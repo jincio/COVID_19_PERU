@@ -243,7 +243,13 @@ Para la construcción de la tabla he usado la información difundida por MINSA e
 
 03/19 
 
+Casos: 
 <blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 12:00 horas del 19 de marzo. Se registran dos altas. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrN5dc">https://t.co/F4GaDrN5dc</a> <a href="https://t.co/zYppUus7Ip">pic.twitter.com/zYppUus7Ip</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1240706791366733824?ref_src=twsrc%5Etfw">March 19, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Fallecidos: 
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🔴 URGENTE | El <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> lamenta informar la sensible muerte de dos ciudadanos por coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en territorio peruano. Extendemos nuestras condolencias a sus familias. <a href="https://t.co/UF5X1ukqtR">pic.twitter.com/UF5X1ukqtR</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1240818095280869377?ref_src=twsrc%5Etfw">March 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 03/18
 
 <blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 7:00 horas del 18 de marzo. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrvulE">https://t.co/F4GaDrvulE</a> <a href="https://t.co/pPPwxu13dG">pic.twitter.com/pPPwxu13dG</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1240305962256343040?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
