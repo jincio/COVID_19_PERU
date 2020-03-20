@@ -39,7 +39,26 @@ FALSO:
 knitr::include_graphics('./Imagenes/fake1.jpg')
 ```
 
-## Noticias engañosas
+## Artículos imprecisos 
+
+Está circulando por redes sociales un PDF titulado:
+
+## Artículos imprecisos
+
+Está circulando por redes sociales un PDF titulado:
+
+"ESTIMACIÓN DE LA PROPAGACIÓN DEL CORONAVIRUS 2019 (COVID-19) EN PERU UN MODELO SIR"
+De: Jairo Pinedo Taquía & Jhelly Peréz Núñez
+
+
+Los responsables de este sitio creemos que es el documento en el estado actual es impreciso, y que su difusión puede generar mayor desinformación en la población.
+
+1) El PDF de tres páginas no es un artículo científico. No se le puede dar tal credibilidad. El artículo no ha pasado por revisión de pares, ni está avalado por algún revista especializada nacional o extranjera y se debió aclarar que el documento es un borrador/proyecto etc, más no un artículo.
+
+2) El texto tiene varias imprecisiones o supuestos que no son discutidos con la profundidad que corresponde. Entre ellos que:
+-  No se puede asumir a Perú como un bloque interconectado. 
+-  No tienen un ajuste de datos apropiado y un control de sensibilidad de variables. El inicio de la curva epidémica ajustado a pocos datos puede generar imprecisión si tratamos de inferir a partir de ella. Estos  nos podrían llevar a escenarios tan disímiles  como Corea del Sur o Italia.
+- No se puede ignorar el periodo asintomático en esta epidemia. Hay reportes clínicos y epidemiológicos de ser un factor importante de contagio. En ese sentido, el modelo más simple a usar no sería SIR, sino SEIR. Este cambio es importante pues ralentiza el paso de la población susceptible a la población infectada.
 
 
 
