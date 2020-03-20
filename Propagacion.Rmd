@@ -243,8 +243,13 @@ plot_grid(f4)
 ### Tendencias acumuladas
 
 ```{r}
-plot_grid(f5,f6)
+plot_grid(f5)
 ```
+
+```{r}
+plot_grid(f6)
+```
+
 
 ## Tabla
 
