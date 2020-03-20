@@ -41,7 +41,11 @@ Noticias con información relevante sobre la pandemia.
 
 ### Español
 
-[![Test](http://img.youtube.com/vi/vlzxSleRnmg/0.jpg)](https://www.youtube.com/watch?v=vlzxSleRnmg " ")
+#### Video 1
+
+<https://www.youtube.com/watch?v=vlzxSleRnmg>
+
+![](https://www.youtube.com/watch?v=vlzxSleRnmg)
 
 
 [![Test](http://img.youtube.com/vi/0SGdO61HRD8/0.jpg)](https://www.youtube.com/watch?v=0SGdO61HRD8 " ")

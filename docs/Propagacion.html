@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -72,7 +71,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -221,6 +219,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -249,6 +248,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -381,17 +386,17 @@ div.tocify {
 <h2><span class="header-section-number">0.3</span> Mapa</h2>
 <p><img src="Propagacion_files/figure-html/Map-1.png" width="672" /></p>
 </div>
-<div id="graficos-individuales" class="section level2">
+<div id="gráficos-individuales" class="section level2">
 <h2><span class="header-section-number">0.4</span> Gráficos Individuales</h2>
-<div id="numero-de-pacientes-positivos" class="section level3">
+<div id="número-de-pacientes-positivos" class="section level3">
 <h3><span class="header-section-number">0.4.1</span> Número de pacientes positivos</h3>
 <p><img src="Propagacion_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
-<div id="proporcion-del-total" class="section level3">
+<div id="proporción-del-total" class="section level3">
 <h3><span class="header-section-number">0.4.2</span> Proporción del total</h3>
 <p><img src="Propagacion_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 </div>
-<div id="proporcion-de-positivos-por-pruebas-aplicadas-en-el-dia" class="section level3">
+<div id="proporción-de-positivos-por-pruebas-aplicadas-en-el-día" class="section level3">
 <h3><span class="header-section-number">0.4.3</span> Proporción de positivos por pruebas aplicadas en el día</h3>
 <p><img src="Propagacion_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>

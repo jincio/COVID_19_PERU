@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -72,7 +71,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -221,6 +219,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -249,6 +248,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -372,7 +377,7 @@ div.tocify {
 <div id="objetivo" class="section level1">
 <h1><span class="header-section-number">1</span> Objetivo</h1>
 <p>Noticias con información relevante sobre la pandemia.</p>
-<div id="espanol" class="section level2">
+<div id="español" class="section level2">
 <h2><span class="header-section-number">1.1</span> Español</h2>
 <p><a href="https://elpais.com/sociedad/2020-03-15/berlin-trata-de-impedir-que-ee-uu-compre-la-investigacion-de-una-empresa-alemana-que-trabaja-en-la-vacuna-contra-el-virus.html?ssm=TW_CC">Berlin intenta detener que USA compre la investigación de una empresa alemana que trabaja en la vacuna contra el coronavirus</a></p>
 </div>
@@ -380,7 +385,7 @@ div.tocify {
 <h2><span class="header-section-number">1.2</span> Ingles:</h2>
 <div id="la-importancia-de-la-distancia-social-y-cuarentena" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> La importancia de la distancia social y cuarentena**</h3>
-<p><a href="https://www.washingtonpost.com/graphics/2020/world/corona-simulator/">How to "flatten the curve- Washington Post</a></p>
+<p><a href="https://www.washingtonpost.com/graphics/2020/world/corona-simulator/">How to &quot;flatten the curve- Washington Post</a></p>
 <p><a href="https://graphics.reuters.com/CHINA-HEALTH-SOUTHKOREA-CLUSTERS/0100B5G33SB/index.html">Patient 31-South Corea</a></p>
 </div>
 <div id="vacuna-para-el-covid19" class="section level3">
@@ -395,13 +400,17 @@ div.tocify {
 </div>
 <div id="videos-informativos" class="section level2">
 <h2><span class="header-section-number">1.3</span> Videos informativos</h2>
-<div id="espanol-1" class="section level3">
+<div id="español-1" class="section level3">
 <h3><span class="header-section-number">1.3.1</span> Español</h3>
-<p>[<img src="http://img.youtube.com/vi/vlzxSleRnmg/0.jpg" alt="Test" />](<a href="https://www.youtube.com/watch?v=vlzxSleRnmg" class="uri">https://www.youtube.com/watch?v=vlzxSleRnmg</a> " ")</p>
-<p>[<img src="http://img.youtube.com/vi/0SGdO61HRD8/0.jpg" alt="Test" />](<a href="https://www.youtube.com/watch?v=0SGdO61HRD8" class="uri">https://www.youtube.com/watch?v=0SGdO61HRD8</a> " ")</p>
-<p>[<img src="http://img.youtube.com/vi/FrlpMx0Kzfw/0.jpg" alt="Test" />](<a href="https://www.youtube.com/watch?v=FrlpMx0Kzfw" class="uri">https://www.youtube.com/watch?v=FrlpMx0Kzfw</a> " ")</p>
-<p>[<img src="http://img.youtube.com/vi/SVQpEiOWIhE/0.jpg" alt="Test" />](<a href="https://www.youtube.com/watch?v=SVQpEiOWIhE" class="uri">https://www.youtube.com/watch?v=SVQpEiOWIhE</a> " ")</p>
-<p>[<img src="http://img.youtube.com/vi/Jc0inmKsgN0/0.jpg" alt="Test" />](<a href="https://www.youtube.com/watch?v=Jc0inmKsgN0" class="uri">https://www.youtube.com/watch?v=Jc0inmKsgN0</a> " ")</p>
+<div id="video-1" class="section level4">
+<h4><span class="header-section-number">1.3.1.1</span> Video 1</h4>
+<p><a href="https://www.youtube.com/watch?v=vlzxSleRnmg" class="uri">https://www.youtube.com/watch?v=vlzxSleRnmg</a></p>
+<p><img src="https://www.youtube.com/watch?v=vlzxSleRnmg" /></p>
+<p>[<img src="http://img.youtube.com/vi/0SGdO61HRD8/0.jpg" alt="Test" />](<a href="https://www.youtube.com/watch?v=0SGdO61HRD8" class="uri">https://www.youtube.com/watch?v=0SGdO61HRD8</a> &quot; &quot;)</p>
+<p>[<img src="http://img.youtube.com/vi/FrlpMx0Kzfw/0.jpg" alt="Test" />](<a href="https://www.youtube.com/watch?v=FrlpMx0Kzfw" class="uri">https://www.youtube.com/watch?v=FrlpMx0Kzfw</a> &quot; &quot;)</p>
+<p>[<img src="http://img.youtube.com/vi/SVQpEiOWIhE/0.jpg" alt="Test" />](<a href="https://www.youtube.com/watch?v=SVQpEiOWIhE" class="uri">https://www.youtube.com/watch?v=SVQpEiOWIhE</a> &quot; &quot;)</p>
+<p>[<img src="http://img.youtube.com/vi/Jc0inmKsgN0/0.jpg" alt="Test" />](<a href="https://www.youtube.com/watch?v=Jc0inmKsgN0" class="uri">https://www.youtube.com/watch?v=Jc0inmKsgN0</a> &quot; &quot;)</p>
+</div>
 </div>
 </div>
 </div>
