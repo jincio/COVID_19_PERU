@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Casos Reportados
 
-```{r, echo=FALSE, message=FALSE}
+```{r Librerias, echo=FALSE, message=FALSE}
 library(rio)
 library(dplyr)
 library(tidyr)
@@ -17,6 +17,7 @@ library(gridExtra)
 library(kableExtra)
 library(JLutils)
 library(tidyverse)
+library(cowplot)
 library(sf)
 library(readxl)
 library(cowplot)
@@ -24,7 +25,7 @@ library(ggpubr)
 data=import("reportes_minsa.xlsx")
 ```
 
-```{r}
+```{r Graficos}
 dat2 <- data %>%
   dplyr::group_by(Dia)%>%
   dplyr::summarise(Total_Pruebas=max(Total_Pruebas),
@@ -123,7 +124,7 @@ f5=dat2 %>%
 
 Para los gráficos indivisudales he adaptado del post de Gabriel Carrasco Escobar (http://gcarrasco.rbind.io/blog/covid19_viz/)
 
-```{r, message=FALSE, eval=FALSE}
+```{r Panel, message=FALSE, eval=FALSE}
 panel=ggarrange(f1,f4,f2,f3,
           ncol=2,nrow=2,
           widths = c(0.5,0.5,0.5,0.5),
@@ -149,18 +150,17 @@ knitr::include_graphics('panel2.png')
 
 ## Mapa
 
-```{r}
-departamento<- read_sf("~/Box Sync/BD/Shapes/LIMITES INEI_2016/DEPARTAMENTO_30_JULIO_2016.shp")%>%
-  select(Departamento = NOMBDEP, 
-         geometry)
+```{r Mapa}
+departamento <- read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
+  select(Departamento = DEPARTAMEN, geometry)
 
-data2=import("reportes_minsa.xlsx", sheet=2)
-data3=data2%>%
-  filter(Fecha==max(data2$Fecha))%>%
-  mutate(Departamento=ifelse(Departamento=="CALLAO","LIMA",
-                             Departamento))%>%
-  dplyr::group_by(Departamento)%>%
-  dplyr::summarise(casos=sum(Positivos))
+data2 = import("reportes_minsa.xlsx", sheet=2)
+data3 = data2 %>%
+  filter(Fecha == max(data2$Fecha)) %>%
+  mutate(Departamento = ifelse(Departamento=="CALLAO","LIMA",
+                             Departamento)) %>%
+  dplyr::group_by(Departamento) %>%
+  dplyr::summarise(casos = sum(Positivos))
 
 
 colores<- c("grey80",
@@ -173,23 +173,22 @@ colores<- c("grey80",
                         "darkred"
                       # "grey80"
                       )
-m1=departamento%>%
-  left_join(data3, 
-                         by="Departamento")%>%
-  mutate(casos=replace_na(casos,0))%>%
+m1 = departamento %>%
+  left_join(data3, by="Departamento") %>%
+  mutate(casos = replace_na(casos,0)) %>%
   mutate(casos=as.factor(casos))%>%
-  ggplot()+
-  geom_sf(aes(fill = casos))+
-  scale_x_discrete()+
-  scale_fill_manual(values = colores)+
-  labs(title = paste0("Número de casos positivos al: ", format(as.Date(max(data2$Fecha)),"%d/%m")),
-       caption = "Callao se suma a Lima",
-       fill="Casos")+
-  theme(plot.title = element_text(hjust = 0.5),
-        panel.background = element_blank())
+  ggplot() +
+    geom_sf(aes(fill = casos), size = 0.05, col = NA) +
+    scale_fill_brewer(palette = "Reds") +
+    labs(title = paste0("Número de casos positivos al: ", 
+                        format(as.Date(max(data2$Fecha)), "%d/%m")),
+         caption = "Callao se suma a Lima",
+         fill= "Casos") +
+  theme_bw()
+ 
 ```
 
-```{r}
+```{r Map}
 plot_grid(m1)
 ```
 
