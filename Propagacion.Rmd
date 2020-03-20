@@ -271,6 +271,13 @@ data%>%dplyr::group_by(Dia)%>%
 
 Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru). Existe también la página https://www.gob.pe/8662. 
 
+03/20
+
+### Casos
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 12:00 horas del 20 de marzo. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrvulE">https://t.co/F4GaDrvulE</a> <a href="https://t.co/Kg7Gr2QRRL">pic.twitter.com/Kg7Gr2QRRL</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1241080637622292482?ref_src=twsrc%5Etfw">March 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🔴COMUNICADO | El <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> informa que, a las 9:17 horas de hoy, viernes 20 de marzo, se registró la muerte de una persona con <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en territorio peruano. Expresamos nuestras más sentidas condolencias a sus familiares. <a href="https://t.co/B8MEz7alXR">pic.twitter.com/B8MEz7alXR</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1241048470955458560?ref_src=twsrc%5Etfw">March 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 03/19 
 
 Casos: 

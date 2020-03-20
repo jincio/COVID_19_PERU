@@ -39,10 +39,6 @@ FALSO:
 knitr::include_graphics('./Imagenes/fake1.jpg')
 ```
 
-## Artículos imprecisos 
-
-Está circulando por redes sociales un PDF titulado:
-
 ## Artículos imprecisos
 
 Está circulando por redes sociales un PDF titulado:
