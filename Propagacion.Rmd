@@ -186,22 +186,24 @@ data3 = data2 %>%
   dplyr::summarise(casos = sum(Positivos))
 
 
-colores<- c("grey80",
-                      "dodgerblue4",
-                      "gold2",
-                      "deepskyblue3",
-                      "mediumpurple4",
-                      "royalblue3",
-                      "brown3",
-                        "darkred"
-                      # "grey80"
-                      )
+# colores<- c("grey80",
+#                       "dodgerblue4",
+#                       "gold2",
+#                       "deepskyblue3",
+#                       "mediumpurple4",
+#                       "royalblue3",
+#                       "brown3",
+#                         "darkred"
+#                       # "grey80"
+#                       )
 m1 = departamento %>%
   left_join(data3, by="Departamento") %>%
-  mutate(casos = replace_na(casos,0)) %>%
+  #mutate(casos = replace_na(casos,0)) %>%
   mutate(casos=as.factor(casos))%>%
   ggplot() +
     geom_sf(aes(fill = casos), size = 0.05, col = NA) +
+    scale_fill_gradient(low = "white",
+                      high = "red")+
     scale_fill_brewer(palette = "Reds") +
     labs(title = paste0("Número de casos positivos al: ", 
                         format(as.Date(max(data2$Fecha)), "%d/%m")),
