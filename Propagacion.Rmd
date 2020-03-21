@@ -271,6 +271,11 @@ data%>%dplyr::group_by(Dia)%>%
 
 Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru). Existe también la página https://www.gob.pe/8662. 
 
+03/21
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🔴COMUNICADO | El <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> lamenta informar que hoy, sábado 21 de marzo, a las 07:20 horas, se registró el sensible fallecimiento de una persona con <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Piura. El ministerio extiende sus condolencias a la familia. <a href="https://t.co/ZwMefFiTsq">pic.twitter.com/ZwMefFiTsq</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1241395322632503300?ref_src=twsrc%5Etfw">March 21, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
 03/20
 
 ### Casos
