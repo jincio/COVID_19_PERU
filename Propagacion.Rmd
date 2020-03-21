@@ -173,7 +173,7 @@ knitr::include_graphics('panel3.png')
 
 ## Mapa
 
-```{r Mapa}
+```{r Mapa, message=FALSE}
 departamento <- read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
   select(Departamento = DEPARTAMEN, geometry)
 
@@ -201,10 +201,11 @@ m1 = departamento %>%
   #mutate(casos = replace_na(casos,0)) %>%
   mutate(casos=as.factor(casos))%>%
   ggplot() +
-    geom_sf(aes(fill = casos), size = 0.05, col = NA) +
-    scale_fill_gradient(low = "white",
-                      high = "red")+
+    geom_sf(aes(fill = casos ), size = 0.05, col = NA) +
+    #scale_fill_gradient(low = "white",
+    #                  high = "red")+
     scale_fill_brewer(palette = "Reds") +
+    #geom_sf_text(aes(label = casos), colour = "black")+
     labs(title = paste0("Número de casos positivos al: ", 
                         format(as.Date(max(data2$Fecha)), "%d/%m")),
          caption = "Callao se suma a Lima",
