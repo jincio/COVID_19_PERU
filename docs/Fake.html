@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
 <meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -71,6 +72,7 @@ code {
 }
 img {
   max-width:100%;
+  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -219,7 +221,6 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
-  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -248,12 +249,6 @@ $(document).ready(function () {
 }
 }
 
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
 
 .toc-content {
   padding-left: 30px;
@@ -428,13 +423,13 @@ Aclaración: Las mascarillas hechas en casa no previenen el coronovirus.
 </blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
-<div id="gárgaras" class="section level3">
+<div id="gargaras" class="section level3">
 <h3><span class="header-section-number">0.1.6</span> Gárgaras</h3>
 <p>FALSO:</p>
 <p><img src="Imagenes/fake1.jpg" width="80%" /></p>
 </div>
 </div>
-<div id="artículos-imprecisos" class="section level2">
+<div id="articulos-imprecisos" class="section level2">
 <h2><span class="header-section-number">0.2</span> Artículos imprecisos</h2>
 <p>Está circulando por redes sociales un PDF titulado:</p>
 <p>“ESTIMACIÓN DE LA PROPAGACIÓN DEL CORONAVIRUS 2019 (COVID-19) EN PERU UN MODELO SIR”
@@ -449,7 +444,21 @@ De: Jairo Pinedo Taquía &amp; Jhelly Peréz Núñez</p>
 <li>No tienen un ajuste de datos apropiado y un control de sensibilidad de variables. El inicio de la curva epidémica ajustado a pocos datos puede generar imprecisión si tratamos de inferir a partir de ella. Estos nos podrían llevar a escenarios tan disímiles como Corea del Sur o Italia.</li>
 <li>No se puede ignorar el periodo asintomático en esta epidemia. Hay reportes clínicos y epidemiológicos de ser un factor importante de contagio. En ese sentido, el modelo más simple a usar no sería SIR, sino SEIR. Este cambio es importante pues ralentiza el paso de la población susceptible a la población infectada.</li>
 </ul>
-<p>(TEST)</p>
+<div id="tendencia-de-crecimiento-exponencial-del-numero-de-casos-de-covid-19-no-numero-de-muertos" class="section level3">
+<h3><span class="header-section-number">0.2.1</span> Tendencia de crecimiento exponencial del numero de casos de COVID-19, no número de muertos</h3>
+<p><strong>Comentario: Joan Martinez</strong></p>
+<p>Articulos como los publicados por el periódico <a href="https://www.vox.com/future-perfect/2020/3/20/21179040/coronavirus-us-italy-not-overreacting">New York Times</a> or <a href="https://www.washingtonpost.com/graphics/2020/world/corona-simulator/">Washintong Post</a> han empleado visualzaciones de la evolución del número total de casos en países con alta incidencia del COVID-19 como Italia o China. Estos gráficos permiten ver una tendencia exponencial en el número de casos de pacientes de COVID-19, lo cual se usa principalmente para enfatizar la importancia de implementar medidas de mitigación <strong>inmediatas</strong> para reducir la propagación del virus a nivel mundial. En Peru, tambien hubo esfuerzos recientes de periodistas locales buscando replicar este ejercicio. No obstante, sus artículos caen en algunas imprecisiones que serán mencionadas a continuación.</p>
+<ul>
+<li>Con fecha 19 de Marzo, el 2020 artículo de Jaime Althaus publicado en <a href="https://www.lampadia.com/analisis/economia/podrian-morir-125-mil-peruanos">Lampadia</a> estima que <span class="math inline">\(125,000\)</span> peruanos podrian fallecer a causa del Coronavirus.</li>
+<li>Asimismo el artículo publicado en <a href="http://www.hildebrandtensustrece.com">Hildebrant en sus Trece</a> y la portada su Edición 484 indica que es una curva “mortal”.</li>
+</ul>
+<p><img src="Imagenes/Althaus.png" width="80%" /></p>
+<p><img src="Imagenes/Hildebrandt.png" width="80%" /></p>
+<p><strong>Ambos artículos asumen que los pacientes que hayan contraido el virus se convertirán en víctimas mortales lo cual no es enteramente cierto.</strong> De acuerdo al sistema de información de <a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">John Hopkins University</a> solo el 4.13% de pacientes que han contraido el virus a nivel mundial han sido víctimas fatales.</p>
+<p>Asimismo, los artículos de los periodistas locales referidos incluyen <em>proyecciones</em> puntuales del número de casos de pacientes contagiados. Sus proyecciones son elaboradas directamente por el equipo periodístico a cargo de la nota en el caso de Hildebrant y citando a un colaborador (doctor) del Sistema Integral de Salud, en el caso de Althaus. Comunicar una proyección del número de casos puede ser alarmante (e incluso irresponsable) para la población no especializada. Siendo concientes de esto, las notas periodisticas de NYT y WP <em>describen</em> el número de casos que ya han sido reportados a las autoridades de salud de sus respectivos países y los comparan con las tendencias de crecimiento <em>observadas</em> para otras naciones con un ratio de contagio y número de días de exposición más alto. <strong>Es decir, a diferencia de los periodistas locales, otros medios de comunicacióon no incurren en reportar proyecciones dado que esto requiere de estimaciones epidemiológicas o bioestadísticas por parte de especialistas en la materia.</strong></p>
+<p>Una visualización de la tendencia que sigue el número de casos de COVID-19 a la fecha se reporta a continuación. Esta tendencia puede ser revertida con el acatamiento del distanciamiento social impuesto por el gobierno.</p>
+<p><img src="Fake_files/figure-html/Panel-1.png" width="672" /></p>
+</div>
 </div>
 
 
