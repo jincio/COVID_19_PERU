@@ -15,7 +15,7 @@ library(tidyr)
 library(ggplot2)
 library(gridExtra)
 library(kableExtra)
-library(JLutils)
+library(JLutils) # devtools::install_github("larmarange/JLutils")
 library(tidyverse)
 library(cowplot)
 library(sf)
@@ -198,14 +198,16 @@ data3 = data2 %>%
 #                       )
 m1 = departamento %>%
   left_join(data3, by="Departamento") %>%
-  #mutate(casos = replace_na(casos,0)) %>%
-  mutate(casos=as.factor(casos))%>%
+  mutate(casos = replace_na(casos,0),
+         casos=as.factor(casos))%>%
   ggplot() +
-    geom_sf(aes(fill = casos ), size = 0.05, col = NA) +
+    geom_sf(aes(fill = casos), size = 0.05, color = "grey40") +
     #scale_fill_gradient(low = "white",
     #                  high = "red")+
-    scale_fill_brewer(palette = "Reds") +
+    # scale_fill_brewer(palette = "Reds") +
+    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(9))) + #reemplazar numero por n de levels en factor(casos) - 1
     #geom_sf_text(aes(label = casos), colour = "black")+
+    scale_x_discrete()+
     labs(title = paste0("Número de casos positivos al: ", 
                         format(as.Date(max(data2$Fecha)), "%d/%m")),
          caption = "Callao se suma a Lima",
