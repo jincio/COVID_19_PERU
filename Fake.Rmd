@@ -41,6 +41,9 @@ knitr::include_graphics('./Imagenes/fake1.jpg')
 
 ## Artículos imprecisos
 
+
+###ESTIMACIÓN DE LA PROPAGACIÓN DEL CORONAVIRUS 2019
+
 Está circulando por redes sociales un PDF titulado:
 
 "ESTIMACIÓN DE LA PROPAGACIÓN DEL CORONAVIRUS 2019 (COVID-19) EN PERU UN MODELO SIR"
