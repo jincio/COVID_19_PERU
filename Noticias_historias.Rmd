@@ -43,14 +43,27 @@ Noticias con información relevante sobre la pandemia.
 
 ### Español
 
-[![Test](http://img.youtube.com/vi/vlzxSleRnmg/0.jpg)](https://www.youtube.com/watch?v=vlzxSleRnmg " ")
+#### Coronavirus Covid-19: Claves para entender la enfermedad y protegerse - Clínica Alemana
 
+<https://www.youtube.com/watch?v=vlzxSleRnmg>
 
-[![Test](http://img.youtube.com/vi/0SGdO61HRD8/0.jpg)](https://www.youtube.com/watch?v=0SGdO61HRD8 " ")
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vlzxSleRnmg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-[![Test](http://img.youtube.com/vi/FrlpMx0Kzfw/0.jpg)](https://www.youtube.com/watch?v=FrlpMx0Kzfw " ")
+#### Coronavirus (Origen, Síntomas, Tratamiento, Prevención, Vacuna) CDC | WHO
 
-[![Test](http://img.youtube.com/vi/SVQpEiOWIhE/0.jpg)](https://www.youtube.com/watch?v=SVQpEiOWIhE " ")
+<https://www.youtube.com/watch?v=0SGdO61HRD8>
 
-[![Test](http://img.youtube.com/vi/Jc0inmKsgN0/0.jpg)](https://www.youtube.com/watch?v=Jc0inmKsgN0 " ")
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0SGdO61HRD8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+#### ¡El Coronavirus en 4 minutos! - (Actualización) (Animación)
+
+<https://www.youtube.com/watch?v=FrlpMx0Kzfw>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FrlpMx0Kzfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+#### ¿Cómo PUEDE ser mortal el coronavirus? - síndrome respiratorio agudo severo
+
+<https://www.youtube.com/watch?v=Jc0inmKsgN0>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Jc0inmKsgN0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
