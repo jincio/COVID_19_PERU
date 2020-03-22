@@ -10,7 +10,12 @@ Papers/links/findings de revistas científicas.
 
 # Links útiles 
 
+## Biblioteca de UPC: Artículos sobre coronavirus
 [Biblioteca-UPC-Coronavirus](https://biblioteca.upc.edu.pe/covid-19/)
+
+## Jstor (Open access)
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">You can search all open access content on JSTOR without a login - there&#39;s more than 6,000 ebooks and over 150 journals: <a href="https://t.co/qEbqqRjN6E">https://t.co/qEbqqRjN6E</a></p>&mdash; JSTOR (@JSTOR) <a href="https://twitter.com/JSTOR/status/1240306471168028674?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 # Artículos y resumenes
 

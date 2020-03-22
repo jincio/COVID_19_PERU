@@ -10,27 +10,29 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Noticias con información relevante sobre la pandemia. 
 
-## Español 
 
-[Berlin intenta detener que USA compre la investigación de una empresa alemana que trabaja en la vacuna contra el coronavirus](https://elpais.com/sociedad/2020-03-15/berlin-trata-de-impedir-que-ee-uu-compre-la-investigacion-de-una-empresa-alemana-que-trabaja-en-la-vacuna-contra-el-virus.html?ssm=TW_CC)
-
-
-## Ingles:
-
-### La importancia de la distancia social y cuarentena**
+## La importancia de la distancia social y cuarentena**
 
 [How to "flatten the curve- Washington Post](https://www.washingtonpost.com/graphics/2020/world/corona-simulator/)
 
 [Patient 31-South Corea](https://graphics.reuters.com/CHINA-HEALTH-SOUTHKOREA-CLUSTERS/0100B5G33SB/index.html)
 
+## Vacuna para el COVID19?
 
+### Tiempo para obtener la vacuna 
 
-### Vacuna para el COVID19?
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr"><a href="https://twitter.com/hashtag/vacunas?src=hash&amp;ref_src=twsrc%5Etfw">#vacunas</a><br><br>Aún faltan meses para que podamos contar con una vacuna segura contra el COVID-19. A la fecha se han identificado una serie de candidatos para esta vacuna, los cuales han sido resumidos por el equipo de COMCIENCIA en la infografía de hoy.<a href="https://twitter.com/hashtag/ciencia?src=hash&amp;ref_src=twsrc%5Etfw">#ciencia</a> <a href="https://twitter.com/hashtag/coronavirus?src=hash&amp;ref_src=twsrc%5Etfw">#coronavirus</a> <a href="https://twitter.com/hashtag/salud?src=hash&amp;ref_src=twsrc%5Etfw">#salud</a> <a href="https://t.co/dENVitqLmM">pic.twitter.com/dENVitqLmM</a></p>&mdash; Comciencia . (@comcienciacrac) <a href="https://twitter.com/comcienciacrac/status/1241200175240052736?ref_src=twsrc%5Etfw">March 21, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+### Compra de vacuna 
+
+[Berlin intenta detener que USA compre la investigación de una empresa alemana que trabaja en la vacuna contra el coronavirus](https://elpais.com/sociedad/2020-03-15/berlin-trata-de-impedir-que-ee-uu-compre-la-investigacion-de-una-empresa-alemana-que-trabaja-en-la-vacuna-contra-el-virus.html?ssm=TW_CC)
+
+[Germany tries to stop US luring away firm seeking vaccine](https://www.cnbc.com/2020/03/15/coronavirus-germany-tries-to-stop-us-luring-away-firm-seeking-vaccine.html?fbclid=IwAR0Z7cEGB4TG6jAHHO3IHGnIe6M4QpLwMyIq1x6kGF87FIMJRt8EO81Cfkw)
+
+### Carrera para obtener la vacuna 
 
 [biotechnology companies rush to complete coronavirus vaccine](https://www.wbur.org/commonhealth/2020/02/21/were-racing-time-biotechnology-companies-rush-to-complete-coronavirus-vaccine)
 
-
-[Germany tries to stop US luring away firm seeking vaccine](https://www.cnbc.com/2020/03/15/coronavirus-germany-tries-to-stop-us-luring-away-firm-seeking-vaccine.html?fbclid=IwAR0Z7cEGB4TG6jAHHO3IHGnIe6M4QpLwMyIq1x6kGF87FIMJRt8EO81Cfkw)
 
 ### Respuestas de gobiernos 
 

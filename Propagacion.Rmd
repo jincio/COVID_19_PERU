@@ -32,7 +32,6 @@ dat2 <- data %>%
                    Positivos=max(Positivos))%>%
   mutate(pos_new=Positivos-lag(Positivos,default = 0),
          pruebas_dia=Total_Pruebas-lag(Total_Pruebas,default = 0))
-
 f3=dat2 %>%
   mutate(neg_new=pruebas_dia-pos_new)%>%
   dplyr::select(Dia, Descartados=neg_new, 
@@ -110,7 +109,7 @@ f5=dat2 %>%
   geom_point(aes(y = pruebas_dia), col = "#8B1C62") +
   geom_label(aes(Dia, pruebas_dia, label = pruebas_dia), vjust = -0.5,
              label.size = 0.07)+
-  labs(y = "Numero de pruebas reportadas", color = " Casos", fill = " ",
+  labs(y = " ", color = " Casos", fill = " ",
        title = paste0("Pruebas y casos positivos por dia"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
   scale_fill_manual(values = c("Casos Positivos" = "#43CD80")) +
@@ -118,11 +117,30 @@ f5=dat2 %>%
   #scale_y_continuous(sec.axis = sec_axis(~ .)) +
   theme_minimal() +
   theme(legend.position="bottom")
+
+
+f6=dat2 %>%
+  ggplot(aes(x = Dia)) +
+  ylim(0,max(dat2$Total_Pruebas)*1.1)+
+  geom_bar(aes(y = Positivos, fill = "Positivos Acumulados"), stat = "identity", alpha=.5)+
+  geom_label(aes(Dia, Positivos, label = Positivos), vjust = 0.5,label.size = 0.10)+
+  geom_line(aes(y = Total_Pruebas, col = "Pruebas Acumuladas"), size=1) +
+  geom_point(aes(y = Total_Pruebas), col = "#8B1C62") +
+  geom_label(aes(Dia, Total_Pruebas, label = Total_Pruebas), vjust = -0.3,
+             label.size = 0.07)+
+  labs(y = "", color = " Casos", fill = " ", 
+       title = paste0("Tendencias acumuladas"),
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+  scale_fill_manual(values = c("Positivos Acumulados" = "#43CD80")) +
+  scale_color_manual(values = c("Pruebas Acumuladas" = "#8B1C62")) +
+  #scale_y_continuous() +
+  theme_minimal() +
+  theme(legend.position="bottom")
 ```
 
-## Panel conjunto 
+## Paneles conjunto 
 
-Para los gráficos indivisudales he adaptado del post de Gabriel Carrasco Escobar (http://gcarrasco.rbind.io/blog/covid19_viz/)
+Para los gráficos he adaptado del post de Gabriel Carrasco Escobar (http://gcarrasco.rbind.io/blog/covid19_viz/)
 
 ```{r Panel, message=FALSE, eval=FALSE}
 panel=ggarrange(f1,f4,f2,f3,
@@ -148,9 +166,14 @@ annotate_figure(panel,
 knitr::include_graphics('panel2.png')
 ```
 
+```{r echo=FALSE, out.width='100%'}
+knitr::include_graphics('panel3.png')
+```
+
+
 ## Mapa
 
-```{r Mapa}
+```{r Mapa, message=FALSE}
 departamento <- read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
   select(Departamento = DEPARTAMEN, geometry)
 
@@ -163,23 +186,26 @@ data3 = data2 %>%
   dplyr::summarise(casos = sum(Positivos))
 
 
-colores<- c("grey80",
-                      "dodgerblue4",
-                      "gold2",
-                      "deepskyblue3",
-                      "mediumpurple4",
-                      "royalblue3",
-                      "brown3",
-                        "darkred"
-                      # "grey80"
-                      )
+# colores<- c("grey80",
+#                       "dodgerblue4",
+#                       "gold2",
+#                       "deepskyblue3",
+#                       "mediumpurple4",
+#                       "royalblue3",
+#                       "brown3",
+#                         "darkred"
+#                       # "grey80"
+#                       )
 m1 = departamento %>%
   left_join(data3, by="Departamento") %>%
-  mutate(casos = replace_na(casos,0)) %>%
+  #mutate(casos = replace_na(casos,0)) %>%
   mutate(casos=as.factor(casos))%>%
   ggplot() +
-    geom_sf(aes(fill = casos), size = 0.05, col = NA) +
+    geom_sf(aes(fill = casos ), size = 0.05, col = NA) +
+    #scale_fill_gradient(low = "white",
+    #                  high = "red")+
     scale_fill_brewer(palette = "Reds") +
+    #geom_sf_text(aes(label = casos), colour = "black")+
     labs(title = paste0("Número de casos positivos al: ", 
                         format(as.Date(max(data2$Fecha)), "%d/%m")),
          caption = "Callao se suma a Lima",
@@ -217,9 +243,16 @@ plot_grid(f3)
 plot_grid(f4)
 ```
 
-```{r, message=FALSE}
+### Tendencias acumuladas
+
+```{r}
 plot_grid(f5)
 ```
+
+```{r}
+plot_grid(f6)
+```
+
 
 ## Tabla
 
@@ -241,9 +274,35 @@ data%>%dplyr::group_by(Dia)%>%
 
 Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru). Existe también la página https://www.gob.pe/8662. 
 
+03/21
+
+Casos:
+
+https://www.gob.pe/8662
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🔴COMUNICADO | El <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> lamenta informar que hoy, sábado 21 de marzo, a las 07:20 horas, se registró el sensible fallecimiento de una persona con <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Piura. El ministerio extiende sus condolencias a la familia. <a href="https://t.co/ZwMefFiTsq">pic.twitter.com/ZwMefFiTsq</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1241395322632503300?ref_src=twsrc%5Etfw">March 21, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+03/20
+
+### Casos
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 12:00 horas del 20 de marzo. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrvulE">https://t.co/F4GaDrvulE</a> <a href="https://t.co/Kg7Gr2QRRL">pic.twitter.com/Kg7Gr2QRRL</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1241080637622292482?ref_src=twsrc%5Etfw">March 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🔴COMUNICADO | El <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> informa que, a las 9:17 horas de hoy, viernes 20 de marzo, se registró la muerte de una persona con <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en territorio peruano. Expresamos nuestras más sentidas condolencias a sus familiares. <a href="https://t.co/B8MEz7alXR">pic.twitter.com/B8MEz7alXR</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1241048470955458560?ref_src=twsrc%5Etfw">March 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 03/19 
 
+Casos: 
 <blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 12:00 horas del 19 de marzo. Se registran dos altas. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrN5dc">https://t.co/F4GaDrN5dc</a> <a href="https://t.co/zYppUus7Ip">pic.twitter.com/zYppUus7Ip</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1240706791366733824?ref_src=twsrc%5Etfw">March 19, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Fallecidos: 
+
+Segundo y tercero
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🔴 URGENTE | El <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> lamenta informar la sensible muerte de dos ciudadanos por coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en territorio peruano. Extendemos nuestras condolencias a sus familias. <a href="https://t.co/UF5X1ukqtR">pic.twitter.com/UF5X1ukqtR</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1240818095280869377?ref_src=twsrc%5Etfw">March 20, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Primero 
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🔴COMUNICADO | El <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> lamenta informar que, a las 15:00 horas de hoy, jueves 19 de marzo, se registró el primer fallecimiento por <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a>. <a href="https://t.co/sgC0nhk87b">pic.twitter.com/sgC0nhk87b</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1240761528007221249?ref_src=twsrc%5Etfw">March 19, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 03/18
 
 <blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 7:00 horas del 18 de marzo. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrvulE">https://t.co/F4GaDrvulE</a> <a href="https://t.co/pPPwxu13dG">pic.twitter.com/pPPwxu13dG</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1240305962256343040?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
