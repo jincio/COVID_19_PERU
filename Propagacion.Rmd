@@ -102,7 +102,7 @@ f4=dat2 %>%
 
 f5=dat2 %>%
   ggplot(aes(x = Dia)) +
-  ylim(0,max(dat2$pruebas_dia)*1.05)+
+  ylim(0,max(dat2$pruebas_dia)*1.2)+
   geom_bar(aes(y = pos_new, fill = "Casos Positivos"), stat = "identity", alpha=.5)+
   geom_label(aes(Dia, pos_new, label = pos_new), vjust = 0.5)+
   geom_line(aes(y = pruebas_dia, col = "Pruebas"), size=1) +
