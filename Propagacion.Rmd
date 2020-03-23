@@ -6,7 +6,7 @@ title: "Propagacion"
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-# Monitoreo de casos 
+# Monitoreo de casos
 
 ```{r Librerias, echo=FALSE, message=FALSE}
 library(rio)
