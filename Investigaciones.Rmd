@@ -9,7 +9,6 @@ knitr::opts_chunk$set(echo = TRUE)
 Papers/links/findings de revistas científicas.
 
 # Links útiles 
-
 ## Biblioteca de UPC: Artículos sobre coronavirus
 [Biblioteca-UPC-Coronavirus](https://biblioteca.upc.edu.pe/covid-19/)
 
@@ -17,8 +16,7 @@ Papers/links/findings de revistas científicas.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">You can search all open access content on JSTOR without a login - there&#39;s more than 6,000 ebooks and over 150 journals: <a href="https://t.co/qEbqqRjN6E">https://t.co/qEbqqRjN6E</a></p>&mdash; JSTOR (@JSTOR) <a href="https://twitter.com/JSTOR/status/1240306471168028674?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-# Artículos y resumenes
-
+# Resumenes y artículos
 ## Modelos sobre contagio
 
 [Nowcasting and forecasting the potential domestic and international spread of the 2019-nCoV outbreak originating in Wuhan, China: a modelling study](https://www.thelancet.com/pdfs/journals/lancet/PIIS0140-6736(20)30260-9.pdf)
@@ -31,7 +29,21 @@ Papers/links/findings de revistas científicas.
 
 [The proximal origin of SARS-COV-2](https://www.nature.com/articles/s41591-020-0820-9?utm_source=twitter&utm_medium=social&utm_content=organic&utm_campaign=NGMT_USG_JC01_GL_NRJournals)
 
-## Coronavirus puts drugs repurposing on the fast track [link](https://www.nature.com/articles/d41587-020-00003-1) 
+## Efecto de fármacos
+
+### Reportes de ESSALUD sobre el efecto de fármacos en el tratamiendto de pacientes con Coronavirus
+
+IETSI-EsSalud acaba de sacar reportes breves basados en evidencias sobre el manejo de COVID-19:
+
+[LINK A REPORTES](https://www.dropbox.com/sh/fvv75489t7t0yi7/AACM7HowfgRtwWYo8PA1Ilpha?dl=0&fbclid=IwAR1lnZiYDltoT_4CFT0a9R1uHLDt95kNGwZX8Tn1R6H28ntBh_ttrc7c7mk)
+
+Fuente [link](https://www.facebook.com/photo.php?fbid=10156630222781780&set=a.462103211779&type=3&theater)
+
+### Resumen Elaborado por Comciencia
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr"><a href="https://twitter.com/hashtag/COVID%E3%83%BC19?src=hash&amp;ref_src=twsrc%5Etfw">#COVIDー19</a> <br>Uno de los instrumentos más necesarios para salvar la vida a los pacientes son los FÁRMACOS eficaces y seguros. Lamentablemente, a pesar de ya disponer de una buena cantidad de candidatos a la fecha, ninguno dispone de evidencias suficientes <a href="https://twitter.com/hashtag/coronavirus?src=hash&amp;ref_src=twsrc%5Etfw">#coronavirus</a> <a href="https://twitter.com/hashtag/ciencia?src=hash&amp;ref_src=twsrc%5Etfw">#ciencia</a> <a href="https://t.co/EGUjuTzz5p">pic.twitter.com/EGUjuTzz5p</a></p>&mdash; Comciencia . (@comcienciacrac) <a href="https://twitter.com/comcienciacrac/status/1241561946614190080?ref_src=twsrc%5Etfw">March 22, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+### Coronavirus puts drugs repurposing on the fast track [link](https://www.nature.com/articles/d41587-020-00003-1) 
 
 Resumen elaborado por **Cleidy Osorio**:
 
@@ -39,7 +51,15 @@ La empresa Ascletis Pharma fue autorizada por el gobierno chino para probar medi
 Por otro lado, el conocimiento de la estructura de diferentes proteínas del COVID-19, que también son similares en otros virus, son también de suma importancia para confirmar mediante la predicción con herramientas computacionales, la reutilización de fármacos ya conocidos.
  En palabras de Bryan Mounce, profesor asistente del Departamento de Microbiología e Inmunología, Universidad de Loyola, Chicago: "Los agentes (medicamentos) de amplio espectro (amplia acción) son ideales para situaciones de brotes [epidémicos] en las que no sabemos completamente a qué nos enfrentamos…"
 
-## Startups están desarrollando pruebas rápidas para el diagnostico de SARS-CoV-2 (Coronavirus) [link](https://www.medrxiv.org/content/10.1101/2020.03.06.20032334v1) 
+
+### Startups están desarrollando pruebas rápidas para el diagnostico de SARS-CoV-2 (Coronavirus) [link](https://www.medrxiv.org/content/10.1101/2020.03.06.20032334v1) 
 
 
+
+
+## Investigaciones de vacunas 
+
+### Tiempo para obtener la vacuna 
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr"><a href="https://twitter.com/hashtag/vacunas?src=hash&amp;ref_src=twsrc%5Etfw">#vacunas</a><br><br>Aún faltan meses para que podamos contar con una vacuna segura contra el COVID-19. A la fecha se han identificado una serie de candidatos para esta vacuna, los cuales han sido resumidos por el equipo de COMCIENCIA en la infografía de hoy.<a href="https://twitter.com/hashtag/ciencia?src=hash&amp;ref_src=twsrc%5Etfw">#ciencia</a> <a href="https://twitter.com/hashtag/coronavirus?src=hash&amp;ref_src=twsrc%5Etfw">#coronavirus</a> <a href="https://twitter.com/hashtag/salud?src=hash&amp;ref_src=twsrc%5Etfw">#salud</a> <a href="https://t.co/dENVitqLmM">pic.twitter.com/dENVitqLmM</a></p>&mdash; Comciencia . (@comcienciacrac) <a href="https://twitter.com/comcienciacrac/status/1241200175240052736?ref_src=twsrc%5Etfw">March 21, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
