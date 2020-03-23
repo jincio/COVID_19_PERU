@@ -6,7 +6,7 @@ title: "Propagacion"
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## Casos Reportados
+# Monitoreo de casos 
 
 ```{r Librerias, echo=FALSE, message=FALSE}
 library(rio)
@@ -43,7 +43,7 @@ f3=dat2 %>%
   stat_fill_labels(size=2)+
   #scale_fill_discrete_sequential(palette="BluGrn") +
   labs(y = "proportion", fill = "Resultado",
-       title = paste0("Proporción de positivos del total \n de muestras x dia"),
+       #title = paste0("Proporción de positivos del total \n de muestras x dia"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
   theme_bw() +
   theme(text = element_text(size=10),
@@ -59,7 +59,7 @@ f1=dat2 %>%
   geom_label(aes(Dia, Positivos, label = Positivos), vjust = -0.3,
              label.size = 0.07)+
   labs(y = "Número de casos reportados", color = " Casos", fill = " ", 
-       title = paste0("Numero de casos confirmados"),
+       #title = paste0("Numero de casos confirmados"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
@@ -92,7 +92,7 @@ f4=dat2 %>%
   geom_label(aes(Dia, Total_Pruebas, label = Total_Pruebas), vjust = -0.5,
              label.size = 0.07)+
   labs(y = "Numero de pruebas reportadas", color = " Pruebas", fill = " ",
-       title = paste0("Numero de pruebas aplicadas"),
+       #title = paste0("Numero de pruebas aplicadas"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
@@ -110,7 +110,7 @@ f5=dat2 %>%
   geom_label(aes(Dia, pruebas_dia, label = pruebas_dia), vjust = -0.5,
              label.size = 0.07)+
   labs(y = " ", color = " Casos", fill = " ",
-       title = paste0("Pruebas y casos positivos por dia"),
+       #title = paste0("Pruebas y casos positivos por dia"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
   scale_fill_manual(values = c("Casos Positivos" = "#43CD80")) +
   scale_color_manual(values = c("Pruebas" = "#8B1C62")) +
@@ -129,7 +129,7 @@ f6=dat2 %>%
   geom_label(aes(Dia, Total_Pruebas, label = Total_Pruebas), vjust = -0.3,
              label.size = 0.07)+
   labs(y = "", color = " Casos", fill = " ", 
-       title = paste0("Tendencias acumuladas"),
+       #title = paste0("Tendencias acumuladas"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
   scale_fill_manual(values = c("Positivos Acumulados" = "#43CD80")) +
   scale_color_manual(values = c("Pruebas Acumuladas" = "#8B1C62")) +
@@ -138,38 +138,146 @@ f6=dat2 %>%
   theme(legend.position="bottom")
 ```
 
-## Paneles conjunto 
+```{r graficos2, message=FALSE}
+dia_list <- tibble(time= 1:length(dat2$Dia), .name_repair = "minimal")
+dat2 <-add_column(dat2, dia_list= dia_list)
 
-Para los gráficos he adaptado del post de Gabriel Carrasco Escobar (http://gcarrasco.rbind.io/blog/covid19_viz/)
+dat2$Dia<- as.Date(as.POSIXct(dat2$Dia, 'GMT'))
 
-```{r Panel, message=FALSE, eval=FALSE}
-panel=ggarrange(f1,f4,f2,f3,
-          ncol=2,nrow=2,
-          widths = c(0.5,0.5,0.5,0.5),
-          font.label = list(size = 10, color = "black", face =
-                              "bold", family = NULL))
+# Fitting exp fn a data
+## Fitting linear model to get initial parameters y = \alpha * exp(beta * x)
+x <- unlist(dat2$dia_list$time)
+y <- unlist(dat2$Positivos)
+data.df <- data.frame(x = x, y = y)
+exp.model0 <-lm(log(y) ~ x, data.df)
+alpha.0 <- exp(coef(exp.model0)[1])
+beta.0 <- coef(exp.model0)[2]
 
+## Starting parameters
+start <- list(alpha = alpha.0, beta = beta.0)
+## Fitting nlm
+exp.model <- nls(y ~ alpha*exp(beta*x), data = data.df, start = start)
+#coef(exp.model)[1]
+#coef(exp.model)[2]
 
-annotate_figure(panel,
-                top = text_grob("COVID19-PERÚ", color = "red", face = "bold", size = 14),
-                bottom = text_grob("Fuente: \n Minsa. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "blue",
-                                   hjust = 1, x = 1, face = "italic", size = 10),
+#Serie de numero de casos confirmados
+library(scales)
+f7<-dat2 %>%
+  ggplot(aes(x = Dia)) +
+  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("2 days"), expand = c(0,1))+
+  ylim(0,max(dat2$Positivos)*1.15)+
+  geom_area(aes(y = Positivos, col = "Acumulados"), size=1, fill="#c9c4e0") +
+  geom_point(aes(y = Positivos), col = "#474785") +
+  geom_text(aes(Dia, Positivos, label = Positivos), vjust = -2, size=3)+
+  geom_bar(aes(y = pos_new, fill = "Nuevos"), stat = "identity", alpha=.5)+
+  geom_text(aes(Dia, pos_new, label = pos_new), vjust = 2, size=2)+
+  stat_smooth(aes(y=Positivos), method="glm", method.args = list(family = gaussian(link="log")),  se=FALSE, linetype=1, size=0.4, colour="blue") +
+  labs(color= NULL, fill = NULL, caption = paste0("Actualizado al ", format(as.Date(max(dat2$Dia)),"%d-%m"))) +
+  scale_fill_manual(values = c("Nuevos" = "#1c8b7d")) +
+  scale_color_manual(values = c("Acumulados" = "#c9c4e0", "Tendencia exponencial" = "blue")) +
+  theme(legend.position="bottom")+
+  annotate("segment", x=as.Date("2020-03-05"), xend=as.Date("2020-03-07"), y = 76, yend = 76, colour = "blue")+
+#  annotate("text", x=as.Date("2020-03-06"), y = 270, label = "Exponencial", size= 3)+
+  annotate("text", x=as.Date("2020-03-07"), y = 65, label = "y= 3.58096*exp(0.28987 * x)", size= 3, colour="blue")+
+  theme_minimal()
+```
+
+## Tendencia y número de casos (Acumulados y diarios)
+
+```{r Panelf7, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f7,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Número de casos positivos de pacientes COVID-19, Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
                 #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #right = "www.joseincio.com",
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
+
+```
+
+## Pruebas aplicadas y casos positivos por dia
+
+```{r Panelf5, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f5,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Número de casos positivos y pruebas aplicadas por día COVID-19, Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
+
+```
+
+## Número de pruebas aplicadas (acumulado y diarias)
+
+```{r Panelf4, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f4,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Número de pruebas aplicadas COVID-19, Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
+
+```
+
+## Número de pruebas aplicadas y casos positivos (acumulados)
+
+```{r Panelf6, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f6,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Número de pruebas aplicadas COVID-19, Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
+
+```
+
+## Proporción de casos positivos del total de pruebas analizadas.
+
+```{r Panelf2, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f2,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Proporción de casos positivos COVID-19, Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
                 #fig.lab = "Figure 1", fig.lab.face = "bold"
 )
 
 ```
 
 
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('panel2.png')
-```
+## Proporción de casos positivos del total de pruebas analizadas (x dia)
 
-```{r echo=FALSE, out.width='100%'}
-knitr::include_graphics('panel3.png')
-```
+```{r Panelf3, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f3,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Proporción de casos positivos COVID-19 x dia, Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
 
+```
 
 ## Mapa
 
@@ -199,51 +307,29 @@ m1 = departamento %>%
     scale_x_discrete()+
     labs(title = paste0("Número de casos positivos al: ", 
                         format(as.Date(max(data2$Fecha)), "%d/%m")),
-         caption = "Callao se suma a Lima",
+         caption =paste0("Callao se suma a Lima"," ", "Actualizado al", format(as.Date(max(data$Dia)),"%d/%m")),
          fill= "Casos") +
   theme_bw()
  
 ```
 
-```{r Map}
+```{r Map, eval=FALSE}
 plot_grid(m1)
 ```
 
-## Gráficos Individuales 
+```{r Panelm1, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(m1,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Distribución  de casos positivos COVID-19 x departamento, Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA.Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
 
-### Número de pacientes positivos
-
-```{r}
-plot_grid(f1)
 ```
-
-### Proporción del total 
-
-```{r}
-plot_grid(f2)
-```
-
-### Proporción de positivos por pruebas aplicadas en el día
-```{r}
-plot_grid(f3)
-```
-
-### Pruebas
-
-```{r, message=FALSE}
-plot_grid(f4)
-```
-
-### Tendencias acumuladas
-
-```{r}
-plot_grid(f5)
-```
-
-```{r}
-plot_grid(f6)
-```
-
 
 ## Tabla
 
@@ -261,7 +347,10 @@ data%>%dplyr::group_by(Dia)%>%
 ```
 
 
-## Fuentes
+Para los gráficos he adaptado del post de Gabriel Carrasco Escobar (http://gcarrasco.rbind.io/blog/covid19_viz/)
+
+
+# Informes de Minsa
 
 Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru). Existe también la página https://www.gob.pe/8662. 
 
@@ -365,3 +454,15 @@ p2=data%>%
   geom_line()+geom_label()
 grid.arrange(p1, p2, ncol = 1)
 ```
+
+
+# Responsables 
+
+Colaboraron para la elaboración de los gráficos:
+
+- Gabriel Carrasco
+- Joan Martinez
+- José Incio
+- Samuel Calderon
+
+
