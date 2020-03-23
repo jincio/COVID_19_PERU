@@ -6,24 +6,39 @@ title: "Fuentes OFICIALES"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Fuentes Oficiales
+# Fuentes Oficiales
 
-### Página del Gobierno 
+## Página del Gobierno/ CORONAVIRUS (Para descarte de COVID-19)
 
 [Coronavirus](https://www.gob.pe/coronavirus)
 
-### Página del CDC en español:
+## Consulta de resultados COVID-19:
+
+[CONSULTA_RESULTADO](https://www.ins.gob.pe/resultado_coronavirus/)
+
+## Pase de transito 
+
+[Pase Transito](https://www.gob.pe/pasedetransito/)
+
+## Página del CDC en español:
 
 [CDC](https://www.cdc.gov/coronavirus/2019-ncov/index-sp.html)
 
-### OMS:
+## PADRÓN de Beneficiarios para Bono:
+
+[SISFO](https://www.gob.pe/437-ministerio-de-desarrollo-e-inclusion-social-sistema-de-focalizacion-de-hogares-sisfoh)
+
+## Certificado de Inscripción de RENIEC
+[CERTIFICADO](https://apps.reniec.gob.pe/certins)
+
+## OMS:
 
 [OMS](https://www.who.int/…/novel-coronavirus-2…/advice-for-public)
 
-### MINSA:
+## MINSA:
 [MINSA-PERU](https://www.gob.pe/…/699-conoce-que-es-el-coronavirus-covid…)
 
-### Ensayos clínicos en humanos
+## Ensayos clínicos en humanos
 [Organizacion Mundial de la Salud](http://apps.who.int/trialsearch/AdvSearch.aspx?SearchTermStat=117&ReturnUrl=%7e%2fListBy.aspx%3fTypeListing%3d0)
 ###### 392 estudios sobre diagnóstico, medicamentos y vacunas al 15 de Marzo del 2020.
 [Clinical-trials](https://clinicaltrials.gov)
