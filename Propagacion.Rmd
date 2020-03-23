@@ -302,7 +302,7 @@ m1 = departamento %>%
     #scale_fill_gradient(low = "white",
     #                  high = "red")+
     # scale_fill_brewer(palette = "Reds") +
-    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(9))) + #reemplazar numero por n de levels en factor(casos) - 1
+    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(10))) + #reemplazar numero por n de levels en factor(casos) - 1
     #geom_sf_text(aes(label = casos), colour = "black")+
     scale_x_discrete()+
     labs(title = paste0("Número de casos positivos al: ", 
@@ -353,6 +353,10 @@ Para los gráficos he adaptado del post de Gabriel Carrasco Escobar (http://gcar
 # Informes de Minsa
 
 Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru). Existe también la página https://www.gob.pe/8662. 
+
+03/23
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🗓 Reporte │ Esta es la situación del coronavirus <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en Perú hasta las 1:00 horas del 23 de marzo. Se registran 36 ciudadanos hospitalizados. Esta actualización corrige información publicada. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información, visita: <a href="https://t.co/F4GaDrvulE">https://t.co/F4GaDrvulE</a> <a href="https://t.co/zYNDZNOSrL">pic.twitter.com/zYNDZNOSrL</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1242146715588853761?ref_src=twsrc%5Etfw">March 23, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 03/22 
 
