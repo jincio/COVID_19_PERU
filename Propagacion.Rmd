@@ -159,7 +159,9 @@ start <- list(alpha = alpha.0, beta = beta.0)
 exp.model <- nls(y ~ alpha*exp(beta*x), data = data.df, start = start)
 #coef(exp.model)[1]
 #coef(exp.model)[2]
-
+alpha=coef(exp.model)[1]
+beta<- coef(exp.model)[2]
+form=paste0("y=",round(alpha,3),"*","exp(",round(beta,3),"*x)")
 #Serie de numero de casos confirmados
 library(scales)
 f7<-dat2 %>%
@@ -177,8 +179,8 @@ f7<-dat2 %>%
   scale_color_manual(values = c("Acumulados" = "#c9c4e0", "Tendencia exponencial" = "blue")) +
   theme(legend.position="bottom")+
   annotate("segment", x=as.Date("2020-03-05"), xend=as.Date("2020-03-07"), y = 76, yend = 76, colour = "blue")+
-#  annotate("text", x=as.Date("2020-03-06"), y = 270, label = "Exponencial", size= 3)+
-  annotate("text", x=as.Date("2020-03-07"), y = 65, label = "y= 3.58096*exp(0.28987 * x)", size= 3, colour="blue")+
+  annotate("text", x=as.Date("2020-03-06"), y = 270, label = "Exponencial", size= 3)+
+  annotate("text", x=as.Date("2020-03-07"), y = 65, label = form, size= 3, colour="blue")+
   theme_minimal()
 ```
 
@@ -198,9 +200,12 @@ panel<- ggarrange(f7,
 
 ```
 
-## Pruebas aplicadas y casos positivos por dia
 
-```{r Panelf5, message=FALSE, echo=FALSE}
+
+```{r Panelf5, message=FALSE, echo=FALSE, eval=FALSE}
+## Pruebas aplicadas y casos positivos por dia
+No estamos ploteando esto por que puede confundir 
+
 # Panel para publicacion
 panel<- ggarrange(f5,
           ncol=1,nrow=1,
@@ -262,10 +267,11 @@ panel<- ggarrange(f2,
 
 ```
 
-
+```{r Panelf3, message=FALSE, echo=FALSE, eval=FALSE}
 ## Proporción de casos positivos del total de pruebas analizadas (x dia)
 
-```{r Panelf3, message=FALSE, echo=FALSE}
+No estamos ploteando esto por que es incorrecto
+
 # Panel para publicacion
 panel<- ggarrange(f3,
           ncol=1,nrow=1,
@@ -302,7 +308,7 @@ m1 = departamento %>%
     #scale_fill_gradient(low = "white",
     #                  high = "red")+
     # scale_fill_brewer(palette = "Reds") +
-    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(10))) + #reemplazar numero por n de levels en factor(casos) - 1
+    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(12))) + #reemplazar numero por n de levels en factor(casos) - 1
     #geom_sf_text(aes(label = casos), colour = "black")+
     scale_x_discrete()+
     labs(title = paste0("Número de casos positivos al: ", 
@@ -353,6 +359,12 @@ Para los gráficos he adaptado del post de Gabriel Carrasco Escobar (http://gcar
 # Informes de Minsa
 
 Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru). Existe también la página https://www.gob.pe/8662. 
+
+03/24
+
+Dos fallecidos 
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🔴COMUNICADO | El <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> lamenta informar el sensible fallecimiento de dos personas por <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> en territorio peruano. Se trata de un varón de 38 años y una mujer de 66 años. Extendemos nuestras condolencias a sus familias. <a href="https://t.co/xrsq52SpwW">pic.twitter.com/xrsq52SpwW</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1242488321869262848?ref_src=twsrc%5Etfw">March 24, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 03/23
 
