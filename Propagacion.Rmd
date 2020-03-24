@@ -173,14 +173,14 @@ f7<-dat2 %>%
   geom_text(aes(Dia, Positivos, label = Positivos), vjust = -2, size=3)+
   geom_bar(aes(y = pos_new, fill = "Nuevos"), stat = "identity", alpha=.5)+
   geom_text(aes(Dia, pos_new, label = pos_new), vjust = 2, size=2)+
-  stat_smooth(aes(y=Positivos), method="glm", method.args = list(family = gaussian(link="log")),  se=FALSE, linetype=1, size=0.4, colour="blue") +
+  #stat_smooth(aes(y=Positivos), method="glm", method.args = list(family = gaussian(link="log")),  se=FALSE, linetype=1, size=0.4, colour="blue") +
   labs(color= NULL, fill = NULL, caption = paste0("Actualizado al ", format(as.Date(max(dat2$Dia)),"%d-%m"))) +
   scale_fill_manual(values = c("Nuevos" = "#1c8b7d")) +
   scale_color_manual(values = c("Acumulados" = "#c9c4e0", "Tendencia exponencial" = "blue")) +
   theme(legend.position="bottom")+
   annotate("segment", x=as.Date("2020-03-05"), xend=as.Date("2020-03-07"), y = 76, yend = 76, colour = "blue")+
-  annotate("text", x=as.Date("2020-03-06"), y = 270, label = "Exponencial", size= 3)+
-  annotate("text", x=as.Date("2020-03-07"), y = 65, label = form, size= 3, colour="blue")+
+  #annotate("text", x=as.Date("2020-03-06"), y = 270, label = "Exponencial", size= 3)+
+  #annotate("text", x=as.Date("2020-03-07"), y = 65, label = form, size= 3, colour="blue")+
   theme_minimal()
 ```
 
