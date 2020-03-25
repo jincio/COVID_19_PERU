@@ -16,7 +16,9 @@ Base de datos de proyectos (hardware, software, bio) para la población general 
 
 ### Para sesiones de consejería virtuales 
 
-Detalles 
+#### [https://www.hospitapp.pe/](https://www.hospitapp.pe/)
+
+#### Detalles 
 
 ```{r echo=FALSE, out.width='60%'}
 knitr::include_graphics('./Imagenes/proyecto1.jpg')
