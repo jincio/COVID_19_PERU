@@ -128,7 +128,7 @@ f6=dat2 %>%
   geom_point(aes(y = Total_Pruebas), col = "#8B1C62") +
   geom_label(aes(Dia, Total_Pruebas, label = Total_Pruebas), vjust = -0.3,
              label.size = 0.07)+
-  labs(y = "", color = " Casos", fill = " ", 
+  labs(y = "", color = " ", fill = " ", 
        #title = paste0("Tendencias acumuladas"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
   scale_fill_manual(values = c("Positivos Acumulados" = "#43CD80")) +
@@ -311,8 +311,7 @@ m1 = departamento %>%
     scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(12))) + #reemplazar numero por n de levels en factor(casos) - 1
     #geom_sf_text(aes(label = casos), colour = "black")+
     scale_x_discrete()+
-    labs(title = paste0("Número de casos positivos al: ", 
-                        format(as.Date(max(data2$Fecha)), "%d/%m")),
+    labs(title = paste0("Número de casos positivos por departamento"),
          caption =paste0("Callao se suma a Lima"," ", "Actualizado al", format(as.Date(max(data$Dia)),"%d/%m")),
          fill= "Casos") +
   theme_bw()
