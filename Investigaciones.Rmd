@@ -9,17 +9,27 @@ knitr::opts_chunk$set(echo = TRUE)
 Papers/links/findings de revistas científicas.
 
 # Links útiles 
-## Biblioteca de UPC: Artículos sobre coronavirus
+
+## Para Consulta
+
+- Biblioteca de UPC: Artículos sobre coronavirus
 [Biblioteca-UPC-Coronavirus](https://biblioteca.upc.edu.pe/covid-19/)
 
-## Jstor (Open access)
-
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">You can search all open access content on JSTOR without a login - there&#39;s more than 6,000 ebooks and over 150 journals: <a href="https://t.co/qEbqqRjN6E">https://t.co/qEbqqRjN6E</a></p>&mdash; JSTOR (@JSTOR) <a href="https://twitter.com/JSTOR/status/1240306471168028674?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
 # Resumenes y artículos
+
 ## Modelos sobre contagio
 
-[Nowcasting and forecasting the potential domestic and international spread of the 2019-nCoV outbreak originating in Wuhan, China: a modelling study](https://www.thelancet.com/pdfs/journals/lancet/PIIS0140-6736(20)30260-9.pdf)
+- [The effect of human mobility and control measures on the COVID-19 epidemic in China](https://science.sciencemag.org/content/early/2020/03/25/science.abb4218)
+
+**Abstract**
+The ongoing COVID-19 outbreak expanded rapidly throughout China. Major behavioral, clinical, and state interventions have been undertaken to mitigate the epidemic and prevent the persistence of the virus in human populations in China and worldwide. It remains unclear how these unprecedented interventions, including travel restrictions, affected COVID-19 spread in China. We use real-time mobility data from Wuhan and detailed case data including travel history to elucidate the role of case importation on transmission in cities across China and ascertain the impact of control measures. Early on, the spatial distribution of COVID-19 cases in China was explained well by human mobility data. Following the implementation of control measures, this correlation dropped and growth rates became negative in most locations, although shifts in the demographics of reported cases were still indicative of local chains of transmission outside Wuhan. This study shows that the drastic control measures implemented in China substantially mitigated the spread of COVID-19.
+
+- [Nowcasting and forecasting the potential domestic and international spread of the 2019-nCoV outbreak originating in Wuhan, China: a modelling study](https://www.thelancet.com/pdfs/journals/lancet/PIIS0140-6736(20)30260-9.pdf)
+
+**Findings**
+
+Findings In our baseline scenario, we estimated that the basic reproductive number for 2019-nCoV was 2·68 (95% CrI 2·47–2·86) and that 75 815 individuals (95% CrI 37 304–130 330) have been infected in Wuhan as of Jan 25, 2020. The epidemic doubling time was 6·4 days (95% CrI 5·8–7·1). We estimated that in the baseline scenario, Chongqing, Beijing, Shanghai, Guangzhou, and Shenzhen had imported 461 (95% CrI 227–805),
+113 (57–193), 98 (49–168), 111 (56–191), and 80 (40–139) infections from Wuhan, respectively. If the transmissibility of 2019-nCoV were similar everywhere domestically and over time, we inferred that epidemics are already growing exponentially in multiple major cities of China with a lag time behind the Wuhan outbreak of about 1–2 weeks.
 
 ## Cuanto dura el SARS-COV-2 (Coronavirus) en superficies
 

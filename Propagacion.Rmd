@@ -294,8 +294,8 @@ departamento <- read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
 data2 = import("reportes_minsa.xlsx", sheet=2)
 data3 = data2 %>%
   filter(Fecha == max(data2$Fecha)) %>%
-  mutate(Departamento = ifelse(Departamento=="CALLAO","LIMA",
-                             Departamento)) %>%
+  mutate(Departamento = ifelse(REGION=="CALLAO","LIMA",
+                             REGION)) %>%
   dplyr::group_by(Departamento) %>%
   dplyr::summarise(casos = sum(Positivos))
 
