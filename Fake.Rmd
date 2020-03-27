@@ -10,6 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 En esta página listasmo las noticias falsas que están circulando. Si se puede identificar quien las propaga o genera aun mejor. 
 
+### Tratamientos o curas
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">🔴 ATENCIÓN | Respecto a la publicación en redes sociales que informa sobre un presunto descubrimiento para combatir el <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a>, el <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> informa que es FALSA. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> 🇵🇪 <a href="https://t.co/ZtzTVuRcU0">pic.twitter.com/ZtzTVuRcU0</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1243555575356686341?ref_src=twsrc%5Etfw">March 27, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 ### Huida de ciudadanos
 
 <blockquote class="twitter-tweet"><p lang="es" dir="ltr">⚠️ ATENCIÓN | Respecto a publicaciones en redes sociales que señalan la huida de pacientes con <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> del Hospital Cayetano Heredia y el Hospital Dos de Mayo, el <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> informa que son FALSAS.<br> <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> <a href="https://t.co/63oahpTzfU">pic.twitter.com/63oahpTzfU</a></p>&mdash; Ministerio de Salud (@Minsa_Peru) <a href="https://twitter.com/Minsa_Peru/status/1242218168803823621?ref_src=twsrc%5Etfw">March 23, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
