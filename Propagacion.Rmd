@@ -267,12 +267,10 @@ panel<- ggarrange(f2,
 
 ```
 
-```{r Panelf3, message=FALSE, echo=FALSE, eval=FALSE}
 ## Proporción de casos positivos del total de pruebas analizadas (x dia)
 
-No estamos ploteando esto por que es incorrecto
+```{r Panelf3, message=FALSE, echo=FALSE}
 
-# Panel para publicacion
 panel<- ggarrange(f3,
           ncol=1,nrow=1,
           font.label = list(size = 10, color = "black", face = "bold", family = NULL))
@@ -308,7 +306,7 @@ m1 = departamento %>%
     #scale_fill_gradient(low = "white",
     #                  high = "red")+
     # scale_fill_brewer(palette = "Reds") +
-    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(12))) + #reemplazar numero por n de levels en factor(casos) - 1
+    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(13))) + #reemplazar numero por n de levels en factor(casos) - 1
     #geom_sf_text(aes(label = casos), colour = "black")+
     scale_x_discrete()+
     labs(title = paste0("Número de casos positivos por departamento"),
