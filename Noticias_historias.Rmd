@@ -35,7 +35,11 @@ Noticias con información relevante sobre la pandemia.
 [U.S Lags ins Coronavirus Testing After Slow Response to Outbreak](https://www.nytimes.com/interactive/2020/03/17/us/coronavirus-testing-data.html?action=click&module=Top%20Stories&pgtype=Homepage)
 
 
-## Videos informativos 
+## Material Informativo
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics("./Imagenes/infografiaquechua.pdf")
+```
 
 ### Español
 
