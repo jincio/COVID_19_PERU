@@ -10,9 +10,6 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ```{r Librerias, echo=FALSE, message=FALSE}
 library(rio)
-library(dplyr)
-library(tidyr)
-library(ggplot2)
 library(gridExtra)
 library(kableExtra)
 library(JLutils) # devtools::install_github("larmarange/JLutils")
@@ -293,7 +290,7 @@ departamento <- read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
 data2 = import("reportes_minsa.xlsx", sheet=2)
 data3 = data2 %>%
   filter(Fecha == max(data2$Fecha)) %>%
-  mutate(Departamento = ifelse(REGION=="CALLAO","LIMA",REGION)) %>%
+  dplyr::rename(Departamento = REGION) %>%
   dplyr::group_by(Departamento) %>%
   dplyr::summarise(casos = sum(Positivos))
 
@@ -304,17 +301,15 @@ m1 = departamento %>%
          label = paste0(Departamento, ": ", casos))%>%
   ggplot() +
     geom_sf(aes(fill = casos), size = 0.05, color = "grey40") +
-    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(13))) + #reemplazar numero por n de levels en factor(casos) - 1
-  # geom_sf_label(aes(label = label))+
+  # colorRampPalette crea una paleta de colores del tamaño de factor(casos) -1
+    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(length(unique(data3$casos)-1)))) +
   ggrepel::geom_label_repel(
     aes(label = label, geometry = geometry),
     stat = "sf_coordinates", 
-    size = 2,
+    size = 2.3,
     min.segment.length = 0
   )+
     scale_x_discrete()+
-    labs(caption =paste0("Los casos de Callao se cuentan en Lima\n", "Actualizado al ", format(as.Date(max(data$Dia)),"%d/%m")),
-         fill= "Casos") +
   theme_bw()+
   theme(legend.position = "none",
         axis.title = element_blank())
@@ -328,8 +323,21 @@ panel<- ggarrange(m1,
           ncol=1,nrow=1,
           font.label = list(size = 10, color = "black", face = "bold", family = NULL))
           annotate_figure(panel,
-                top = text_grob("Distribución  de casos positivos COVID-19 x departamento, Perú", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA.Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                top = text_grob("Distribución  de casos positivos COVID-19 x departamento, Perú", 
+                                color = "#474785", 
+                                face = "bold", 
+                                size = 14),
+                bottom = text_grob(
+                  paste0(
+                    "Actualizado al ", 
+                    format(as.Date(max(data$Dia)),"%d/%m"),
+                    "\n",
+                    "Fuente: MINSA.Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)"), 
+                                   color = "black", 
+                                   hjust = 1, 
+                                   x = 1, 
+                                   face = "italic", 
+                                   size = 8)
                 #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
                 #fig.lab = "Figure 1", fig.lab.face = "bold"
 )
