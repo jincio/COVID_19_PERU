@@ -347,15 +347,13 @@ panel<- ggarrange(m1,
 ## Tabla
 
 ```{r}
-data%>%dplyr::group_by(Dia)%>%
-  dplyr::summarise(Positivos=max(Positivos),
-            Pruebas_aplicadas=max(Total_Pruebas))%>%
-            mutate(  
-            lag=lag(Pruebas_aplicadas, default = 0),
-            lag2=lag(Positivos,default = 0),
-            Pruebas_XDia=Pruebas_aplicadas-lag,
-            Nuevos_Positivos=Positivos-lag2)%>%
-  dplyr::select(-c(lag,lag2))%>%kable()
+data%>%
+  dplyr::select(Dia,
+                "Pruebas analizadas"="Total_Pruebas",
+                Positivos,
+                Descartados,
+                TasaPositivos)%>%
+  kable()
             
 ```
 
