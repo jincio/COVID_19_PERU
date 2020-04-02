@@ -67,3 +67,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <blockquote class="twitter-tweet"><p lang="es" dir="ltr">Ante el avance del COVID-19 a nivel mundial, venimos trabajando medidas que permitan amortiguar sus efectos sobre la ciudadanía y las mipymes,importantes fuentes de empleo y uno de los motores de nuestra economía. Abro hilo con las acciones recientes. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a>.1/7</p>&mdash; María Antonieta Alva Luperdi (@ToniAlvaL) <a href="https://twitter.com/ToniAlvaL/status/1239189178866425856?ref_src=twsrc%5Etfw">March 15, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+
+
+# Posiciones oficiales 
+
+## Sobre mascarillas 
+
+[Norma técnica para la fabricación de mascarillas comunitarias](https://www.gob.pe/institucion/minsa/noticias/111615-minsa-estandariza-la-produccion-de-mascarillas-ante-la-escasez-de-este-producto)

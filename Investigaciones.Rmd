@@ -17,6 +17,9 @@ Papers/links/findings de revistas científicas.
 
 # Resumenes y artículos
 
+## Testeo
+[FDA aprueba el uso de máquina que entrega resultado en 5 minutos](https://www.the-scientist.com/news-opinion/fda-gives-abbott-emergency-use-of-five-minute-coronavirus-test-67351?utm_content=124004813&utm_medium=social&utm_source=facebook&hss_channel=fbp-212009668822281)
+
 ## Modelos sobre contagio
 
 - [The effect of human mobility and control measures on the COVID-19 epidemic in China](https://science.sciencemag.org/content/early/2020/03/25/science.abb4218)
@@ -68,8 +71,9 @@ Por otro lado, el conocimiento de la estructura de diferentes proteínas del COV
 
 
 ## Investigaciones de vacunas 
-
 ### Sobre la vacuna 
+
+[UPCH y FARVET Perú buscan desarrollar una vacuna contra el COVID-19](https://elcomercio.pe/tecnologia/ciencias/coronavirus-vacuna-tratamiento-investigadores-peruanos-ya-trabajan-en-una-posible-vacuna-contra-el-covid-19-noticia/)
 
 [Europa Lanza clinical trial para probar vacuna](https://presse-inserm-fr.cdn.ampproject.org/c/s/presse.inserm.fr/en/launch-of-a-european-clinical-trial-against-covid-19/38737/amp/)
 
