@@ -23,6 +23,9 @@ library(ggpubr)
 data=import("reportes_minsa.xlsx")
 ```
 
+En esta página complementamos los gráficos presentados en la [sala situacional del coronavirus](https://covid19.minsa.gob.pe/sala_situacional.asp) página oficial del MINSA
+
+
 ```{r Graficos}
 dat2 <- data %>%
   dplyr::group_by(Dia)%>%
@@ -185,6 +188,7 @@ f7<-dat2 %>%
 ## Tendencia y número de casos (Acumulados y diarios)
 
 ```{r Panelf7, message=FALSE, echo=FALSE}
+## Tendencia y número de casos (Acumulados y diarios)
 # Panel para publicacion
 panel<- ggarrange(f7,
           ncol=1,nrow=1,
@@ -197,8 +201,6 @@ panel<- ggarrange(f7,
 )
 
 ```
-
-
 
 ```{r Panelf5, message=FALSE, echo=FALSE, eval=FALSE}
 ## Pruebas aplicadas y casos positivos por dia
@@ -366,7 +368,7 @@ p=data4%>%filter(MACROREG=="CENTRO")%>%
   ylim(0,max(data4[data4$MACROREG=="CENTRO",]$Positivos,na.rm = TRUE)*1.1)+
   scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("5 days"), expand = c(0,1))+
   geom_label(aes(Fecha, Positivos, label = Positivos), vjust = -0.3,
-             label.size = 0.07)+
+             label.size = 0.03)+
   labs(y="Número de casos reportados")+
   #ylim(0,max(dat2$Positivos)*1.1)+
   geom_line(group=1)
