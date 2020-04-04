@@ -351,12 +351,13 @@ panel<- ggarrange(m1,
 
 ```{r graficos3}
 data4 = import("reportes_minsa.xlsx", sheet=2)%>%
-  mutate(MACROREG= case_when(
-    REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH")~"NORTE",
-    REGION %in% c("AMAZONAS","LORETO","UCAYALI","MADRE DE DIOS","SAN MARTIN") ~ "ORIENTE",
-    REGION %in% c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO") ~ "SUR",
-    REGION%in%c("AYACUCHO","APURIMAC","JUNIN","PASCO")~ "CENTRO",
-    TRUE ~ "OTRO")
+  mutate(
+    MACROREG= case_when(
+        REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH")~"NORTE",
+        REGION %in% c("AMAZONAS","LORETO","UCAYALI","MADRE DE DIOS","SAN MARTIN") ~ "ORIENTE",
+        REGION %in% c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO") ~ "SUR",
+        REGION%in%c("AYACUCHO","APURIMAC","JUNIN","PASCO")~ "CENTRO",
+        TRUE ~ "OTRO")
   )
 
 data4$Fecha<- as.Date(as.POSIXct(data4$Fecha, 'GMT'))
