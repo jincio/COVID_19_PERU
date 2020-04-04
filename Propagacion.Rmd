@@ -20,6 +20,7 @@ library(ggrepel)
 library(readxl)
 library(cowplot)
 library(ggpubr)
+library(directlabels)
 data=import("reportes_minsa.xlsx")
 ```
 
@@ -465,6 +466,59 @@ panel<- ggarrange(ORIENTE1,
 )
 
 ```
+
+## Comparaciones con otros países. 
+
+```{r comparacion1, echo=FALSE}
+confirmed <- "https://raw.github.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
+
+WorldData<-import(file = confirmed)%>%
+  mutate(type="confirmed")%>%
+  tidyr::gather(Fecha,Valor,
+                -c(type,"Province/State",
+                        "Country/Region"))%>%
+  dplyr::select(Country="Country/Region",
+                                    Provincia="Province/State",
+                                    type,
+                                    Valor,
+                                    Fecha)
+
+paises<- c("Peru","Chile","Ecuador", "Brazil")
+
+d1=WorldData%>%filter(type=="confirmed",
+                   Country%in%paises,
+                   Valor>0)%>%
+  group_by(Country)%>%
+  mutate(Fecha=as.Date(Fecha,"%m/%d/"))%>%
+  mutate(start = first(Fecha),
+         Dstart=Fecha-start)%>%
+  ungroup()%>%
+  #filter(d_start<21)%>%
+  mutate(log=log(Valor+0.01))%>%
+  filter(Dstart>2)
+  
+p=d1%>%
+  ggplot(aes(x = Dstart,y=Valor,group=Country)) +
+  geom_line(aes(col = Country))+
+  scale_y_continuous(trans = "log10")+
+  geom_dl(aes(label = Country), 
+          method = list(dl.trans(x = x + 0.2), "last.points", cex = 0.8))+
+  labs(y="Confirmados", x="Número de días desde el primer caso")
+
+
+```
+
+```{r PanelAL1, echo=FALSE, fig.height=7, message=FALSE, warning=FALSE}
+panel<-ggarrange(p,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+
+annotate_figure(panel,
+                top = text_grob("Casos confirmados en escala log10", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: JHU", color = "black", hjust = 1, x = 1, face = "italic", size = 8))
+```
+
+Código explicado [Aquí](https://joseincio.com/post/ggplot-lines-en-log-y-y-axis-en-conteo/)
 
 ## Tabla
 
