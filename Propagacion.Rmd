@@ -351,15 +351,13 @@ panel<- ggarrange(m1,
 
 ```{r graficos3}
 data4 = import("reportes_minsa.xlsx", sheet=2)%>%
-  mutate(MACROREG=ifelse(REGION%in%c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD",
-                                     "CAJAMARCA","ANCASH"),"NORTE",
-                         ifelse(REGION%in%c("AMAZONAS","LORETO","UCAYALI",
-                                            "MADRE DE DIOS",
-                                            "SAN MARTIN"),"ORIENTE",
-                                ifelse(REGION%in%c("ICA","MOQUEGUA","AREQUIPA",
-                                                   "TACNA","PUNO","CUSCO"),"SUR",
-                                       ifelse(REGION%in%c("AYACUCHO","APURIMAC",
-                                                          "JUNIN","PASCO"),"CENTRO","OTRO")))))
+  mutate(MACROREG= case_when(
+    REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH")~"NORTE",
+    REGION %in% c("AMAZONAS","LORETO","UCAYALI","MADRE DE DIOS","SAN MARTIN") ~ "ORIENTE",
+    REGION %in% c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO") ~ "SUR",
+    REGION%in%c("AYACUCHO","APURIMAC","JUNIN","PASCO")~ "CENTRO",
+    TRUE ~ "OTRO")
+  )
 
 data4$Fecha<- as.Date(as.POSIXct(data4$Fecha, 'GMT'))
 
@@ -367,7 +365,7 @@ data4$Fecha<- as.Date(as.POSIXct(data4$Fecha, 'GMT'))
 p=data4%>%filter(MACROREG=="CENTRO")%>%
   ggplot(aes(x = Fecha, y=Positivos,group=1)) +
   ylim(0,max(data4[data4$MACROREG=="CENTRO",]$Positivos,na.rm = TRUE)*1.1)+
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("5 days"), expand = c(0,1))+
+  scale_x_date(labels = date_format("%b-%d"), date_breaks = "5 days", expand = c(0,1))+
   geom_label(aes(Fecha, Positivos, label = Positivos), vjust = -0.3,
              label.size = 0.03)+
   labs(y="Número de casos reportados")+
