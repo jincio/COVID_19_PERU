@@ -3,7 +3,7 @@ title: "Propagacion"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE,warning = FALSE, message = FALSE)
 ```
 
 # Monitoreo de casos
@@ -168,7 +168,7 @@ form=paste0("y=",round(alpha,3),"*","exp(",round(beta,3),"*x)")
 library(scales)
 f7<-dat2 %>%
   ggplot(aes(x = Dia)) +
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("2 days"), expand = c(0,1))+
+  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("7 days"), expand = c(0,1))+
   ylim(0,max(dat2$Positivos)*1.15)+
   geom_area(aes(y = Positivos, col = "Acumulados"), size=1, fill="#c9c4e0") +
   geom_point(aes(y = Positivos), col = "#474785") +
@@ -349,122 +349,77 @@ panel<- ggarrange(m1,
 
 ## Tendencias por departamento
 
-```{r graficos3}
-data4 = import("reportes_minsa.xlsx", sheet=2)%>%
-  mutate(MACROREG=ifelse(REGION%in%c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD",
-                                     "CAJAMARCA","ANCASH"),"NORTE",
-                         ifelse(REGION%in%c("AMAZONAS","LORETO","UCAYALI",
-                                            "MADRE DE DIOS",
-                                            "SAN MARTIN"),"ORIENTE",
-                                ifelse(REGION%in%c("ICA","MOQUEGUA","AREQUIPA",
-                                                   "TACNA","PUNO","CUSCO"),"SUR",
-                                       ifelse(REGION%in%c("AYACUCHO","APURIMAC",
-                                                          "JUNIN","PASCO"),"CENTRO","OTRO")))))
-
-data4$Fecha<- as.Date(as.POSIXct(data4$Fecha, 'GMT'))
-
-
-p=data4%>%filter(MACROREG=="CENTRO")%>%
-  ggplot(aes(x = Fecha, y=Positivos,group=1)) +
-  ylim(0,max(data4[data4$MACROREG=="CENTRO",]$Positivos,na.rm = TRUE)*1.1)+
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("5 days"), expand = c(0,1))+
-  geom_label(aes(Fecha, Positivos, label = Positivos), vjust = -0.3,
-             label.size = 0.03)+
-  labs(y="Número de casos reportados")+
-  #ylim(0,max(dat2$Positivos)*1.1)+
-  geom_line(group=1)
-centro1=p+facet_wrap(~ REGION, ncol=3)
-
-p=data4%>%filter(MACROREG=="NORTE")%>%
-  ggplot(aes(x = Fecha, y=Positivos,group=1)) +
-  ylim(0,max(data4[data4$MACROREG=="NORTE",]$Positivos,na.rm = TRUE)*1.1)+
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("5 days"), expand = c(0,1))+
-  geom_label(aes(Fecha, Positivos, label = Positivos), vjust = -0.3,
-             label.size = 0.07)+
-  labs(y="Número de casos reportados")+
-  #ylim(0,max(dat2$Positivos)*1.1)+
-  geom_line(group=1)
-NORTE1=p+facet_wrap(~ REGION, ncol=3)
-
-p=data4%>%filter(MACROREG=="SUR")%>%
-  ggplot(aes(x = Fecha, y=Positivos,group=1)) +
-  ylim(0,max(data4[data4$MACROREG=="SUR",]$Positivos,na.rm = TRUE)*1.1)+
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("5 days"), expand = c(0,1))+
-  geom_label(aes(Fecha, Positivos, label = Positivos), vjust = -0.3,
-             label.size = 0.07)+
-  labs(y="Número de casos reportados")+
-  #ylim(0,max(dat2$Positivos)*1.1)+
-  geom_line(group=1)
-SUR1=p+facet_wrap(~ REGION, ncol=3)
-
-p=data4%>%filter(MACROREG=="ORIENTE")%>%
-  ggplot(aes(x = Fecha, y=Positivos,group=1)) +
-  ylim(0,max(data4[data4$MACROREG=="ORIENTE",]$Positivos,na.rm = TRUE)*1.1)+
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("5 days"), expand = c(0,1))+
-  geom_label(aes(Fecha, Positivos, label = Positivos), vjust = -0.3,
-             label.size = 0.07)+
-  labs(y="Número de casos reportados")+
-  #ylim(0,max(dat2$Positivos)*1.1)+
-  geom_line(group=1)
-ORIENTE1=p+facet_wrap(~ REGION, ncol=3)
+```{r plot_macro}
+data4 = read_excel("reportes_minsa.xlsx", sheet=2)%>%
+  mutate(
+    MACROREG= case_when(
+        REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH")~"NORTE",
+        REGION %in% c("AMAZONAS","LORETO","UCAYALI","MADRE DE DIOS","SAN MARTIN") ~ "ORIENTE",
+        REGION %in% c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO") ~ "SUR",
+        REGION%in%c("AYACUCHO","APURIMAC","JUNIN", "HUANCAVELICA", "HUANUCO", "PASCO")~ "CENTRO",
+        TRUE ~ "OTRO"),
+    Fecha = as.Date(Fecha)
+  )
+plot_macro <- function(macroregion, breaks = "7 days", ncol = 3, .data = data4){
+  temp <- .data%>%
+    filter(MACROREG== macroregion) %>% 
+    group_by(REGION, Positivos) %>% 
+    mutate(label = ifelse(row_number() == 1, Positivos, NA)) %>% 
+    ungroup() %>% 
+    group_by(REGION) %>% 
+    mutate(label = ifelse(row_number() == n(), Positivos, label))
+  
+  plot <- temp %>%
+    ggplot(aes(x = Fecha, y=Positivos)) +
+    geom_line(color = "darkred")+
+    ylim(0,max(temp$Positivos)*1.1)+
+    scale_x_date(
+      labels = scales::date_format("%b-%d"), 
+      date_breaks = "5 days", 
+      expand = c(0,1))+
+    geom_text_repel(
+      aes(label = label), 
+      vjust = -0.3,
+      size = 2.1,
+      box.padding = 0.05)+
+    labs(y="Número de casos reportados")+
+    facet_wrap(~ REGION, ncol=ncol)
+  
+  ggarrange(plot,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL)) %>% 
+          annotate_figure(
+                top = text_grob(
+                  paste("Número de casos positivos COVID-19,", macroregion), 
+                  color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", 
+                                   color = "black", 
+                                   hjust = 1, 
+                                   x = 1, face = "italic", size = 8))
+}
 ```
 
 ### CENTRO 
 
 ```{r,panelcentro1}
-panel<- ggarrange(centro1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de casos positivos COVID-19, CENTRO", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
+plot_macro("CENTRO")
 ```
 
 ### NORTE 
-```{r,panelNORTE1}
-panel<- ggarrange(NORTE1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de casos positivos COVID-19, NORTE", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
 
+```{r,panelNORTE1}
+plot_macro("NORTE")
 ```
 
 ### SUR
 ```{r,panelSUR1}
-panel<- ggarrange(SUR1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de casos positivos COVID-19, SUR", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
+plot_macro("SUR")
 ```
 
 ### ORIENTE
 
 ```{r,panelORIENTE1}
-panel<- ggarrange(ORIENTE1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de casos positivos COVID-19, ORIENTE", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
+plot_macro("ORIENTE")
 ```
 
 ## Comparaciones con otros países. 
@@ -493,7 +448,6 @@ d1=WorldData%>%filter(type=="confirmed",
   mutate(start = first(Fecha),
          Dstart=Fecha-start)%>%
   ungroup()%>%
-  #filter(d_start<21)%>%
   mutate(log=log(Valor+0.01))%>%
   filter(Dstart>2)
   
@@ -529,7 +483,20 @@ data%>%
                 Positivos,
                 Descartados,
                 TasaPositivos)%>%
-  kable()
+  mutate(Dia = as.character(Dia),
+         TasaPositivos = round(TasaPositivos, 2)) %>% 
+  arrange(desc(Dia)) %>% 
+  DT::datatable(
+    options = list(pageLength = 10, 
+                   lengthMenu = c(10, 25, 40),
+                   language = list(lengthMenu = "Mostrar _MENU_ entradas",
+                                   info ="Mostrando _START_ al _END_ de _TOTAL_ entradas",
+                                   search = "Buscar:",
+                                   paginate = list(previous = "Anterior",
+                                                   'next' = "Siguiente"))
+                   ),
+    rownames = FALSE
+  )
             
 ```
 
