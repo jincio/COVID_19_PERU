@@ -3,7 +3,7 @@ title: "Propagacion"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
 # Monitoreo de casos
@@ -350,62 +350,51 @@ panel<- ggarrange(m1,
 ## Tendencias por departamento
 
 ```{r graficos3}
-data4 = import("reportes_minsa.xlsx", sheet=2)%>%
+data4 = read_excel("reportes_minsa.xlsx", sheet=2)%>%
   mutate(
     MACROREG= case_when(
         REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH")~"NORTE",
         REGION %in% c("AMAZONAS","LORETO","UCAYALI","MADRE DE DIOS","SAN MARTIN") ~ "ORIENTE",
         REGION %in% c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO") ~ "SUR",
         REGION%in%c("AYACUCHO","APURIMAC","JUNIN","PASCO")~ "CENTRO",
-        TRUE ~ "OTRO")
+        TRUE ~ "OTRO"),
+    Fecha = as.Date(Fecha)
   )
 
-data4$Fecha<- as.Date(as.POSIXct(data4$Fecha, 'GMT'))
+plot_macro <- function(macroregion, breaks = "5 days", ncol = 3, .data = data4){
+  temp <- .data%>%
+    filter(MACROREG== macroregion) %>% 
+    group_by(REGION, Positivos) %>% 
+    mutate(label = ifelse(row_number() == 1, Positivos, NA)) %>% 
+    ungroup() %>% 
+    group_by(REGION) %>% 
+    mutate(label = ifelse(row_number() == n(), Positivos, label))
+    
+  
+  temp %>%
+    ggplot(aes(x = Fecha, y=Positivos)) +
+    geom_line(color = "darkred")+
+    ylim(0,max(temp$Positivos)*1.1)+
+    scale_x_date(
+      labels = scales::date_format("%b-%d"), 
+      date_breaks = "5 days", 
+      expand = c(0,1))+
+    geom_text_repel(
+      aes(label = label), 
+      vjust = -0.3,
+      size = 2.1,
+      box.padding = 0.05)+
+    labs(y="Número de casos reportados")+
+    facet_wrap(~ REGION, ncol=ncol)
+}
 
+centro1 <- plot_macro("CENTRO")
 
-p=data4%>%filter(MACROREG=="CENTRO")%>%
-  ggplot(aes(x = Fecha, y=Positivos,group=1)) +
-  ylim(0,max(data4[data4$MACROREG=="CENTRO",]$Positivos,na.rm = TRUE)*1.1)+
-  scale_x_date(labels = date_format("%b-%d"), date_breaks = "5 days", expand = c(0,1))+
-  geom_label(aes(Fecha, Positivos, label = Positivos), vjust = -0.3,
-             label.size = 0.03)+
-  labs(y="Número de casos reportados")+
-  #ylim(0,max(dat2$Positivos)*1.1)+
-  geom_line(group=1)
-centro1=p+facet_wrap(~ REGION, ncol=3)
+NORTE1 <- plot_macro("NORTE")
 
-p=data4%>%filter(MACROREG=="NORTE")%>%
-  ggplot(aes(x = Fecha, y=Positivos,group=1)) +
-  ylim(0,max(data4[data4$MACROREG=="NORTE",]$Positivos,na.rm = TRUE)*1.1)+
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("5 days"), expand = c(0,1))+
-  geom_label(aes(Fecha, Positivos, label = Positivos), vjust = -0.3,
-             label.size = 0.07)+
-  labs(y="Número de casos reportados")+
-  #ylim(0,max(dat2$Positivos)*1.1)+
-  geom_line(group=1)
-NORTE1=p+facet_wrap(~ REGION, ncol=3)
+SUR1 <- plot_macro("SUR")
 
-p=data4%>%filter(MACROREG=="SUR")%>%
-  ggplot(aes(x = Fecha, y=Positivos,group=1)) +
-  ylim(0,max(data4[data4$MACROREG=="SUR",]$Positivos,na.rm = TRUE)*1.1)+
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("5 days"), expand = c(0,1))+
-  geom_label(aes(Fecha, Positivos, label = Positivos), vjust = -0.3,
-             label.size = 0.07)+
-  labs(y="Número de casos reportados")+
-  #ylim(0,max(dat2$Positivos)*1.1)+
-  geom_line(group=1)
-SUR1=p+facet_wrap(~ REGION, ncol=3)
-
-p=data4%>%filter(MACROREG=="ORIENTE")%>%
-  ggplot(aes(x = Fecha, y=Positivos,group=1)) +
-  ylim(0,max(data4[data4$MACROREG=="ORIENTE",]$Positivos,na.rm = TRUE)*1.1)+
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("5 days"), expand = c(0,1))+
-  geom_label(aes(Fecha, Positivos, label = Positivos), vjust = -0.3,
-             label.size = 0.07)+
-  labs(y="Número de casos reportados")+
-  #ylim(0,max(dat2$Positivos)*1.1)+
-  geom_line(group=1)
-ORIENTE1=p+facet_wrap(~ REGION, ncol=3)
+ORIENTE1 <- plot_macro("ORIENTE")
 ```
 
 ### CENTRO 
