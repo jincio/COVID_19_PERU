@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -14,7 +13,7 @@
 
 <title>Propagacion</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -24,6 +23,14 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.12/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -72,7 +79,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -221,6 +227,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -249,6 +256,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -372,23 +385,23 @@ div.tocify {
 <div id="monitoreo-de-casos" class="section level1">
 <h1><span class="header-section-number">1</span> Monitoreo de casos</h1>
 <p>En esta página complementamos los gráficos presentados en la <a href="https://covid19.minsa.gob.pe/sala_situacional.asp">sala situacional del coronavirus</a> página oficial del MINSA</p>
-<div id="tendencia-y-numero-de-casos-acumulados-y-diarios" class="section level2">
+<div id="tendencia-y-número-de-casos-acumulados-y-diarios" class="section level2">
 <h2><span class="header-section-number">1.1</span> Tendencia y número de casos (Acumulados y diarios)</h2>
 <p><img src="Propagacion_files/figure-html/Panelf7-1.png" width="672" /></p>
 </div>
-<div id="numero-de-pruebas-aplicadas-acumulado-y-diarias" class="section level2">
+<div id="número-de-pruebas-aplicadas-acumulado-y-diarias" class="section level2">
 <h2><span class="header-section-number">1.2</span> Número de pruebas aplicadas (acumulado y diarias)</h2>
 <p><img src="Propagacion_files/figure-html/Panelf4-1.png" width="672" /></p>
 </div>
-<div id="numero-de-pruebas-aplicadas-y-casos-positivos-acumulados" class="section level2">
+<div id="número-de-pruebas-aplicadas-y-casos-positivos-acumulados" class="section level2">
 <h2><span class="header-section-number">1.3</span> Número de pruebas aplicadas y casos positivos (acumulados)</h2>
 <p><img src="Propagacion_files/figure-html/Panelf6-1.png" width="672" /></p>
 </div>
-<div id="proporcion-de-casos-positivos-del-total-de-pruebas-analizadas." class="section level2">
+<div id="proporción-de-casos-positivos-del-total-de-pruebas-analizadas." class="section level2">
 <h2><span class="header-section-number">1.4</span> Proporción de casos positivos del total de pruebas analizadas.</h2>
 <p><img src="Propagacion_files/figure-html/Panelf2-1.png" width="672" /></p>
 </div>
-<div id="proporcion-de-casos-positivos-del-total-de-pruebas-analizadas-x-dia" class="section level2">
+<div id="proporción-de-casos-positivos-del-total-de-pruebas-analizadas-x-dia" class="section level2">
 <h2><span class="header-section-number">1.5</span> Proporción de casos positivos del total de pruebas analizadas (x dia)</h2>
 <p><img src="Propagacion_files/figure-html/Panelf3-1.png" width="672" /></p>
 </div>
@@ -415,546 +428,15 @@ div.tocify {
 <p><img src="Propagacion_files/figure-html/panelORIENTE1-1.png" width="672" /></p>
 </div>
 </div>
-<div id="comparaciones-con-otros-paises." class="section level2">
+<div id="comparaciones-con-otros-países." class="section level2">
 <h2><span class="header-section-number">1.8</span> Comparaciones con otros países.</h2>
 <p><img src="Propagacion_files/figure-html/PanelAL1-1.png" width="672" /></p>
 <p>Código explicado <a href="https://joseincio.com/post/ggplot-lines-en-log-y-y-axis-en-conteo/">Aquí</a></p>
 </div>
 <div id="tabla" class="section level2">
 <h2><span class="header-section-number">1.9</span> Tabla</h2>
-<table>
-<thead>
-<tr>
-<th style="text-align:left;">
-Dia
-</th>
-<th style="text-align:right;">
-Pruebas analizadas
-</th>
-<th style="text-align:right;">
-Positivos
-</th>
-<th style="text-align:right;">
-Descartados
-</th>
-<th style="text-align:right;">
-TasaPositivos
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-2020-03-06
-</td>
-<td style="text-align:right;">
-155
-</td>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-154
-</td>
-<td style="text-align:right;">
-0.6451613
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-07
-</td>
-<td style="text-align:right;">
-219
-</td>
-<td style="text-align:right;">
-6
-</td>
-<td style="text-align:right;">
-213
-</td>
-<td style="text-align:right;">
-2.7397260
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-08
-</td>
-<td style="text-align:right;">
-250
-</td>
-<td style="text-align:right;">
-7
-</td>
-<td style="text-align:right;">
-243
-</td>
-<td style="text-align:right;">
-2.8000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-09
-</td>
-<td style="text-align:right;">
-318
-</td>
-<td style="text-align:right;">
-9
-</td>
-<td style="text-align:right;">
-309
-</td>
-<td style="text-align:right;">
-2.8301887
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-10
-</td>
-<td style="text-align:right;">
-346
-</td>
-<td style="text-align:right;">
-11
-</td>
-<td style="text-align:right;">
-335
-</td>
-<td style="text-align:right;">
-3.1791908
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-11
-</td>
-<td style="text-align:right;">
-714
-</td>
-<td style="text-align:right;">
-17
-</td>
-<td style="text-align:right;">
-697
-</td>
-<td style="text-align:right;">
-2.3809524
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-12
-</td>
-<td style="text-align:right;">
-855
-</td>
-<td style="text-align:right;">
-22
-</td>
-<td style="text-align:right;">
-833
-</td>
-<td style="text-align:right;">
-2.5730994
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-13
-</td>
-<td style="text-align:right;">
-1232
-</td>
-<td style="text-align:right;">
-38
-</td>
-<td style="text-align:right;">
-1194
-</td>
-<td style="text-align:right;">
-3.0844156
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-14
-</td>
-<td style="text-align:right;">
-1545
-</td>
-<td style="text-align:right;">
-43
-</td>
-<td style="text-align:right;">
-1502
-</td>
-<td style="text-align:right;">
-2.7831715
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-15
-</td>
-<td style="text-align:right;">
-1822
-</td>
-<td style="text-align:right;">
-71
-</td>
-<td style="text-align:right;">
-1751
-</td>
-<td style="text-align:right;">
-3.8968167
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-16
-</td>
-<td style="text-align:right;">
-2315
-</td>
-<td style="text-align:right;">
-86
-</td>
-<td style="text-align:right;">
-2229
-</td>
-<td style="text-align:right;">
-3.7149028
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-17
-</td>
-<td style="text-align:right;">
-2680
-</td>
-<td style="text-align:right;">
-117
-</td>
-<td style="text-align:right;">
-2563
-</td>
-<td style="text-align:right;">
-4.3656716
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-18
-</td>
-<td style="text-align:right;">
-3075
-</td>
-<td style="text-align:right;">
-145
-</td>
-<td style="text-align:right;">
-2930
-</td>
-<td style="text-align:right;">
-4.7154472
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-19
-</td>
-<td style="text-align:right;">
-3841
-</td>
-<td style="text-align:right;">
-234
-</td>
-<td style="text-align:right;">
-3607
-</td>
-<td style="text-align:right;">
-6.0921635
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-20
-</td>
-<td style="text-align:right;">
-4298
-</td>
-<td style="text-align:right;">
-263
-</td>
-<td style="text-align:right;">
-4035
-</td>
-<td style="text-align:right;">
-6.1191252
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-21
-</td>
-<td style="text-align:right;">
-4985
-</td>
-<td style="text-align:right;">
-318
-</td>
-<td style="text-align:right;">
-4667
-</td>
-<td style="text-align:right;">
-6.3791374
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-22
-</td>
-<td style="text-align:right;">
-6184
-</td>
-<td style="text-align:right;">
-363
-</td>
-<td style="text-align:right;">
-5821
-</td>
-<td style="text-align:right;">
-5.8699871
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-23
-</td>
-<td style="text-align:right;">
-6664
-</td>
-<td style="text-align:right;">
-395
-</td>
-<td style="text-align:right;">
-6269
-</td>
-<td style="text-align:right;">
-5.9273709
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-24
-</td>
-<td style="text-align:right;">
-7013
-</td>
-<td style="text-align:right;">
-416
-</td>
-<td style="text-align:right;">
-6597
-</td>
-<td style="text-align:right;">
-5.9318409
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-25
-</td>
-<td style="text-align:right;">
-8040
-</td>
-<td style="text-align:right;">
-480
-</td>
-<td style="text-align:right;">
-7560
-</td>
-<td style="text-align:right;">
-5.9701493
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-26
-</td>
-<td style="text-align:right;">
-9219
-</td>
-<td style="text-align:right;">
-580
-</td>
-<td style="text-align:right;">
-8639
-</td>
-<td style="text-align:right;">
-6.2913548
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-27
-</td>
-<td style="text-align:right;">
-10065
-</td>
-<td style="text-align:right;">
-635
-</td>
-<td style="text-align:right;">
-9430
-</td>
-<td style="text-align:right;">
-6.3089916
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-28
-</td>
-<td style="text-align:right;">
-10896
-</td>
-<td style="text-align:right;">
-671
-</td>
-<td style="text-align:right;">
-10225
-</td>
-<td style="text-align:right;">
-6.1582232
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-29
-</td>
-<td style="text-align:right;">
-12669
-</td>
-<td style="text-align:right;">
-852
-</td>
-<td style="text-align:right;">
-11817
-</td>
-<td style="text-align:right;">
-6.7250770
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-30
-</td>
-<td style="text-align:right;">
-13452
-</td>
-<td style="text-align:right;">
-950
-</td>
-<td style="text-align:right;">
-12502
-</td>
-<td style="text-align:right;">
-7.0621469
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-03-31
-</td>
-<td style="text-align:right;">
-14463
-</td>
-<td style="text-align:right;">
-1065
-</td>
-<td style="text-align:right;">
-13398
-</td>
-<td style="text-align:right;">
-7.3636175
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-04-01
-</td>
-<td style="text-align:right;">
-15587
-</td>
-<td style="text-align:right;">
-1323
-</td>
-<td style="text-align:right;">
-14264
-</td>
-<td style="text-align:right;">
-8.4878424
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-04-02
-</td>
-<td style="text-align:right;">
-16518
-</td>
-<td style="text-align:right;">
-1414
-</td>
-<td style="text-align:right;">
-15104
-</td>
-<td style="text-align:right;">
-8.5603584
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-04-03
-</td>
-<td style="text-align:right;">
-17334
-</td>
-<td style="text-align:right;">
-1595
-</td>
-<td style="text-align:right;">
-15739
-</td>
-<td style="text-align:right;">
-9.2015692
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-2020-04-04
-</td>
-<td style="text-align:right;">
-17841
-</td>
-<td style="text-align:right;">
-1746
-</td>
-<td style="text-align:right;">
-16095
-</td>
-<td style="text-align:right;">
-9.7864469
-</td>
-</tr>
-</tbody>
-</table>
+<div id="htmlwidget-16218a9c1f2c3e936be6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-16218a9c1f2c3e936be6">{"x":{"filter":"none","data":[["2020-04-04","2020-04-03","2020-04-02","2020-04-01","2020-03-31","2020-03-30","2020-03-29","2020-03-28","2020-03-27","2020-03-26","2020-03-25","2020-03-24","2020-03-23","2020-03-22","2020-03-21","2020-03-20","2020-03-19","2020-03-18","2020-03-17","2020-03-16","2020-03-15","2020-03-14","2020-03-13","2020-03-12","2020-03-11","2020-03-10","2020-03-09","2020-03-08","2020-03-07","2020-03-06"],[17841,17334,16518,15587,14463,13452,12669,10896,10065,9219,8040,7013,6664,6184,4985,4298,3841,3075,2680,2315,1822,1545,1232,855,714,346,318,250,219,155],[1746,1595,1414,1323,1065,950,852,671,635,580,480,416,395,363,318,263,234,145,117,86,71,43,38,22,17,11,9,7,6,1],[16095,15739,15104,14264,13398,12502,11817,10225,9430,8639,7560,6597,6269,5821,4667,4035,3607,2930,2563,2229,1751,1502,1194,833,697,335,309,243,213,154],[9.79,9.2,8.56,8.49,7.36,7.06,6.73,6.16,6.31,6.29,5.97,5.93,5.93,5.87,6.38,6.12,6.09,4.72,4.37,3.71,3.9,2.78,3.08,2.57,2.38,3.18,2.83,2.8,2.74,0.65]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Dia<\/th>\n      <th>Pruebas analizadas<\/th>\n      <th>Positivos<\/th>\n      <th>Descartados<\/th>\n      <th>TasaPositivos<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"lengthMenu":[10,25,40],"language":{"lengthMenu":"Mostrar _MENU_ entradas","info":"Mostrando _START_ al _END_ de _TOTAL_ entradas","search":"Buscar:","paginate":{"previous":"Anterior","next":"Siguiente"}},"columnDefs":[{"className":"dt-right","targets":[1,2,3,4]}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>Para los gráficos he adaptado del post de Gabriel Carrasco Escobar (<a href="http://gcarrasco.rbind.io/blog/covid19_viz/" class="uri">http://gcarrasco.rbind.io/blog/covid19_viz/</a>)</p>
 </div>
 </div>
