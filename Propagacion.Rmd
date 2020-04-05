@@ -168,7 +168,7 @@ form=paste0("y=",round(alpha,3),"*","exp(",round(beta,3),"*x)")
 library(scales)
 f7<-dat2 %>%
   ggplot(aes(x = Dia)) +
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("2 days"), expand = c(0,1))+
+  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("7 days"), expand = c(0,1))+
   ylim(0,max(dat2$Positivos)*1.15)+
   geom_area(aes(y = Positivos, col = "Acumulados"), size=1, fill="#c9c4e0") +
   geom_point(aes(y = Positivos), col = "#474785") +
