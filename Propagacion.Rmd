@@ -349,19 +349,19 @@ panel<- ggarrange(m1,
 
 ## Tendencias por departamento
 
-```{r graficos3}
+```{r plot_macro}
 data4 = read_excel("reportes_minsa.xlsx", sheet=2)%>%
   mutate(
     MACROREG= case_when(
         REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH")~"NORTE",
         REGION %in% c("AMAZONAS","LORETO","UCAYALI","MADRE DE DIOS","SAN MARTIN") ~ "ORIENTE",
         REGION %in% c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO") ~ "SUR",
-        REGION%in%c("AYACUCHO","APURIMAC","JUNIN","PASCO")~ "CENTRO",
+        REGION%in%c("AYACUCHO","APURIMAC","JUNIN", "HUANCAVELICA", "HUANUCO", "PASCO")~ "CENTRO",
         TRUE ~ "OTRO"),
     Fecha = as.Date(Fecha)
   )
 
-plot_macro <- function(macroregion, breaks = "5 days", ncol = 3, .data = data4){
+plot_macro <- function(macroregion, breaks = "7 days", ncol = 3, .data = data4){
   temp <- .data%>%
     filter(MACROREG== macroregion) %>% 
     group_by(REGION, Positivos) %>% 
@@ -369,9 +369,8 @@ plot_macro <- function(macroregion, breaks = "5 days", ncol = 3, .data = data4){
     ungroup() %>% 
     group_by(REGION) %>% 
     mutate(label = ifelse(row_number() == n(), Positivos, label))
-    
   
-  temp %>%
+  plot <- temp %>%
     ggplot(aes(x = Fecha, y=Positivos)) +
     geom_line(color = "darkred")+
     ylim(0,max(temp$Positivos)*1.1)+
@@ -386,73 +385,42 @@ plot_macro <- function(macroregion, breaks = "5 days", ncol = 3, .data = data4){
       box.padding = 0.05)+
     labs(y="Número de casos reportados")+
     facet_wrap(~ REGION, ncol=ncol)
+  
+  ggarrange(plot,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL)) %>% 
+          annotate_figure(
+                top = text_grob(
+                  paste("Número de casos positivos COVID-19,", macroregion), 
+                  color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", 
+                                   color = "black", 
+                                   hjust = 1, 
+                                   x = 1, face = "italic", size = 8))
 }
 
-centro1 <- plot_macro("CENTRO")
-
-NORTE1 <- plot_macro("NORTE")
-
-SUR1 <- plot_macro("SUR")
-
-ORIENTE1 <- plot_macro("ORIENTE")
 ```
 
 ### CENTRO 
 
 ```{r,panelcentro1}
-panel<- ggarrange(centro1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de casos positivos COVID-19, CENTRO", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
+plot_macro("CENTRO")
 ```
 
 ### NORTE 
 ```{r,panelNORTE1}
-panel<- ggarrange(NORTE1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de casos positivos COVID-19, NORTE", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
+plot_macro("NORTE")
 ```
 
 ### SUR
 ```{r,panelSUR1}
-panel<- ggarrange(SUR1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de casos positivos COVID-19, SUR", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
+plot_macro("SUR")
 ```
 
 ### ORIENTE
 
 ```{r,panelORIENTE1}
-panel<- ggarrange(ORIENTE1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de casos positivos COVID-19, ORIENTE", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
+plot_macro("ORIENTE")
 ```
 
 ## Comparaciones con otros países. 
@@ -481,7 +449,6 @@ d1=WorldData%>%filter(type=="confirmed",
   mutate(start = first(Fecha),
          Dstart=Fecha-start)%>%
   ungroup()%>%
-  #filter(d_start<21)%>%
   mutate(log=log(Valor+0.01))%>%
   filter(Dstart>2)
   
@@ -517,7 +484,20 @@ data%>%
                 Positivos,
                 Descartados,
                 TasaPositivos)%>%
-  kable()
+  mutate(Dia = as.character(Dia),
+         TasaPositivos = round(TasaPositivos, 2)) %>% 
+  arrange(desc(Dia)) %>% 
+  DT::datatable(
+    options = list(pageLength = 10, 
+                   lengthMenu = c(10, 25, 40),
+                   language = list(lengthMenu = "Mostrar _MENU_ entradas",
+                                   info ="Mostrando _START_ al _END_ de _TOTAL_ entradas",
+                                   search = "Buscar:",
+                                   paginate = list(previous = "Anterior",
+                                                   'next' = "Siguiente"))
+                   ),
+    rownames = FALSE
+  )
             
 ```
 
