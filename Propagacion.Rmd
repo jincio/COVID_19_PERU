@@ -284,143 +284,6 @@ panel<- ggarrange(f3,
 
 ```
 
-## Mapa
-
-```{r Mapa, message=FALSE}
-departamento <- read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
-  select(Departamento = DEPARTAMEN, geometry)
-
-data2 = import("reportes_minsa.xlsx", sheet=2)
-data3 = data2 %>%
-  filter(Fecha == max(data2$Fecha)) %>%
-  dplyr::rename(Departamento = REGION) %>%
-  dplyr::group_by(Departamento) %>%
-  dplyr::summarise(casos = sum(Positivos))
-
-m1 = departamento %>%
-  left_join(data3, by="Departamento") %>%
-  mutate(casos = replace_na(casos,0),
-         casos=as.factor(casos),
-         label = paste0(Departamento, ": ", casos))%>%
-  ggplot() +
-    geom_sf(aes(fill = casos), size = 0.05, color = "grey40") +
-  # colorRampPalette crea una paleta de colores del tamaño de factor(casos) -1
-    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(length(unique(data3$casos)-1)))) +
-  ggrepel::geom_label_repel(
-    aes(label = label, geometry = geometry),
-    stat = "sf_coordinates", 
-    size = 2.3,
-    min.segment.length = 0
-  )+
-    scale_x_discrete()+
-  theme_bw()+
-  theme(legend.position = "none",
-        axis.title = element_blank())
- 
-```
-
-
-```{r Panelm1, echo=FALSE, fig.height=7, message=FALSE, warning=FALSE}
-# Panel para publicacion
-panel<- ggarrange(m1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Distribución  de casos positivos COVID-19 x departamento, Perú", 
-                                color = "#474785", 
-                                face = "bold", 
-                                size = 14),
-                bottom = text_grob(
-                  paste0(
-                    "Actualizado al ", 
-                    format(as.Date(max(data$Dia)),"%d/%m"),
-                    "\n",
-                    "Fuente: MINSA.Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)"), 
-                                   color = "black", 
-                                   hjust = 1, 
-                                   x = 1, 
-                                   face = "italic", 
-                                   size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
-```
-
-## Tendencias por departamento
-
-```{r plot_macro}
-data4 = read_excel("reportes_minsa.xlsx", sheet=2)%>%
-  mutate(
-    MACROREG= case_when(
-        REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH")~"NORTE",
-        REGION %in% c("AMAZONAS","LORETO","UCAYALI","MADRE DE DIOS","SAN MARTIN") ~ "ORIENTE",
-        REGION %in% c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO") ~ "SUR",
-        REGION%in%c("AYACUCHO","APURIMAC","JUNIN", "HUANCAVELICA", "HUANUCO", "PASCO")~ "CENTRO",
-        TRUE ~ "OTRO"),
-    Fecha = as.Date(Fecha)
-  )
-plot_macro <- function(macroregion, breaks = "7 days", ncol = 3, .data = data4){
-  temp <- .data%>%
-    filter(MACROREG== macroregion) %>% 
-    group_by(REGION, Positivos) %>% 
-    mutate(label = ifelse(row_number() == 1, Positivos, NA)) %>% 
-    ungroup() %>% 
-    group_by(REGION) %>% 
-    mutate(label = ifelse(row_number() == n(), Positivos, label))
-  
-  plot <- temp %>%
-    ggplot(aes(x = Fecha, y=Positivos)) +
-    geom_line(color = "darkred")+
-    ylim(0,max(temp$Positivos)*1.1)+
-    scale_x_date(
-      labels = scales::date_format("%b-%d"), 
-      date_breaks = "5 days", 
-      expand = c(0,1))+
-    geom_text_repel(
-      aes(label = label), 
-      vjust = -0.3,
-      size = 2.1,
-      box.padding = 0.05)+
-    labs(y="Número de casos reportados")+
-    facet_wrap(~ REGION, ncol=ncol)
-  
-  ggarrange(plot,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL)) %>% 
-          annotate_figure(
-                top = text_grob(
-                  paste("Número de casos positivos COVID-19,", macroregion), 
-                  color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", 
-                                   color = "black", 
-                                   hjust = 1, 
-                                   x = 1, face = "italic", size = 8))
-}
-```
-
-### CENTRO 
-
-```{r,panelcentro1}
-plot_macro("CENTRO")
-```
-
-### NORTE 
-
-```{r,panelNORTE1}
-plot_macro("NORTE")
-```
-
-### SUR
-```{r,panelSUR1}
-plot_macro("SUR")
-```
-
-### ORIENTE
-
-```{r,panelORIENTE1}
-plot_macro("ORIENTE")
-```
 
 ## Comparaciones con otros países. 
 
@@ -473,6 +336,57 @@ annotate_figure(panel,
 ```
 
 Código explicado [Aquí](https://joseincio.com/post/ggplot-lines-en-log-y-y-axis-en-conteo/)
+
+### Comparación Fallecidos
+
+```{r comparacion2, echo=FALSE}
+deaths <- "https://raw.github.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
+
+WorldData<-import(file = deaths)%>%
+  mutate(type="deaths")%>%
+  tidyr::gather(Fecha,Valor,
+                -c(type,"Province/State",
+                        "Country/Region"))%>%
+  dplyr::select(Country="Country/Region",
+                                    Provincia="Province/State",
+                                    type,
+                                    Valor,
+                                    Fecha)
+
+paises<- c("Peru","Chile","Ecuador", "Brazil")
+
+d1=WorldData%>%filter(type=="deaths",
+                   Country%in%paises,
+                   Valor>0)%>%
+  group_by(Country)%>%
+  mutate(Fecha=as.Date(Fecha,"%m/%d/"))%>%
+  mutate(start = first(Fecha),
+         Dstart=Fecha-start)%>%
+  ungroup()%>%
+  mutate(log=log(Valor+0.01))%>%
+  filter(Dstart>2)
+  
+p=d1%>%
+  ggplot(aes(x = Dstart,y=Valor,group=Country)) +
+  geom_line(aes(col = Country))+
+  scale_y_continuous(trans = "log10")+
+  geom_dl(aes(label = Country), 
+          method = list(dl.trans(x = x + 0.2), "last.points", cex = 0.8))+
+  labs(y="Fallecidos", x="Número de días desde el primer caso")
+
+
+```
+
+```{r PanelAL2, echo=FALSE, fig.height=7, message=FALSE, warning=FALSE}
+panel<-ggarrange(p,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+
+annotate_figure(panel,
+                top = text_grob("Fallecidos en escala log10", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: JHU", color = "black", hjust = 1, x = 1, face = "italic", size = 8))
+```
+
 
 ## Tabla
 
