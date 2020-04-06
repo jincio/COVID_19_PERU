@@ -548,8 +548,9 @@ grid.arrange(p1, p2, ncol = 1)
 
 # Responsables 
 
-Colaboraron para la elaboración de los gráficos:
+Colaboran para la elaboración de los gráficos:
 
+- Francisco Rodríguez
 - Gabriel Carrasco
 - Joan Martinez
 - José Incio
