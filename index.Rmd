@@ -17,7 +17,9 @@ Secciones:
 
 - **Noticias Falsas**: Lista de noticias falsas que se difunden por diferentes medios. La idea es poder mostrar las noticias falsas y si se puede a los responsables de diseminarlas. 
 
-- **Propagación**: Estadísticas y mapas de la propagación del COVID-19 en Perú y el mundo.
+- **Datos Nacionales**: Estadísticas de la propagación del COVID-19 en Perú (agregados nacionales) y comparaciones con países de la región.
+
+- **Datos Regiones**: Estadísticas y mapas de la propagación del COVID-19 en las regiones de Perú.
 
 - **Material Educativo**: Lista de videos/infografías y otros que resuman la información de manera amigable. 
 
