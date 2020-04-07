@@ -86,12 +86,14 @@ panel<- ggarrange(m1,
 
 ```
 
+![Gif](./Imagenes/peruheatmap-es-covid-enero-abril-6.gif)
+
 # Tendencias por departamento
 
 ## Comparadas con Nacional y Lima
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendencia-naciona-departamento-abril-5.png')
+knitr::include_graphics('./Imagenes/tendencia-nacional-departamento-abril-6.png')
 ```
 
 
