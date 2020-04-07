@@ -76,7 +76,7 @@ f2=data %>%
   uncount(count) %>%
   ggplot(aes(x = Dia, fill = res)) +
   geom_bar(position = "fill") +
-  stat_fill_labels(size=2)+
+  stat_fill_labels(size=1.5)+
   #scale_fill_discrete_sequential(palette="BluGrn") +
   labs(y = "proportion", fill = "Resultado",
        title = paste0("Proporción de positivos del total \nde muestras analizadas"),
@@ -137,6 +137,24 @@ f6=dat2 %>%
   scale_color_manual(values = c("Pruebas Acumuladas" = "#8B1C62")) +
   #scale_y_continuous() +
   theme_minimal() +
+  theme(legend.position="bottom")
+
+f9=data %>%
+  mutate(RapidasPositivos=replace_na(RapidasPositivos,0),
+         PruebasRapidas=replace_na(PruebasRapidas,0),
+    Positivos=Positivos+RapidasPositivos,
+         Descartados=Descartados+PruebasRapidas-RapidasPositivos)%>%
+  dplyr::select(Dia, Positivos, Descartados)%>%
+  gather(res, count, -Dia)%>%
+  uncount(count) %>%
+  ggplot(aes(x = Dia, fill = res)) +
+  geom_bar(position = "fill") +
+  stat_fill_labels(size=1.5)+
+  #scale_fill_discrete_sequential(palette="BluGrn") +
+  labs(y = "proportion", fill = "Resultado",
+       title = paste0("Proporción de positivos del total \nde muestras analizadas(incluye pruebas rápidas)"),
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+  theme_bw() +
   theme(legend.position="bottom")
 ```
 
@@ -267,6 +285,23 @@ panel<- ggarrange(f2,
 )
 
 ```
+
+## Proporción de casos positivos del total de pruebas analizadas (INCLUYENDO PRUEBAS RÁPIDAS).
+
+```{r Panelf9, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f9,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Proporción de casos positivos COVID-19 incluyendo pruebas rápidas, Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
+
+```
+
 
 ## Proporción de casos positivos del total de pruebas analizadas (x dia)
 
