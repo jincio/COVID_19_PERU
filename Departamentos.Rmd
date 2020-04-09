@@ -25,6 +25,8 @@ data=import("reportes_minsa.xlsx")
 
 # Mapa
 
+Por ahora solo incluímos pruebas moleculares.
+
 ```{r Mapa, message=FALSE}
 departamento <- read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
   select(Departamento = DEPARTAMEN, geometry)
@@ -91,6 +93,7 @@ panel<- ggarrange(m1,
 # Tendencias por departamento
 
 ## Comparadas con Nacional y Lima
+Por ahora solo incluímos pruebas moleculares.
 
 ```{r echo=FALSE, out.width='80%'}
 knitr::include_graphics('./Imagenes/tendencia-nacional-departamento-abril-6.png')
