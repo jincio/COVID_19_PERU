@@ -28,21 +28,101 @@ En esta página complementamos los gráficos presentados en la [sala situacional
 
 
 ```{r Graficos}
-dat2 <- data %>%
-  dplyr::group_by(Dia)%>%
-  dplyr::summarise(Total_Pruebas=max(Total_Pruebas),
-                   Positivos=max(Positivos))%>%
-  mutate(pos_new=Positivos-lag(Positivos,default = 0),
-         pruebas_dia=Total_Pruebas-lag(Total_Pruebas,default = 0))
-f3=dat2 %>%
-  mutate(neg_new=pruebas_dia-pos_new)%>%
-  dplyr::select(Dia, Descartados=neg_new, 
-                Positivos=pos_new)%>%
+f1=data %>%
+  ggplot(aes(x = Dia)) +
+  ylim(0,max(data$Positivos)*1.1)+
+  geom_bar(aes(y = Nuevos_Positivos, fill = "Nuevos"), stat = "identity", alpha=.5)+
+  #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
+  geom_text_repel(
+    aes(x=Dia,y=Nuevos_Positivos,label = Nuevos_Positivos), 
+    vjust = -0.3,
+    size = 3.1,
+    box.padding = 0.05)+
+  geom_line(aes(y = Positivos, col = "Acumulados"), size=1) +
+  geom_point(aes(y = Positivos), col = "#8B1C62")+
+  geom_text_repel(
+    aes(x=Dia,y=Positivos,label = Positivos), 
+    vjust = -0.3,
+    size = 3.1,
+    box.padding = 0.05)+
+  labs(y = "Número de casos reportados", color = " Casos", fill = " ", 
+       #title = paste0("Numero de casos confirmados"),
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+  scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
+  scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
+  theme_minimal() +
+  theme(legend.position="bottom")
+
+
+f1_1=data %>%
+  mutate(Positivos=Positivos+replace_na(RapidasPositivos,0),
+         Nuevos_Positivos=Nuevos_Positivos+replace_na(PR_nuevos,0))%>%
+  ggplot(aes(x = Dia)) +
+  ylim(0,max(data$Positivos+data$RapidasPositivos,na.rm=TRUE)*1.1)+
+  geom_bar(aes(y = Nuevos_Positivos, fill = "Nuevos"), stat = "identity", alpha=.5)+
+  #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
+  geom_text_repel(
+    aes(x=Dia,y=Nuevos_Positivos,label = Nuevos_Positivos), 
+    vjust = -0.3,
+    size = 3.1,
+    box.padding = 0.05)+
+  geom_line(aes(y = Positivos, col = "Acumulados"), size=1) +
+  geom_point(aes(y = Positivos), col = "#8B1C62")+
+  geom_text_repel(
+    aes(x=Dia,y=Positivos,label = Positivos), 
+    vjust = -0.3,
+    size = 3.1,
+    box.padding = 0.05)+
+  labs(y = "Número de casos reportados", color = " Casos", fill = " ", 
+       #title = paste0("Numero de casos confirmados"),
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+  scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
+  scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
+  theme_minimal() +
+  theme(legend.position="bottom")
+
+f2=data %>%
+  dplyr::select(Dia, Positivos, Descartados)%>%
   gather(res, count, -Dia)%>%
   uncount(count) %>%
   ggplot(aes(x = Dia, fill = res)) +
   geom_bar(position = "fill") +
-  stat_fill_labels(size=2)+
+  stat_fill_labels(size=3, angle=90)+
+  #scale_fill_discrete_sequential(palette="BluGrn") +
+  labs(y = "proportion", fill = "Resultado",
+       #title = paste0("Proporción de positivos del total \nde muestras analizadas"),
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+  theme_bw() +
+  theme(legend.position="bottom")
+
+f2_1=data %>%
+  mutate(RapidasPositivos=replace_na(RapidasPositivos,0),
+         PruebasRapidas=replace_na(PruebasRapidas,0),
+         Positivos=Positivos+RapidasPositivos,
+         Descartados=Descartados+PruebasRapidas-RapidasPositivos)%>%
+  dplyr::select(Dia, Positivos, Descartados)%>%
+  gather(res, count, -Dia)%>%
+  uncount(count) %>%
+  ggplot(aes(x = Dia, fill = res)) +
+  geom_bar(position = "fill") +
+  stat_fill_labels(size=3, angle=90)+
+  #scale_fill_discrete_sequential(palette="BluGrn") +
+  labs(y = "Porcentaje", fill = "Resultado",
+       #title = paste0("Proporción de positivos del total \nde muestras analizadas(incluye pruebas rápidas)"),
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+  theme_bw() +
+  theme(legend.position="bottom")
+
+
+f3=data%>%
+  mutate(neg_new=Pruebas_dia-Nuevos_Positivos)%>%
+  dplyr::select(Dia, Descartados=neg_new, 
+                Positivos=Nuevos_Positivos)%>%
+  gather(res, count, -Dia)%>%
+  uncount(count) %>%
+  ggplot(aes(x = Dia, fill = res)) +
+  geom_bar(position = "fill") +
+  stat_fill_labels(size=3, angle=90)+
   #scale_fill_discrete_sequential(palette="BluGrn") +
   labs(y = "proportion", fill = "Resultado",
        #title = paste0("Proporción de positivos del total \n de muestras x dia"),
@@ -51,114 +131,94 @@ f3=dat2 %>%
   theme(text = element_text(size=10),
         legend.position="bottom")
 
-f1=dat2 %>%
+f3_1=data%>%
+  mutate(PRP=replace_na(RapidasPositivos,0),
+         PRA_D=replace_na(Pruebas_diaPR,0),
+         PRP_N=replace_na(PR_nuevos,0),
+         Nuevos_Positivos=Nuevos_Positivos+PRP_N,
+         neg_new=Pruebas_dia+PRA_D-Nuevos_Positivos)%>%
+  dplyr::select(Dia, Descartados=neg_new, 
+                Positivos=Nuevos_Positivos)%>%
+  gather(res, count, -Dia)%>%
+  uncount(count) %>%
+  ggplot(aes(x = Dia, fill = res)) +
+  geom_bar(position = "fill") +
+  stat_fill_labels(size=3, angle=90)+
+  #scale_fill_discrete_sequential(palette="BluGrn") +
+  labs(y = "proportion", fill = "Resultado",
+       #title = paste0("Proporción de positivos del total \n de muestras x dia"),
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+  theme_bw() +
+  theme(text = element_text(size=10),
+        legend.position="bottom")
+
+
+f4=data %>%
   ggplot(aes(x = Dia)) +
-  ylim(0,max(dat2$Positivos)*1.1)+
-  geom_bar(aes(y = pos_new, fill = "Nuevos"), stat = "identity", alpha=.5)+
-  geom_label(aes(Dia, pos_new, label = pos_new), vjust = 0.5,label.size = 0.10)+
-  geom_line(aes(y = Positivos, col = "Acumulados"), size=1) +
-  geom_point(aes(y = Positivos), col = "#8B1C62") +
-  geom_label(aes(Dia, Positivos, label = Positivos), vjust = -0.3,
-             label.size = 0.07)+
-  labs(y = "Número de casos reportados", color = " Casos", fill = " ", 
+  ylim(0,max(data$Total_Pruebas)*1.1)+
+  geom_bar(aes(y = Pruebas_dia, fill = "Nuevos"), stat = "identity", alpha=.5)+
+  #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
+  geom_text_repel(
+    aes(x=Dia,y=Pruebas_dia,label = Pruebas_dia), 
+    vjust = -0.3,
+    size = 3.1,
+    box.padding = 0.05)+
+  geom_line(aes(y = Total_Pruebas, col = "Acumulados"), size=1) +
+  geom_point(aes(y = Total_Pruebas), col = "#8B1C62")+
+  geom_text_repel(
+    aes(x=Dia,y=Total_Pruebas,label = Total_Pruebas), 
+    vjust = -0.3,
+    size = 3.1,
+    box.padding = 0.05)+
+  labs(y = "Número de pruebas analizadas", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
-  #scale_y_continuous() +
   theme_minimal() +
   theme(legend.position="bottom")
 
-
-f2=data %>%
-  dplyr::select(Dia, Positivos, Descartados)%>%
-  gather(res, count, -Dia)%>%
-  uncount(count) %>%
-  ggplot(aes(x = Dia, fill = res)) +
-  geom_bar(position = "fill") +
-  stat_fill_labels(size=1.5)+
-  #scale_fill_discrete_sequential(palette="BluGrn") +
-  labs(y = "proportion", fill = "Resultado",
-       title = paste0("Proporción de positivos del total \nde muestras analizadas"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
-  theme_bw() +
-  theme(legend.position="bottom")
-
-f4=dat2 %>%
+f4_1=data %>%
+  mutate(Total_Pruebas=Total_Pruebas+replace_na(PruebasRapidas,0),
+         Pruebas_dias=Pruebas_dia+replace_na(Pruebas_diaPR,0))%>%
+  dplyr::select(Dia,Pruebas_dias,Total_Pruebas)%>%
   ggplot(aes(x = Dia)) +
-  ylim(0,max(dat2$Total_Pruebas)*1.1)+
-  geom_bar(aes(y = pruebas_dia, fill = "Nuevos"), stat = "identity", alpha=.5)+
-  geom_label(aes(Dia, pruebas_dia, label = pruebas_dia), vjust = 0.5)+
+  ylim(0,max(data$Total_Pruebas+data$PruebasRapidas,na.rm=TRUE)*1.1)+
+  geom_bar(aes(y = Pruebas_dias, fill = "Nuevos"), stat = "identity", alpha=.5)+
+  geom_text_repel(
+    aes(x=Dia,y=Pruebas_dias,label = Pruebas_dias), 
+    vjust = -0.3,
+    size = 2.1,
+    box.padding = 0.05)+
   geom_line(aes(y = Total_Pruebas, col = "Acumulados"), size=1) +
-  geom_point(aes(y = Total_Pruebas), col = "#8B1C62") +
-  geom_label(aes(Dia, Total_Pruebas, label = Total_Pruebas), vjust = -0.5,
-             label.size = 0.07)+
-  labs(y = "Numero de pruebas reportadas", color = " Pruebas", fill = " ",
-       #title = paste0("Numero de pruebas aplicadas"),
+  geom_point(aes(y = Total_Pruebas), col = "#8B1C62")+
+  geom_text_repel(
+    aes(x=Dia,y=Total_Pruebas,label = Total_Pruebas), 
+    vjust = -0.3,
+    size = 2.1,
+    box.padding = 0.05)+
+  labs(y = "Número de pruebas analizadas", color = " Casos", fill = " ", 
+       #title = paste0("Numero de casos confirmados"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
-  #scale_y_continuous(sec.axis = sec_axis(~ .)) +
   theme_minimal() +
   theme(legend.position="bottom")
 
-f5=dat2 %>%
-  ggplot(aes(x = Dia)) +
-  ylim(0,max(dat2$pruebas_dia)*1.2)+
-  geom_bar(aes(y = pos_new, fill = "Casos Positivos"), stat = "identity", alpha=.5)+
-  geom_label(aes(Dia, pos_new, label = pos_new), vjust = 0.5)+
-  geom_line(aes(y = pruebas_dia, col = "Pruebas"), size=1) +
-  geom_point(aes(y = pruebas_dia), col = "#8B1C62") +
-  geom_label(aes(Dia, pruebas_dia, label = pruebas_dia), vjust = -0.5,
-             label.size = 0.07)+
-  labs(y = " ", color = " Casos", fill = " ",
-       #title = paste0("Pruebas y casos positivos por dia"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
-  scale_fill_manual(values = c("Casos Positivos" = "#43CD80")) +
-  scale_color_manual(values = c("Pruebas" = "#8B1C62")) +
-  #scale_y_continuous(sec.axis = sec_axis(~ .)) +
+f5=data%>%#mutate(Pruebas_diaPR=replace_na(Pruebas_diaPR,0))%>%
+  select(Dia,
+         Moleculares=Pruebas_dia,
+         Pruebas_Rap=Pruebas_diaPR)%>%
+  gather(tipo,numero, -Dia)%>%
+  ggplot(aes(fill=tipo, y=numero, x=Dia)) + 
+  geom_bar(position="dodge", stat="identity")+
+  geom_text(aes(label=numero), position=position_dodge(width=0.9),
+            angle = 90,size = 3)+
   theme_minimal() +
-  theme(legend.position="bottom")
-
-
-f6=dat2 %>%
-  ggplot(aes(x = Dia)) +
-  ylim(0,max(dat2$Total_Pruebas)*1.1)+
-  geom_bar(aes(y = Positivos, fill = "Positivos Acumulados"), stat = "identity", alpha=.5)+
-  geom_label(aes(Dia, Positivos, label = Positivos), vjust = 0.5,label.size = 0.10)+
-  geom_line(aes(y = Total_Pruebas, col = "Pruebas Acumuladas"), size=1) +
-  geom_point(aes(y = Total_Pruebas), col = "#8B1C62") +
-  geom_label(aes(Dia, Total_Pruebas, label = Total_Pruebas), vjust = -0.3,
-             label.size = 0.07)+
-  labs(y = "", color = " ", fill = " ", 
-       #title = paste0("Tendencias acumuladas"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
-  scale_fill_manual(values = c("Positivos Acumulados" = "#43CD80")) +
-  scale_color_manual(values = c("Pruebas Acumuladas" = "#8B1C62")) +
-  #scale_y_continuous() +
-  theme_minimal() +
-  theme(legend.position="bottom")
-
-f9=data %>%
-  mutate(RapidasPositivos=replace_na(RapidasPositivos,0),
-         PruebasRapidas=replace_na(PruebasRapidas,0),
-    Positivos=Positivos+RapidasPositivos,
-         Descartados=Descartados+PruebasRapidas-RapidasPositivos)%>%
-  dplyr::select(Dia, Positivos, Descartados)%>%
-  gather(res, count, -Dia)%>%
-  uncount(count) %>%
-  ggplot(aes(x = Dia, fill = res)) +
-  geom_bar(position = "fill") +
-  stat_fill_labels(size=1.5)+
-  #scale_fill_discrete_sequential(palette="BluGrn") +
-  labs(y = "proportion", fill = "Resultado",
-       title = paste0("Proporción de positivos del total \nde muestras analizadas(incluye pruebas rápidas)"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
-  theme_bw() +
   theme(legend.position="bottom")
 ```
 
-```{r graficos2, message=FALSE}
+```{r graficos2, message=FALSE, eval=FALSE}
 dia_list <- tibble(time= 1:length(dat2$Dia), .name_repair = "minimal")
 dat2 <-add_column(dat2, dia_list= dia_list)
 
@@ -204,77 +264,38 @@ f7<-dat2 %>%
   theme_minimal()
 ```
 
-## Tendencia y número de casos (Acumulados y diarios)
-Por ahora solo incluímos pruebas moleculares.
+## Tendencia y número de casos (Acumulados y diarios) pruebas moleculares
 
-```{r Panelf7, message=FALSE, echo=FALSE}
+
+```{r Panelf1, message=FALSE, echo=FALSE}
 ## Tendencia y número de casos (Acumulados y diarios)
 # Panel para publicacion
-panel<- ggarrange(f7,
+panel<- ggarrange(f1,
           ncol=1,nrow=1,
           font.label = list(size = 10, color = "black", face = "bold", family = NULL))
           annotate_figure(panel,
                 top = text_grob("Número de casos positivos de pacientes COVID-19, Perú", color = "#474785", face = "bold", size = 14),
                 bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
 )
 
 ```
 
-```{r Panelf5, message=FALSE, echo=FALSE, eval=FALSE}
-## Pruebas aplicadas y casos positivos por dia
-No estamos ploteando esto por que puede confundir 
+## Tendencia y número de casos (Acumulados y diarios) pruebas moleculares y pruebas rápidas
 
-# Panel para publicacion
-panel<- ggarrange(f5,
+```{r Panelf1_1, message=FALSE, echo=FALSE}
+
+panel<- ggarrange(f1_1,
           ncol=1,nrow=1,
           font.label = list(size = 10, color = "black", face = "bold", family = NULL))
           annotate_figure(panel,
-                top = text_grob("Número de casos positivos y pruebas aplicadas por día COVID-19, Perú", color = "#474785", face = "bold", size = 14),
+                top = text_grob("Número de casos positivos de pacientes COVID-19,\n Perú (Moleculares+PR)", color = "#474785", face = "bold", size = 14),
                 bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
 )
 
-```
-
-## Número de pruebas aplicadas (acumulado y diarias)
-Por ahora solo incluímos pruebas moleculares.
-
-```{r Panelf4, message=FALSE, echo=FALSE}
-# Panel para publicacion
-panel<- ggarrange(f4,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de pruebas aplicadas COVID-19, Perú", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
-```
-
-## Número de pruebas aplicadas y casos positivos (acumulados)
-Por ahora solo incluímos pruebas moleculares.
-
-```{r Panelf6, message=FALSE, echo=FALSE}
-# Panel para publicacion
-panel<- ggarrange(f6,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de pruebas analizadas y paciencies positivos COVID-19, Perú", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
 
 ```
 
 ## Proporción de casos positivos del total de pruebas analizadas.
-Por ahora solo incluímos pruebas moleculares.
 
 ```{r Panelf2, message=FALSE, echo=FALSE}
 # Panel para publicacion
@@ -282,7 +303,7 @@ panel<- ggarrange(f2,
           ncol=1,nrow=1,
           font.label = list(size = 10, color = "black", face = "bold", family = NULL))
           annotate_figure(panel,
-                top = text_grob("Proporción de casos positivos COVID-19, Perú", color = "#474785", face = "bold", size = 14),
+                top = text_grob("Proporción de casos positivos COVID-19, Perú (moleculares)", color = "#474785", face = "bold", size = 14),
                 bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
                 #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
                 #fig.lab = "Figure 1", fig.lab.face = "bold"
@@ -290,11 +311,11 @@ panel<- ggarrange(f2,
 
 ```
 
-## Proporción de casos positivos del total de pruebas analizadas (INCLUYENDO PRUEBAS RÁPIDAS).
+## Proporción de casos positivos del total de pruebas analizadas (moleculares+rápidas).
 
-```{r Panelf9, message=FALSE, echo=FALSE}
+```{r Panelf2_1, message=FALSE, echo=FALSE}
 # Panel para publicacion
-panel<- ggarrange(f9,
+panel<- ggarrange(f2_1,
           ncol=1,nrow=1,
           font.label = list(size = 10, color = "black", face = "bold", family = NULL))
           annotate_figure(panel,
@@ -306,9 +327,7 @@ panel<- ggarrange(f9,
 
 ```
 
-
-## Proporción de casos positivos del total de pruebas analizadas (x dia)
-Por ahora solo incluímos pruebas moleculares.
+## Proporción de casos positivos del total de pruebas moleculares analizadas (x dia)
 
 ```{r Panelf3, message=FALSE, echo=FALSE}
 
@@ -317,6 +336,66 @@ panel<- ggarrange(f3,
           font.label = list(size = 10, color = "black", face = "bold", family = NULL))
           annotate_figure(panel,
                 top = text_grob("Proporción de casos positivos COVID-19 x dia, Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
+
+```
+
+
+## Proporción de casos positivos del total de pruebas moleculares y rápidas analizadas (x dia)
+
+```{r Panelf3_1, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f3_1,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Proporción de casos positivos COVID-19 x dia, Perú (moleculares y rápidas)", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
+```
+
+## Número de pruebas aplicadas y casos positivos (acumulados)
+
+```{r Panelf4, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f4,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Número de pruebas moleculares analizadas COVID-19 (acumulados y nuevos), Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
+
+```
+
+```{r Panelf4_1, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f4,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Número de pruebas moleculares y rápidas analizadas COVID-19 (acumulados y nuevos), Perú", color = "#474785", face = "bold", size = 14),
+                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
+
+```
+
+```{r Panelf5, message=FALSE, echo=FALSE}
+# Panel para publicacion
+panel<- ggarrange(f5,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Número de pruebas moleculares y rápidas analizadas COVID-19 x dia, Perú", color = "#474785", face = "bold", size = 14),
                 bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
                 #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
                 #fig.lab = "Figure 1", fig.lab.face = "bold"
