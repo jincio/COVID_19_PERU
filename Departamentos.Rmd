@@ -25,6 +25,8 @@ data=import("reportes_minsa.xlsx")
 
 # Mapa
 
+Por ahora solo incluímos pruebas moleculares.
+
 ```{r Mapa, message=FALSE}
 departamento <- read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
   select(Departamento = DEPARTAMEN, geometry)
@@ -34,7 +36,7 @@ data3 = data2 %>%
   filter(Fecha == max(data2$Fecha)) %>%
   dplyr::rename(Departamento = REGION) %>%
   dplyr::group_by(Departamento) %>%
-  dplyr::summarise(casos = sum(Positivos))
+  dplyr::summarise(casos = sum(Positivos_PCR))
 
 m1 = departamento %>%
   left_join(data3, by="Departamento") %>%
@@ -91,6 +93,7 @@ panel<- ggarrange(m1,
 # Tendencias por departamento
 
 ## Comparadas con Nacional y Lima
+Por ahora solo incluímos pruebas moleculares.
 
 ```{r echo=FALSE, out.width='80%'}
 knitr::include_graphics('./Imagenes/tendencia-nacional-departamento-abril-6.png')
@@ -101,7 +104,7 @@ knitr::include_graphics('./Imagenes/tendencia-nacional-departamento-abril-6.png'
 
 
 ```{r plot_macro}
-data4 = read_excel("reportes_minsa.xlsx", sheet=2)%>%
+data4 = import("reportes_minsa.xlsx", sheet=2)%>%
   mutate(
     MACROREG= case_when(
         REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH")~"NORTE",
@@ -109,12 +112,14 @@ data4 = read_excel("reportes_minsa.xlsx", sheet=2)%>%
         REGION %in% c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO") ~ "SUR",
         REGION%in%c("AYACUCHO","APURIMAC","JUNIN", "HUANCAVELICA", "HUANUCO", "PASCO")~ "CENTRO",
         TRUE ~ "OTRO"),
-    Fecha = as.Date(Fecha)
+    Fecha = as.Date(Fecha),
+    Positivos=Positivos_PCR
   )
+  
 plot_macro <- function(macroregion, breaks = "7 days", ncol = 3, .data = data4){
   temp <- .data%>%
     filter(MACROREG== macroregion) %>% 
-    group_by(REGION, Positivos) %>% 
+    group_by(REGION, Positivos_PCR) %>% 
     mutate(label = ifelse(row_number() == 1, Positivos, NA)) %>% 
     ungroup() %>% 
     group_by(REGION) %>% 
@@ -178,10 +183,10 @@ plot_macro("ORIENTE")
 ```{r}
 data2%>%
   dplyr::select(REGION,
-                Positivos,
+                Positivos_PCR,Positivos_PR,
                 "Dia"="Fecha")%>%
   mutate(Dia = as.character(Dia)) %>% 
-  arrange(desc(Dia),desc(Positivos)) %>%
+  arrange(desc(Dia),desc(Positivos_PCR)) %>%
   DT::datatable(
     options = list(pageLength = 10, 
                    lengthMenu = c(10, 25, 40),

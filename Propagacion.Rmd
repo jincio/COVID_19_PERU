@@ -205,6 +205,7 @@ f7<-dat2 %>%
 ```
 
 ## Tendencia y número de casos (Acumulados y diarios)
+Por ahora solo incluímos pruebas moleculares.
 
 ```{r Panelf7, message=FALSE, echo=FALSE}
 ## Tendencia y número de casos (Acumulados y diarios)
@@ -239,6 +240,7 @@ panel<- ggarrange(f5,
 ```
 
 ## Número de pruebas aplicadas (acumulado y diarias)
+Por ahora solo incluímos pruebas moleculares.
 
 ```{r Panelf4, message=FALSE, echo=FALSE}
 # Panel para publicacion
@@ -255,6 +257,7 @@ panel<- ggarrange(f4,
 ```
 
 ## Número de pruebas aplicadas y casos positivos (acumulados)
+Por ahora solo incluímos pruebas moleculares.
 
 ```{r Panelf6, message=FALSE, echo=FALSE}
 # Panel para publicacion
@@ -271,6 +274,7 @@ panel<- ggarrange(f6,
 ```
 
 ## Proporción de casos positivos del total de pruebas analizadas.
+Por ahora solo incluímos pruebas moleculares.
 
 ```{r Panelf2, message=FALSE, echo=FALSE}
 # Panel para publicacion
@@ -304,6 +308,7 @@ panel<- ggarrange(f9,
 
 
 ## Proporción de casos positivos del total de pruebas analizadas (x dia)
+Por ahora solo incluímos pruebas moleculares.
 
 ```{r Panelf3, message=FALSE, echo=FALSE}
 
