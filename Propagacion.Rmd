@@ -168,7 +168,7 @@ f4=data %>%
   geom_text_repel(
     aes(x=Dia,y=Total_Pruebas,label = Total_Pruebas), 
     vjust = -0.3,
-    size = 3.1,
+    size = 2.1,
     box.padding = 0.05)+
   labs(y = "Número de pruebas analizadas", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
@@ -359,7 +359,7 @@ panel<- ggarrange(f3_1,
 )
 ```
 
-## Número de pruebas aplicadas y casos positivos (acumulados)
+## Número de pruebas moleculares analizadas (acumulados y diarios)
 
 ```{r Panelf4, message=FALSE, echo=FALSE}
 # Panel para publicacion
@@ -367,7 +367,7 @@ panel<- ggarrange(f4,
           ncol=1,nrow=1,
           font.label = list(size = 10, color = "black", face = "bold", family = NULL))
           annotate_figure(panel,
-                top = text_grob("Número de pruebas moleculares analizadas COVID-19 (acumulados y nuevos), Perú", color = "#474785", face = "bold", size = 14),
+                top = text_grob("Número de pruebas moleculares analizadas COVID-19 \n (acumulados y nuevos), Perú", color = "#474785", face = "bold", size = 14),
                 bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
                 #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
                 #fig.lab = "Figure 1", fig.lab.face = "bold"
@@ -375,13 +375,15 @@ panel<- ggarrange(f4,
 
 ```
 
+## Número de pruebas moleculares + rápidas analizadas (acumulados y diarios)
+
 ```{r Panelf4_1, message=FALSE, echo=FALSE}
 # Panel para publicacion
-panel<- ggarrange(f4,
+panel<- ggarrange(f4_1,
           ncol=1,nrow=1,
           font.label = list(size = 10, color = "black", face = "bold", family = NULL))
           annotate_figure(panel,
-                top = text_grob("Número de pruebas moleculares y rápidas analizadas COVID-19 (acumulados y nuevos), Perú", color = "#474785", face = "bold", size = 14),
+                top = text_grob("Número de pruebas moleculares y rápidas \n analizadas COVID-19 (acumulados y nuevos), Perú", color = "#474785", face = "bold", size = 14),
                 bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
                 #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
                 #fig.lab = "Figure 1", fig.lab.face = "bold"
