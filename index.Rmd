@@ -36,7 +36,7 @@ Secciones:
 
 -Todos podemos colaborar, puedes proponer publicar algo en las distintas secciones del portal.
 
-### Colaboradores
+### Editores
 
     - José Incio (github: jincio, twitter: @jlincio)
     - Bryan Lucero
@@ -49,6 +49,9 @@ Secciones:
     - Francisco Rodríguez (twitter: @@fjsistemas)
 
 
+### Colaboradores
 
+    - Sara Kelly Rebaza Cardenas
+    - Bryan Gianfranco Fernandez Camacho
 
 
