@@ -23,9 +23,8 @@ data=import("reportes_minsa.xlsx")
 ```
 
 
-# Mapa
+# Mapa casos positivos
 
-Por ahora solo incluímos pruebas moleculares.
 
 ```{r Mapa, message=FALSE}
 departamento <- read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
@@ -36,7 +35,7 @@ data3 = data2 %>%
   filter(Fecha == max(data2$Fecha)) %>%
   dplyr::rename(Departamento = REGION) %>%
   dplyr::group_by(Departamento) %>%
-  dplyr::summarise(casos = sum(Positivos_PCR))
+  dplyr::summarise(casos = sum(Positivos_totales))
 
 m1 = departamento %>%
   left_join(data3, by="Departamento") %>%
@@ -67,7 +66,7 @@ panel<- ggarrange(m1,
           ncol=1,nrow=1,
           font.label = list(size = 10, color = "black", face = "bold", family = NULL))
           annotate_figure(panel,
-                top = text_grob("Distribución  de casos positivos COVID-19 x departamento, Perú", 
+                top = text_grob("Distribución  de casos positivos COVID-19 x departamento,\n (moleculares + pruebas rápidas) Perú", 
                                 color = "#474785", 
                                 face = "bold", 
                                 size = 14),
@@ -90,13 +89,82 @@ panel<- ggarrange(m1,
 
 ![Gif](./Imagenes/peruheatmap-es-covid-enero-abril-6.gif)
 
+## Mapas Fallecidos
+
+```{r m2}
+departamento <- read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
+  select(Departamento = DEPARTAMEN, geometry)
+
+data2 = import("reportes_minsa.xlsx", sheet=2)
+data3 = data2 %>%
+  filter(Fecha == max(data2$Fecha)) %>%
+  dplyr::rename(Departamento = REGION) %>%
+  dplyr::group_by(Departamento) %>%
+  dplyr::summarise(casos = sum(Fallecidos))
+
+m1 = departamento %>%
+  left_join(data3, by="Departamento") %>%
+  mutate(casos = replace_na(casos,0),
+         casos=as.factor(casos),
+         label = paste0(Departamento, ": ", casos))%>%
+  ggplot() +
+    geom_sf(aes(fill = casos), size = 0.05, color = "grey40") +
+  # colorRampPalette crea una paleta de colores del tamaño de factor(casos) -1
+    scale_fill_manual(values = c("grey80", colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(length(unique(data3$casos)-1)))) +
+  ggrepel::geom_label_repel(
+    aes(label = label, geometry = geometry),
+    stat = "sf_coordinates", 
+    size = 2.3,
+    min.segment.length = 0
+  )+
+    scale_x_discrete()+
+  theme_bw()+
+  theme(legend.position = "none",
+        axis.title = element_blank())
+```
+
+
+```{r Panelm2, echo=FALSE, fig.height=7, message=FALSE, warning=FALSE}
+# Panel para publicacion
+panel<- ggarrange(m1,
+          ncol=1,nrow=1,
+          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
+          annotate_figure(panel,
+                top = text_grob("Distribución  de fallecidos COVID-19 x departamento,\n Perú", 
+                                color = "#474785", 
+                                face = "bold", 
+                                size = 14),
+                bottom = text_grob(
+                  paste0(
+                    "Actualizado al ", 
+                    format(as.Date(max(data$Dia)),"%d/%m"),
+                    "\n",
+                    "Fuente: MINSA.Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)"), 
+                                   color = "black", 
+                                   hjust = 1, 
+                                   x = 1, 
+                                   face = "italic", 
+                                   size = 8)
+                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
+                #fig.lab = "Figure 1", fig.lab.face = "bold"
+)
+
+```
+
 # Tendencias por departamento
 
 ## Comparadas con Nacional y Lima
-Por ahora solo incluímos pruebas moleculares.
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendencia-nacional-departamento-abril-6.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-8.png')
+```
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-8.png')
+```
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-8.png')
 ```
 
 
@@ -113,7 +181,7 @@ data4 = import("reportes_minsa.xlsx", sheet=2)%>%
         REGION%in%c("AYACUCHO","APURIMAC","JUNIN", "HUANCAVELICA", "HUANUCO", "PASCO")~ "CENTRO",
         TRUE ~ "OTRO"),
     Fecha = as.Date(Fecha),
-    Positivos=Positivos_PCR
+    Positivos=Positivos_totales
   )
   
 plot_macro <- function(macroregion, breaks = "7 days", ncol = 3, .data = data4){
@@ -183,7 +251,7 @@ plot_macro("ORIENTE")
 ```{r}
 data2%>%
   dplyr::select(REGION,
-                Positivos_PCR,Positivos_PR,
+                Positivos_PCR,Positivos_PR,Positivos_totales,
                 "Dia"="Fecha")%>%
   mutate(Dia = as.character(Dia)) %>% 
   arrange(desc(Dia),desc(Positivos_PCR)) %>%
