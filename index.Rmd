@@ -46,7 +46,7 @@ Secciones:
     - Joan Martínez
     - Gabriel Carrasco (twitter: @jGabc91)
     - Samuel Calderon (github: calderonsamuel)
-    - Francisco Rodríguez (twitter: @@fjsistemas)
+    - Francisco Rodríguez (twitter: @fjsistemas)
 
 
 ### Colaboradores
