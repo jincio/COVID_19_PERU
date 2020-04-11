@@ -40,7 +40,7 @@ m1 = departamento %>%
   ggplot2::ggplot() +
     ggplot2::geom_sf(ggplot2::aes(fill = casos), size = 0.05, color = "grey40") +
   # colorRampPalette crea una paleta de colores del tamaño de factor(casos) -1
-    ggplot2::scale_fill_manual(values = c("grey80", grDevices::colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(length(unique(data3$casos)-1)))) +
+    ggplot2::scale_fill_manual(values = c(grDevices::colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(length(unique(data3$casos))))) +
   ggrepel::geom_label_repel(
     ggplot2::aes(label = label, geometry = geometry),
     stat = "sf_coordinates", 
