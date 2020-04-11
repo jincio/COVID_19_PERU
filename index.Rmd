@@ -38,20 +38,20 @@ Secciones:
 
 ### Editores
 
-    - José Incio (github: jincio, twitter: @jlincio)
-    - Bryan Lucero
-    - David Requena (github: davidrequena)
-    - Cleidy Osorio
-    - Pierre Padilla Huamantinco (github: pgpadilla, twitter / instagram: @pierrepadilla17)
-    - Joan Martínez
-    - Gabriel Carrasco (twitter: @Gabc91)
-    - Samuel Calderon (github: calderonsamuel)
-    - Francisco Rodríguez (twitter: @fjsistemas)
+- José Incio (github: jincio, twitter: @jlincio)
+- Bryan Lucero
+- David Requena (github: davidrequena)
+- Cleidy Osorio
+- Pierre Padilla Huamantinco (github: pgpadilla, twitter / instagram: @pierrepadilla17)
+- Joan Martínez
+- Gabriel Carrasco (twitter: @Gabc91)
+- Samuel Calderon (github: calderonsamuel)
+- Francisco Rodríguez (twitter: @fjsistemas)
 
 
 ### Colaboradores
 
-    - Sara Kelly Rebaza Cardenas (twitter: @KellyRebazaC)
-    - Bryan Gianfranco Fernandez Camacho (twitter: @bryanferncam)
+- Sara Kelly Rebaza Cardenas (twitter: @KellyRebazaC)
+- Bryan Gianfranco Fernandez Camacho (twitter: @bryanferncam)
 
 
