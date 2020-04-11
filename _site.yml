@@ -13,7 +13,10 @@ navbar:
       text: Noticias Falsas
     -
       href: Propagacion.html
-      text: Propagación
+      text: Datos Nacionales
+    -
+      href: Departamentos.html
+      text: Datos Regiones
     - 
       href: Investigaciones.html
       text: Investigaciones Científicas

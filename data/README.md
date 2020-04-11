@@ -10,3 +10,7 @@ Repositorio de datos
 ## spat_covid_v2.csv 
 
   - Datos del censo - Recopilado por @gcarrascoe
+  
+## Renipress_2020
+
+  - Datos Renipress sobre capacidad hospitalaria- Recopilado por @jjenifer

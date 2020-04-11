@@ -17,7 +17,9 @@ Secciones:
 
 - **Noticias Falsas**: Lista de noticias falsas que se difunden por diferentes medios. La idea es poder mostrar las noticias falsas y si se puede a los responsables de diseminarlas. 
 
-- **Propagación**: Estadísticas y mapas de la propagación del COVID-19 en Perú y el mundo.
+- **Datos Nacionales**: Estadísticas de la propagación del COVID-19 en Perú (agregados nacionales) y comparaciones con países de la región.
+
+- **Datos Regiones**: Estadísticas y mapas de la propagación del COVID-19 en las regiones de Perú.
 
 - **Material Educativo**: Lista de videos/infografías y otros que resuman la información de manera amigable. 
 
@@ -28,21 +30,28 @@ Secciones:
 ## Colaborar
 
 - Todos pueden colaborar, el repositorio en github (https://github.com/jincio/COVID_19_PERU): 
-- Agregate en slack para coordinar
-- Editores:
+- Escribe a José Inico (twitter: @jlincio) para que te pueda agregar al slack
+
+- El portal tiene un grupo de "editores" que aprueban la publicación y/o actualización de la información en el portal. No es un grupo estatico, pueden ir sumandose más personas. La idea es que los editores esten disponibles para revisar la veracidad y pertinencia de la información.
+
+-Todos podemos colaborar, puedes proponer publicar algo en las distintas secciones del portal.
+
+### Editores
+
     - José Incio (github: jincio, twitter: @jlincio)
     - Bryan Lucero
     - David Requena (github: davidrequena)
     - Cleidy Osorio
     - Pierre Padilla Huamantinco (github: pgpadilla, twitter / instagram: @pierrepadilla17)
     - Joan Martínez
-
-- El portal tiene un grupo de "editores" que aprueban la publicación y/o actualización de la información en el portal. No es un grupo estatico, siempre puede crecer más. La idea es que los editores esten disponibles para revisar la veracidad y pertinencia de la información.
-
--Todos podemos colaborar, los colaboradores son los que pueden proponer la publicación de información en las distintas secciones del portal.
-
- 
+    - Gabriel Carrasco (twitter: @Gabc91)
+    - Samuel Calderon (github: calderonsamuel)
+    - Francisco Rodríguez (twitter: @fjsistemas)
 
 
+### Colaboradores
+
+    - Sara Kelly Rebaza Cardenas (twitter: @KellyRebazaC)
+    - Bryan Gianfranco Fernandez Camacho (twitter: @bryanferncam)
 
 
