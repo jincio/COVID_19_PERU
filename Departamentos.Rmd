@@ -184,7 +184,7 @@ data4 = import("reportes_minsa.xlsx", sheet=2)%>%
     Positivos=Positivos_totales
   )
   
-plot_macro <- function(macroregion, breaks = "7 days", ncol = 3, .data = data4){
+plot_macro <- function(macroregion, breaks = "9 days", ncol = 3, .data = data4){
   temp <- .data%>%
     filter(MACROREG== macroregion) %>% 
     group_by(REGION, Positivos_PCR) %>% 
@@ -199,7 +199,7 @@ plot_macro <- function(macroregion, breaks = "7 days", ncol = 3, .data = data4){
     ylim(0,max(temp$Positivos)*1.1)+
     scale_x_date(
       labels = scales::date_format("%b-%d"), 
-      date_breaks = "5 days", 
+      date_breaks = breaks, 
       expand = c(0,1))+
     geom_text_repel(
       aes(label = label), 
