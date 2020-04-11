@@ -1,18 +1,25 @@
-bbc_style_adapted <- function () {
+bbc_style_adapted <- function (text_size = 1) {
   font <- "Helvetica"
   ggplot2::theme(
     plot.title = ggplot2::element_text(
       family = font,
-      size = 28,
+      size = text_size * 15,
       face = "bold",
-      color = "#222222"
+      color = "#474785",
+      hjust = 0.5
     ),
     plot.subtitle = ggplot2::element_text(
       family = font,
-      size = 22,
+      size = text_size * 11,
       margin = ggplot2::margin(9, 0, 9, 0)
     ),
-    plot.caption = ggplot2::element_blank(),
+    plot.caption = ggplot2::element_text(
+      family = font,
+      face = "italic",
+      size = text_size * 8,
+      color = "#222222"
+    ),
+    plot.margin = unit(c(2,5,2,5), "mm"),
     legend.position = "top",
     legend.text.align = 0,
     legend.background = ggplot2::element_blank(),
@@ -20,33 +27,34 @@ bbc_style_adapted <- function () {
     legend.key = ggplot2::element_blank(),
     legend.text = ggplot2::element_text(
       family = font,
-      size = 18,
+      size = text_size * 11,
       color = "#222222"
     ),
     axis.title = ggplot2::element_blank(),
-    axis.text = ggplot2::element_text(
+    axis.text.x = ggplot2::element_text(
       family = font,
-      size = 18,
-      color = "#222222"
+      size = text_size * 7,
+      color = "#222222",
+      margin = ggplot2::margin(5, b = 10)
     ),
-    axis.text.x = ggplot2::element_text(margin = ggplot2::margin(5,
-                                                                 b = 10)),
+    axis.text.y = ggplot2::element_blank(),
     axis.ticks = ggplot2::element_blank(),
     axis.line = ggplot2::element_blank(),
     panel.grid.minor = ggplot2::element_blank(),
     panel.grid.major.y = ggplot2::element_line(color = "#cbcbcb"),
     panel.grid.major.x = ggplot2::element_blank(),
     panel.background = ggplot2::element_blank(),
+    panel.spacing.x = unit(5, "mm"),
     strip.background = ggplot2::element_rect(fill = "white"),
-    strip.text = ggplot2::element_text(size = 22, hjust = 0)
+    strip.text = ggplot2::element_text(size = text_size * 12, face = "bold", hjust = 0)
   )
 }
 
 plot_macro <-
   function(.data,
            macroregion,
-           breaks = "9 days",
-           ncol = 3) {
+           breaks = "7 days",
+           ncol = 2) {
     temp <- .data %>%
       dplyr::filter(MACROREG == macroregion) %>%
       dplyr::group_by(REGION, Positivos_PCR) %>%
@@ -57,7 +65,7 @@ plot_macro <-
     
     plot <- temp %>%
       ggplot2::ggplot(ggplot2::aes(x = Fecha, y = Positivos)) +
-      ggplot2::geom_line(color = "darkred") +
+      ggplot2::geom_line(colour = "#1380A1", size = 1) +
       ggplot2::ylim(0, max(temp$Positivos) * 1.1) +
       ggplot2::scale_x_date(
         labels = scales::date_format("%b-%d"),
@@ -66,38 +74,18 @@ plot_macro <-
       ) +
       ggrepel::geom_text_repel(
         ggplot2::aes(label = label),
-        vjust = -0.3,
-        size = 2.1,
+        vjust = -0.5,
+        size = 2.3,
         box.padding = 0.05
       ) +
-      ggplot2::labs(y = "Número de casos reportados") +
-      ggplot2::facet_wrap( ~ REGION, ncol = ncol)
+      ggplot2::labs(
+        title = str_to_upper(paste("Número de casos positivos COVID-19,", macroregion)),
+        y = "Número de casos reportados",
+        caption = "Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)") +
+      ggplot2::facet_wrap( ~ REGION, ncol = ncol) +
+      bbc_style_adapted() +
+      geom_hline(yintercept = 0, size = 0.5, colour = "#333333")
     
-    ggpubr::ggarrange(
-      plot,
-      ncol = 1,
-      nrow = 1,
-      font.label = list(
-        size = 10,
-        color = "black",
-        face = "bold",
-        family = NULL
-      )
-    ) %>%
-      ggpubr::annotate_figure(
-        top = ggpubr::text_grob(
-          paste("Número de casos positivos COVID-19,", macroregion),
-          color = "#474785",
-          face = "bold",
-          size = 14
-        ),
-        bottom = ggpubr::text_grob(
-          "Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)",
-          color = "black",
-          hjust = 1,
-          x = 1,
-          face = "italic",
-          size = 8
-        )
-      )
+    plot
+    
   }

@@ -14,7 +14,7 @@ library(ggrepel)
 library(ggpubr)
 data=rio::import("reportes_minsa.xlsx")
 
-source("global.R")
+source("global.R", encoding = "UTF-8")
 ```
 
 
@@ -170,16 +170,14 @@ knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departament
 data4 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
   dplyr::mutate(
     MACROREG= dplyr::case_when(
-        REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH")~"NORTE",
+        REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH") ~"NORTE",
         REGION %in% c("AMAZONAS","LORETO","UCAYALI","MADRE DE DIOS","SAN MARTIN") ~ "ORIENTE",
         REGION %in% c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO") ~ "SUR",
-        REGION%in%c("AYACUCHO","APURIMAC","JUNIN", "HUANCAVELICA", "HUANUCO", "PASCO")~ "CENTRO",
+        REGION %in% c("AYACUCHO","APURIMAC","JUNIN", "HUANCAVELICA", "HUANUCO", "PASCO") ~ "CENTRO",
         TRUE ~ "OTRO"),
     Fecha = as.Date(Fecha),
     Positivos=Positivos_totales
   )
-
-
 ```
 
 ## CENTRO 
