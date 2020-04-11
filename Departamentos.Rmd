@@ -81,9 +81,9 @@ panel<- ggpubr::ggarrange(m1,
 )
 
 ```
-
+<p align = center>
 ![Gif](./Imagenes/peruheatmap-es-covid-hasta-abril-9.gif)
-
+</p>
 ## Mapas Fallecidos
 
 ```{r m2}
