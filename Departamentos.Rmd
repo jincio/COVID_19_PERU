@@ -156,15 +156,15 @@ panel<- ggarrange(m1,
 ## Comparadas con Nacional y Lima
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-9.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-10.png')
 ```
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-9.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-10.png')
 ```
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-9.png')
+knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-10.png')
 ```
 
 
