@@ -5,6 +5,12 @@ IDEAS
 
 Ideas y proyectos en algunos casos te puedes sumar a ellos, revisa la información de contacto en cada entrada. 
 
+## Dashboards
+
+Carlos Barboza ha desarrollado este [dashboard](https://app.powerbi.com/view?r=eyJrIjoiODY0OTY1ZjktNWMyOC00NWQ2LThlZWYtYWEwMDExZTAwNDc4IiwidCI6IjEwZWM3OTJjLTU4NzctNGU1ZS05OGE5LTFiMWQ3YTNjM2RlYiIsImMiOjR9)
+
+Usando la información recopilada en este repositorio
+
 ## Lista de proyectos 
 
 Base de datos de proyectos (hardware, software, bio) para la población general y personal de salud
