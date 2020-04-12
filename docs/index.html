@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -72,7 +71,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -221,6 +219,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -249,6 +248,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -397,20 +402,24 @@ Así mismo, puede servir a investigadores/estudiantes para conocer diversas inic
 <p>-Todos podemos colaborar, puedes proponer publicar algo en las distintas secciones del portal.</p>
 <div id="editores" class="section level3">
 <h3><span class="header-section-number">0.2.1</span> Editores</h3>
-<pre><code>- José Incio (github: jincio, twitter: @jlincio)
-- Bryan Lucero
-- David Requena (github: davidrequena)
-- Cleidy Osorio
-- Pierre Padilla Huamantinco (github: pgpadilla, twitter / instagram: @pierrepadilla17)
-- Joan Martínez
-- Gabriel Carrasco (twitter: @Gabc91)
-- Samuel Calderon (github: calderonsamuel)
-- Francisco Rodríguez (twitter: @fjsistemas)</code></pre>
+<ul>
+<li>José Incio (github: jincio, twitter: <span class="citation">@jlincio</span>)</li>
+<li>Bryan Lucero</li>
+<li>David Requena (github: davidrequena)</li>
+<li>Cleidy Osorio</li>
+<li>Pierre Padilla Huamantinco (github: pgpadilla, twitter / instagram: <span class="citation">@pierrepadilla17</span>)</li>
+<li>Joan Martínez</li>
+<li>Gabriel Carrasco (twitter: <span class="citation">@Gabc91</span>)</li>
+<li>Samuel Calderon (github: calderonsamuel)</li>
+<li>Francisco Rodríguez (twitter: <span class="citation">@fjsistemas</span>)</li>
+</ul>
 </div>
 <div id="colaboradores" class="section level3">
 <h3><span class="header-section-number">0.2.2</span> Colaboradores</h3>
-<pre><code>- Sara Kelly Rebaza Cardenas (twitter: @KellyRebazaC)
-- Bryan Gianfranco Fernandez Camacho (twitter: @bryanferncam)</code></pre>
+<ul>
+<li>Sara Kelly Rebaza Cardenas (twitter: <span class="citation">@KellyRebazaC</span>)</li>
+<li>Bryan Gianfranco Fernandez Camacho (twitter: <span class="citation">@bryanferncam</span>)</li>
+</ul>
 </div>
 </div>
 
