@@ -38,20 +38,23 @@ Secciones:
 
 ### Editores
 
-    - José Incio (github: jincio, twitter: @jlincio)
-    - Bryan Lucero
-    - David Requena (github: davidrequena)
-    - Cleidy Osorio
-    - Pierre Padilla Huamantinco (github: pgpadilla, twitter / instagram: @pierrepadilla17)
-    - Joan Martínez
-    - Gabriel Carrasco (twitter: @Gabc91)
-    - Samuel Calderon (github: calderonsamuel)
-    - Francisco Rodríguez (twitter: @fjsistemas)
+- José Incio (github: jincio, twitter: [@jlincio](https://twitter.com/jlincio))
+- Bryan Lucero (twitter: [@_BryanLucero](https://twitter.com/_BryanLucero)
+- David Requena (github: [davidrequena](https://github.com/davidrequena))
+- Cleidy Osorio
+- Pierre Padilla Huamantinco (github: [pgpadilla](https://github.com/pgpadilla), twitter / instagram: [@pierrepadilla17](https://twitter.com/pierrepadilla17))
+- Joan Martínez
+- Gabriel Carrasco (twitter: [@Gabc91](https://twitter.com/Gabc91))
+- Samuel Calderon (github: [calderonsamuel](https://github.com/calderonsamuel))
+- Francisco Rodríguez (twitter: [@fjsistemas](https://twitter.com/fjsistemas))
 
 
 ### Colaboradores
 
-    - Sara Kelly Rebaza Cardenas (twitter: @KellyRebazaC)
-    - Bryan Gianfranco Fernandez Camacho (twitter: @bryanferncam)
+- Sara Kelly Rebaza Cardenas (twitter: [@KellyRebazaC](https://twitter.com/KellyRebazaC))
+- Bryan Gianfranco Fernandez Camacho (twitter: [@bryanferncam](https://twitter.com/bryanferncam))
+- Nathan Nadramija (twitter: [@NNadramija](https://twitter.com/nnnadramija))
+- Viviana Maldonado Garcia (twitter: [@avimaga](https://twitter.com/avimaga))
+- Roy (Twitter: [@chicaidealista](https://twitter.com/chicaidealista))
 
 
