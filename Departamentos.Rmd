@@ -86,6 +86,8 @@ panel<- ggpubr::ggarrange(m1,
 </p>
 ## Mapas Fallecidos
 
+NOTA: **Actualizado al 12 de ABRIL**
+
 ```{r m2}
 departamento <- sf::read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
   dplyr::select(Departamento = DEPARTAMEN, geometry)
@@ -131,8 +133,8 @@ panel<- ggpubr::ggarrange(m1,
                                 size = 14),
                 bottom = ggpubr::text_grob(
                   paste0(
-                    "Actualizado al ", 
-                    format(as.Date(max(data$Dia)),"%d/%m"),
+                    "Actualizado al 12/04", 
+                    #format(as.Date(max(data$Dia)),"%d/%m"),
                     "\n",
                     "Fuente: MINSA.Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)"), 
                                    color = "black", 
