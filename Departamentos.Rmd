@@ -12,13 +12,14 @@ library(rio)
 library(sf)
 library(ggrepel)
 library(ggpubr)
+library(cowplot)
 data=rio::import("reportes_minsa.xlsx")
 
 source("global.R", encoding = "UTF-8")
 ```
 
 
-# Mapa casos positivos
+# Distribución casos positivos y fallecidos por región
 
 
 ```{r Mapa, message=FALSE}
@@ -48,43 +49,13 @@ m1 = departamento %>%
     min.segment.length = 0
   )+
     ggplot2::scale_x_discrete()+
+  ggtitle("Casos positivos por región")+
   ggplot2::theme_bw()+
   ggplot2::theme(legend.position = "none",
         axis.title = ggplot2::element_blank())
  
 ```
 
-
-```{r Panelm1, echo=FALSE, fig.height=7, message=FALSE, warning=FALSE}
-# Panel para publicacion
-panel<- ggpubr::ggarrange(m1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          ggpubr::annotate_figure(panel,
-                top = ggpubr::text_grob("Distribución  de casos positivos COVID-19 x departamento,\n (moleculares + pruebas rápidas) Perú", 
-                                color = "#474785", 
-                                face = "bold", 
-                                size = 14),
-                bottom = ggpubr::text_grob(
-                  paste0(
-                    "Actualizado al ", 
-                    format(as.Date(max(data$Dia)),"%d/%m"),
-                    "\n",
-                    "Fuente: MINSA.Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)"), 
-                                   color = "black", 
-                                   hjust = 1, 
-                                   x = 1, 
-                                   face = "italic", 
-                                   size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
-```
-<p align = center>
-![Gif](./Imagenes/peruheatmap-es-covid-hasta-abril-9.gif)
-</p>
-## Mapas Fallecidos
 
 ```{r m2}
 departamento <- sf::read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
@@ -97,7 +68,7 @@ data3 = data2 %>%
   dplyr::group_by(Departamento) %>%
   dplyr::summarise(casos = sum(Fallecidos))
 
-m1 = departamento %>%
+m2 = departamento %>%
   dplyr::left_join(data3, by="Departamento") %>%
   dplyr::mutate(casos = tidyr::replace_na(casos,0),
          casos=as.factor(casos),
@@ -113,53 +84,39 @@ m1 = departamento %>%
     min.segment.length = 0
   )+
     ggplot2::scale_x_discrete()+
+  ggtitle("Número de fallecidos por región")+
   ggplot2::theme_bw()+
   ggplot2::theme(legend.position = "none",
         axis.title = ggplot2::element_blank())
 ```
 
 
-```{r Panelm2, echo=FALSE, fig.height=7, message=FALSE, warning=FALSE}
-# Panel para publicacion
-panel<- ggpubr::ggarrange(m1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          ggpubr::annotate_figure(panel,
-                top = ggpubr::text_grob("Distribución  de fallecidos COVID-19 x departamento,\n Perú", 
-                                color = "#474785", 
-                                face = "bold", 
-                                size = 14),
-                bottom = ggpubr::text_grob(
-                  paste0(
-                    "Actualizado al ", 
-                    format(as.Date(max(data$Dia)),"%d/%m"),
-                    "\n",
-                    "Fuente: MINSA.Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)"), 
-                                   color = "black", 
-                                   hjust = 1, 
-                                   x = 1, 
-                                   face = "italic", 
-                                   size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
+## Mapas 
 
+Actualizado al 15 de Abril 
+
+```{r panelmapas, echo =FALSE,fig.height=8, message=FALSE, warning=FALSE}
+plot_grid(m1,m2)
 ```
+
+<p align = center>
+![Gif](./Imagenes/peruheatmap-es-covid-hasta-abril-11.gif)
+
 
 # Tendencias por departamento
 
 ## Comparadas con Nacional y Lima
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-10.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-11.png')
 ```
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-10.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-11.png')
 ```
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-10.png')
+knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-11.png')
 ```
 
 
@@ -180,35 +137,35 @@ data4 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
   )
 ```
 
-## CENTRO 
+### CENTRO 
 
 ```{r,panelcentro1}
 plot_macro(data4, "CENTRO")
 ```
 
-## NORTE 
+### NORTE 
 
 ```{r,panelNORTE1}
 plot_macro(data4, "NORTE")
 ```
 
-## SUR
+### SUR
 ```{r,panelSUR1}
 plot_macro(data4, "SUR")
 ```
 
-## ORIENTE
+### ORIENTE
 
 ```{r,panelORIENTE1}
 plot_macro(data4, "ORIENTE")
 ```
 
-# Tabla 
+## Tabla 
 
 ```{r}
 data2%>%
   dplyr::select(REGION,
-                Positivos_PCR,Positivos_PR,Positivos_totales,
+                Positivos_PCR,Positivos_PR,Positivos_totales,Fallecidos,
                 "Dia"="Fecha")%>%
   dplyr::mutate(Dia = as.character(Dia)) %>% 
   dplyr::arrange(dplyr::desc(Dia),dplyr::desc(Positivos_PCR)) %>%
@@ -224,4 +181,5 @@ data2%>%
     rownames = FALSE
   )
 ```
+
 
