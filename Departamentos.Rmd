@@ -93,6 +93,8 @@ m2 = departamento %>%
 
 ## Mapas 
 
+Actualizado al 15 de Abril 
+
 ```{r panelmapas, echo =FALSE,fig.height=8, message=FALSE, warning=FALSE}
 plot_grid(m1,m2)
 ```
@@ -179,4 +181,5 @@ data2%>%
     rownames = FALSE
   )
 ```
+
 
