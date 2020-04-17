@@ -27,4 +27,4 @@ En la siguiente tabla listamos los files y los contribuidores.
   
 # Google Movility
 
-  - Datos de Google "movility" - Recopilado por Hugo Ñopo (Twitter: @hugonopo), Daniel Pajita (Twitter: @@DanielLeandro7)
+  - Datos de Google "movility" - Recopilado por @hugonopo
