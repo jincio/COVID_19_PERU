@@ -6,14 +6,16 @@ title: "Handbook Covid-19 Perú"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## COVID19-PERU
+# COVID19-PERU
 
 El objetivo es crear un portal de consulta fiable donde usuarios puedan encontrar información relevante sobre el COVID-19. Con esto podemos apoyar contra la desinformación, y facilitar la búsqueda de noticias y datos. 
 Así mismo, puede servir a investigadores/estudiantes para conocer diversas iniciativas a las que pueda sumarse. 
 
+Este site se construye en base a este repositorio:  [github.com/jincio/COVID_19_PERU](https://github.com/jincio/COVID_19_PERU): 
+
 Secciones:
 
-- **Fuentes oficiales**: links a fuentes oficiales tanto del gobierno peruano como de organismos multilaterales. También links que estas fuentes difundan sobre el COVID-19
+- **Bases disponibles**: Bases de datos agregadas al repositorio. 
 
 - **Noticias Falsas**: Lista de noticias falsas que se difunden por diferentes medios. La idea es poder mostrar las noticias falsas y si se puede a los responsables de diseminarlas. 
 
@@ -21,7 +23,7 @@ Secciones:
 
 - **Datos Regiones**: Estadísticas y mapas de la propagación del COVID-19 en las regiones de Perú.
 
-- **Material Educativo**: Lista de videos/infografías y otros que resuman la información de manera amigable. 
+- **Investigaciones**: Investigaciones publicadas sobre el COVID-19
 
 - **Notas Periodisticas**: Notas destacadas 
 
@@ -29,7 +31,6 @@ Secciones:
 
 ## Colaborar
 
-- Todos pueden colaborar, el repositorio en github (https://github.com/jincio/COVID_19_PERU): 
 - Escribe a José Inico (twitter: @jlincio) para que te pueda agregar al slack
 
 - El portal tiene un grupo de "editores" que aprueban la publicación y/o actualización de la información en el portal. No es un grupo estatico, pueden ir sumandose más personas. La idea es que los editores esten disponibles para revisar la veracidad y pertinencia de la información.
@@ -56,3 +57,73 @@ Secciones:
   - Nathan Nadramija (twitter: [NNadramija](https://twitter.com/nnnadramija))
   - Viviana Maldonado Garcia (twitter: [avimaga](https://twitter.com/avimaga))
   - Roy (twitter: [chicaidealista](https://twitter.com/chicaidealista))
+
+# Fuentes Oficiales
+
+
+## Página del Gobierno/ CORONAVIRUS (Para descarte de COVID-19)
+
+[Coronavirus](https://www.gob.pe/coronavirus)
+
+## Consulta de resultados COVID-19:
+
+[CONSULTA_RESULTADO](https://www.ins.gob.pe/resultado_coronavirus/)
+
+## Pase de transito 
+
+[Pase Transito](https://www.gob.pe/pasedetransito/)
+
+## Página del CDC en español:
+
+[CDC](https://www.cdc.gov/coronavirus/2019-ncov/index-sp.html)
+
+## PADRÓN de Beneficiarios para Bono:
+
+[SISFO](https://www.gob.pe/437-ministerio-de-desarrollo-e-inclusion-social-sistema-de-focalizacion-de-hogares-sisfoh)
+
+## Certificado de Inscripción de RENIEC
+[CERTIFICADO](https://apps.reniec.gob.pe/certins)
+
+## OMS:
+
+[OMS](https://www.who.int/…/novel-coronavirus-2…/advice-for-public)
+
+## MINSA:
+[MINSA-PERU](https://www.gob.pe/…/699-conoce-que-es-el-coronavirus-covid…)
+
+## Ensayos clínicos en humanos
+[Organizacion Mundial de la Salud](http://apps.who.int/trialsearch/AdvSearch.aspx?SearchTermStat=117&ReturnUrl=%7e%2fListBy.aspx%3fTypeListing%3d0)
+###### 392 estudios sobre diagnóstico, medicamentos y vacunas al 15 de Marzo del 2020.
+[Clinical-trials](https://clinicaltrials.gov)
+
+
+## Legislación especial
+
+### Toque de queda
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">➡️ Se publicó el Decreto Supremo que precisa el DS N° 044-2020-PCM que declara el <a href="https://twitter.com/hashtag/EstadoDeEmergenciaNacional?src=hash&amp;ref_src=twsrc%5Etfw">#EstadoDeEmergenciaNacional</a> por las graves circunstancias que afectan la vida de la Nación a consecuencia del brote del <a href="https://twitter.com/hashtag/COVID%E3%83%BC19?src=hash&amp;ref_src=twsrc%5Etfw">#COVIDー19</a>.<br><br>📄 <a href="https://t.co/A8ZfSjq71l">https://t.co/A8ZfSjq71l</a><a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> <a href="https://t.co/sLbp0NREey">pic.twitter.com/sLbp0NREey</a></p>&mdash; Consejo de Ministros (@pcmperu) <a href="https://twitter.com/pcmperu/status/1240415807873732613?ref_src=twsrc%5Etfw">March 18, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+### Declaratoria de Emergencia
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">¡Atención! Se publicó el <a href="https://twitter.com/hashtag/DecretoDeUrgencia?src=hash&amp;ref_src=twsrc%5Etfw">#DecretoDeUrgencia</a> que establece diversas medidas excepcionales y temporales para prevenir la propagación del <a href="https://twitter.com/hashtag/Coronavirus?src=hash&amp;ref_src=twsrc%5Etfw">#Coronavirus</a> <a href="https://twitter.com/hashtag/COVID%E3%83%BC19?src=hash&amp;ref_src=twsrc%5Etfw">#COVIDー19</a> en el territorio nacional.<br><br>📄 <a href="https://t.co/oxKEERlzAh">https://t.co/oxKEERlzAh</a><a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> <a href="https://t.co/tagATe6ohJ">pic.twitter.com/tagATe6ohJ</a></p>&mdash; Consejo de Ministros (@pcmperu) <a href="https://twitter.com/pcmperu/status/1239391233040154625?ref_src=twsrc%5Etfw">March 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+### Permisos especiales de transito
+
+[Permiso especial de transito- PERU](https://www.gob.pe/pasedetransito)
+
+
+### Medidas Económicas
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Quiero seguir informándoles las medidas para reforzar sistema de vigilancia y respuesta sanitaria frente al COVID-19, así como para reducir el impacto económico en el país. Aprobamos modificaciones presupuestarias por S/498 millones y otras medidas que detallo en este hilo. <br>1/10</p>&mdash; María Antonieta Alva Luperdi (@ToniAlvaL) <a href="https://twitter.com/ToniAlvaL/status/1239407893306380288?ref_src=twsrc%5Etfw">March 16, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+<blockquote class="twitter-tweet"><p lang="es" dir="ltr">Ante el avance del COVID-19 a nivel mundial, venimos trabajando medidas que permitan amortiguar sus efectos sobre la ciudadanía y las mipymes,importantes fuentes de empleo y uno de los motores de nuestra economía. Abro hilo con las acciones recientes. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a>.1/7</p>&mdash; María Antonieta Alva Luperdi (@ToniAlvaL) <a href="https://twitter.com/ToniAlvaL/status/1239189178866425856?ref_src=twsrc%5Etfw">March 15, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+
+
+## Posiciones oficiales 
+
+### Sobre mascarillas 
+
+[Norma técnica para la fabricación de mascarillas comunitarias](https://www.gob.pe/institucion/minsa/noticias/111615-minsa-estandariza-la-produccion-de-mascarillas-ante-la-escasez-de-este-producto)
