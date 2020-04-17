@@ -25,6 +25,6 @@ En la siguiente tabla listamos los files y los contribuidores.
 
   - Datos Renipress sobre capacidad hospitalaria- Recopilado por @jjenifer
   
-# Google Mobility
+# Google Movility
 
   - Datos de Google "movility" - Recopilado por @hugonopo
