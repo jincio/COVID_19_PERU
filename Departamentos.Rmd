@@ -100,7 +100,7 @@ plot_grid(m1,m2)
 ```
 
 <p align = center>
-![Gif](./Imagenes/peruheatmap-es-covid-hasta-abril-11.gif)
+![Gif](./Imagenes/peruheatmap-es-covid-hasta-abril-15.gif)
 
 
 # Tendencias por departamento
@@ -108,15 +108,16 @@ plot_grid(m1,m2)
 ## Comparadas con Nacional y Lima
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-11.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-15.png')
 ```
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-11.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-15.png')
 ```
 
+* Actualizado al 11 de Abril
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-11.png')
+knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-15.png')
 ```
 
 
