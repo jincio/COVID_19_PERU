@@ -117,7 +117,6 @@ knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-
 knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-17.png')
 ```
 
-* Actualizado al 11 de Abril
 ```{r echo=FALSE, out.width='80%'}
 knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-17.png')
 ```
