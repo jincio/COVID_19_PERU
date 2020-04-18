@@ -1,0 +1,110 @@
+---
+title: "LORETO"
+---
+
+Este dossier es posible gracias al apoyo de XXXXX (twitter: @ ) quien recopiló los datos para esta región
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warning = FALSE, message = FALSE)
+library(rio)
+library(gridExtra)
+library(kableExtra)
+library(JLutils) # devtools::install_github("larmarange/JLutils")
+library(tidyverse)
+library(cowplot)
+library(sf)
+library(ggrepel)
+library(readxl)
+library(cowplot)
+library(ggpubr)
+library(directlabels)
+```
+
+```{r}
+region="LORETO"
+```
+
+```{r load}
+load("./data/provincial_distrital/provincial_distrital.RData")
+dd=import("./data/Data_departamental .xlsx", sheet="Ubicacion_casos")%>%filter(Region==region)
+dd1=dd%>%filter(Fecha==max(dd$Fecha))%>%
+  dplyr::select(Distrito, Valor)
+dd2=import("./data/Data_departamental .xlsx", sheet="Generales")%>%
+  filter(Region==region)
+```
+
+## MAPA y Tendencias
+
+Mapa con casos por Distrito
+```{r mapa}
+distrital%>%left_join(dd1,by="Distrito")%>%
+  mutate(tidyr::replace_na(Valor,0))%>%
+  filter(Departamento=="LORETO")%>%
+  mutate(casos=as.factor(Valor),
+  label = paste0(Distrito,":",casos))%>%
+  ggplot2::ggplot() +
+  ggplot2::geom_sf(ggplot2::aes(fill = casos), size = 0.05, color = "grey40")+
+  ggplot2::scale_fill_manual(values = c("grey80", grDevices::colorRampPalette(colors = c("#FFF5F0","#FB6A4A", "#67000D"))(length(unique(dd1$Valor)-1))))
+
+```
+
+
+```{r}
+g1=dd2%>%filter(Tipo=="Casos_Positivos")%>%
+  group_by(Fecha)%>%
+    summarise(total=max(Valor))%>%
+  ungroup()%>%
+  ggplot2::ggplot(ggplot2::aes(x = Fecha, y = total)) +
+  ggplot2::geom_line(colour = "#1380A1", size = 1) +
+  ggplot2::geom_point(aes(y = total), col = "#8B1C62")+
+  geom_text_repel(
+    aes(x=Fecha,y=total,label = total), 
+    vjust = -0.3,
+    size = 3.1,
+    box.padding = 0.05)+
+  ggtitle("Casos Positivos")
+
+g2=dd2%>%filter(Tipo=="Fallecidos")%>%
+  group_by(Fecha)%>%
+    summarise(total=max(Valor))%>%
+  ungroup()%>%
+  ggplot2::ggplot(ggplot2::aes(x = Fecha, y = total)) +
+  ggplot2::geom_line(colour = "#1380A1", size = 1) +
+  ggplot2::geom_point(aes(y = total), col = "#8B1C62")+
+  geom_text_repel(
+    aes(x=Fecha,y=total,label = total), 
+    vjust = -0.3,
+    size = 3.1,
+    box.padding = 0.05)+
+  ggtitle("Fallecidos")
+
+```
+
+```{r}
+plot_grid(g1,g2)
+```
+
+## Descripción de casos 
+
+```{r}
+dd3=import("./data/Data_departamental .xlsx", sheet="Detalles_Positivos")%>%filter(Region=="APURIMAC")
+```
+
+### Casos positivos: Sexo 
+```{r}
+dd3%>%group_by(Region,Sexo)%>%
+  summarise(frecuencia=n(), edad_promedio=mean(Edad, na.rm=TRUE))%>%kable("markdown")
+```
+
+### Casos positivos: Forma de contagio
+
+```{r}
+table(dd3$`Forma de contagio`)
+```
+
+## Capacidad y proyecciones
+
+
+
+## FakeNews 
+
