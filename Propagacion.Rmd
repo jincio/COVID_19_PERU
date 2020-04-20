@@ -232,15 +232,15 @@ f6=data%>%
        #title = paste0("Numero de casos confirmados"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m")))+
   ggtitle("Hospitalizados en camas UCI")+
-  geom_hline(yintercept=276, linetype="dashed", 
-             color = "red", size=1)+
-  geom_hline(yintercept=500, linetype="dashed", 
+  #geom_hline(yintercept=276, linetype="dashed", 
+  #           color = "red", size=1)+
+  geom_hline(yintercept=525, linetype="dashed", 
              color = "blue", size=1)+
+  #annotate(geom="text", 
+ #          label="Capacidad actual: 276", x=max(data$Dia), 
+  #         y=276, vjust=-1,hjust = 1)+
   annotate(geom="text", 
-           label="Capacidad actual: 276", x=max(data$Dia), 
-           y=276, vjust=-1,hjust = 1)+
-  annotate(geom="text", 
-           label="Capacidad deseada: 500", x=max(data$Dia), 
+           label="Capacidad actual: 525", x=max(data$Dia), 
            y=500, vjust=-1,hjust = 1) +
   theme_minimal() +
   theme(legend.position="bottom")
@@ -436,7 +436,7 @@ panel<- ggarrange(f5,
 
 ## Hospitalizados Camas-UCI
 
-El ministro en declaraciones a medios de prensa y en la conferencia del día 27 de Marzo manifestó que las camas UCI disponibles para los afectados por Coronavirus es de 276 unidades. En diferentes medios mencionó que el gobierno está haciendo el esfuerzo para aumentar la capacidad a 500 unidades. 
+Al 20 de Abril el presidente anunció que actualmente se tienen 525 camas UCI.  
 
 ```{r}
 panel<- ggarrange(f6,
