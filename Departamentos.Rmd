@@ -13,6 +13,7 @@ library(sf)
 library(ggrepel)
 library(ggpubr)
 library(cowplot)
+library(kableExtra)
 data=rio::import("reportes_minsa.xlsx")
 
 source("global.R", encoding = "UTF-8")
@@ -99,31 +100,29 @@ plot_grid(m1,m2)
 
 ### Gif casos positivos 
 <p align = center>
-![Gif](./Imagenes/peruheatmap-es-covid-hasta-abril-18.gif)</p>
+![Gif](./Imagenes/peruheatmap-es-covid-hasta-abril-19.gif)</p>
 
 ### Gif Fallecidos 
 <p align = center>
-![Gif](./Imagenes/peruheatmap-es-fallecidos-covid-hasta-abril-18.gif)</p>
+![Gif](./Imagenes/peruheatmap-es-fallecidos-covid-hasta-abril-19.gif)</p>
 
 # Tendencias por departamento
 
 ## Comparadas con Nacional y Lima
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-18.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-19.png')
 ```
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-18.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-19.png')
 ```
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-18.png')
+knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-19.png')
 ```
-
 
 ## Por Macro-Región
-
 
 ```{r plot_macro}
 data4 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
@@ -141,26 +140,68 @@ data4 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
 
 ### CENTRO 
 
-```{r,panelcentro1}
-plot_macro(data4, "CENTRO")
-```
+[CENTRO](https://perucovid19.netlify.app/mr_centro)
 
-### NORTE 
+### NORTE
 
-```{r,panelNORTE1}
-plot_macro(data4, "NORTE")
-```
+[NORTE](https://perucovid19.netlify.app/mr_norte)
 
 ### SUR
-```{r,panelSUR1}
-plot_macro(data4, "SUR")
-```
+
+[SUR](https://perucovid19.netlify.app/mr_sur)
 
 ### ORIENTE
 
-```{r,panelORIENTE1}
-plot_macro(data4, "ORIENTE")
+[ORIENTE](https://perucovid19.netlify.app/mr_oriente)
+
+## Información de las DIRESA: 
+
+La información fue recopilada por los siguientes voluntari@s:
+
+  - Nathan Nadramija (twitter: [NNadramija](https://twitter.com/nnnadramija))
+  - Viviana Maldonado Garcia (twitter: [avimaga](https://twitter.com/avimaga))
+  - Roy (twitter: [chicaidealista](https://twitter.com/chicaidealista))
+  - Lucero Flores Werlen (twitter: [LuceroFloresW)](https://twitter.com/LuceroFloresW))
+
+**Nota:** La información no está completa se debe tomar solo como referencia. Seguiremos intentando completar los datos y series de tiempo.  
+
+Toda la información está disponible en la carpeta "data" del repositorio.
+
+### Información sobre Fallecidos
+
+```{r}
+d3=import("./data/Data_departamental .xlsx", sheet="Detalles_Fallecidos") 
+
+d3%>%group_by(Region,Sexo)%>%
+  dplyr::summarise(Frecuencia=n(), Edad_promedio=round(mean(Edad,na.rm=TRUE),2))%>%
+  kable("markdown")
+
 ```
+
+**Condiciones Previas**
+
+```{r}
+d3%>%
+  mutate(v2=strsplit(as.character(`Condición Preexistente`),","))%>%
+  unnest(v2)%>%
+  dplyr::select(v2)%>%
+  group_by(v2)%>%
+  summarise(frecuencia=n())%>%kable("markdown")
+```
+
+
+### Información sobre casos Positivos 
+
+```{r}
+d4=import("./data/Data_departamental .xlsx", sheet="Detalles_Positivos") 
+
+d4%>%group_by(Region,Sexo)%>%
+  dplyr::summarise(Frecuencia=n(), 
+                   Edad_promedio=round(mean(Edad,na.rm=TRUE),2))%>%
+  kable("markdown")
+  
+```
+
 
 ## Tabla 
 

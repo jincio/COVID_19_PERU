@@ -17,6 +17,11 @@ Papers/links/findings de revistas científicas.
 
 # Resumenes y artículos
 
+## Efecto en los pulmones
+
+[Nature como afecta en los pulmones](https://www.sciencemag.org/news/2020/04/how-does-coronavirus-kill-clinicians-trace-ferocious-rampage-through-body-brain-toes)
+
+
 ## Testeo
 [FDA aprueba el uso de máquina que entrega resultado en 5 minutos](https://www.the-scientist.com/news-opinion/fda-gives-abbott-emergency-use-of-five-minute-coronavirus-test-67351?utm_content=124004813&utm_medium=social&utm_source=facebook&hss_channel=fbp-212009668822281)
 
