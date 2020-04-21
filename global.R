@@ -57,7 +57,7 @@ plot_macro <-
            ncol = 2) {
     temp <- .data %>%
       dplyr::filter(MACROREG == macroregion) %>%
-      dplyr::group_by(REGION, Positivos_PCR) %>%
+      dplyr::group_by(REGION, Positivos_totales) %>%
       dplyr::mutate(label = ifelse(dplyr::row_number() == 1, Positivos, NA)) %>%
       dplyr::ungroup() %>%
       dplyr::group_by(REGION) %>%
@@ -81,6 +81,47 @@ plot_macro <-
       ggplot2::labs(
         title = str_to_upper(paste("Número de casos positivos COVID-19,", macroregion)),
         y = "Número de casos reportados",
+        caption = "Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)") +
+      ggplot2::facet_wrap( ~ REGION, ncol = ncol) +
+      bbc_style_adapted() +
+      geom_hline(yintercept = 0, size = 0.5, colour = "#333333")
+    
+    plot
+    
+  }
+
+
+plot_macro2 <-
+  function(.data,
+           macroregion,
+           breaks = "7 days",
+           ncol = 2) {
+    temp <- .data %>%
+      dplyr::filter(MACROREG == macroregion) %>%
+      dplyr::group_by(REGION, Fallecidos) %>%
+      dplyr::mutate(label = ifelse(dplyr::row_number() == 1, Fallecidos, NA)) %>%
+      dplyr::ungroup() %>%
+      dplyr::group_by(REGION) %>%
+      dplyr::mutate(label = ifelse(dplyr::row_number() == dplyr::n(), Fallecidos, label))
+    
+    plot <- temp %>%
+      ggplot2::ggplot(ggplot2::aes(x = Fecha, y = Fallecidos)) +
+      ggplot2::geom_line(colour = "#1380A1", size = 1) +
+      ggplot2::ylim(0, max(temp$Fallecidos) * 1.1) +
+      ggplot2::scale_x_date(
+        labels = scales::date_format("%b-%d"),
+        date_breaks = breaks,
+        expand = c(0, 1)
+      ) +
+      ggrepel::geom_text_repel(
+        ggplot2::aes(label = label),
+        vjust = -0.5,
+        size = 2.3,
+        box.padding = 0.05
+      ) +
+      ggplot2::labs(
+        title = str_to_upper(paste("Número de Fallecidos COVID-19,", macroregion)),
+        y = "Número de fallecidos reportados (fecha reportada)",
         caption = "Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)") +
       ggplot2::facet_wrap( ~ REGION, ncol = ncol) +
       bbc_style_adapted() +
