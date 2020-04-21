@@ -161,6 +161,20 @@ plot_macro(data4, "ORIENTE")
 
 ## Información de las DIRESA: 
 
+La información fue recopilada por los siguientes voluntari@s:
+
+1) 
+2) 
+3)
+4) 
+X
+X
+
+**Nota:** La información no es está completa se debe tomar solo como referencia. Seguiremos intentando completar las series. 
+
+Toda la información está disponible en la carpeta "data" del repositorio.
+
+
 ### Información sobre Fallecidos
 
 ```{r}
