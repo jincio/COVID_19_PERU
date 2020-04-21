@@ -2,7 +2,10 @@
 title: "LORETO"
 ---
 
-Este dossier es posible gracias al apoyo de XXXXX (twitter: @ ) quien recopiló los datos para esta región
+Este dossier es posible gracias al apoyo de RRJJ (twitter: @ ) quien recopiló los datos para esta región. 
+
+La información se recolecto de las Dirección Regional de Salud. La hoja de datos la pueden encontrar en el repositorio: 
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,warning = FALSE, message = FALSE)
@@ -31,6 +34,7 @@ dd1=dd%>%filter(Fecha==max(dd$Fecha))%>%
   dplyr::select(Distrito, Valor)
 dd2=import("./data/Data_departamental .xlsx", sheet="Generales")%>%
   filter(Region==region)
+dd3=import("./data/Data_departamental .xlsx", sheet="Detalles_Fallecidos")%>%filter(Region==region)
 ```
 
 ## MAPA y Tendencias
@@ -84,27 +88,25 @@ g2=dd2%>%filter(Tipo=="Fallecidos")%>%
 plot_grid(g1,g2)
 ```
 
-## Descripción de casos 
+## Descripción de fallecidos 
 
-```{r}
-dd3=import("./data/Data_departamental .xlsx", sheet="Detalles_Positivos")%>%filter(Region=="APURIMAC")
-```
-
-### Casos positivos: Sexo 
+### Sexo y Edad
 ```{r}
 dd3%>%group_by(Region,Sexo)%>%
   summarise(frecuencia=n(), edad_promedio=mean(Edad, na.rm=TRUE))%>%kable("markdown")
 ```
 
-### Casos positivos: Forma de contagio
+### Condiciones Previas 
 
 ```{r}
-table(dd3$`Forma de contagio`)
+dd3%>%
+  mutate(v2=strsplit(as.character(`Condición Preexistente`),","))%>%
+  unnest(v2)%>%
+  dplyr::select(v2)%>%
+  group_by(v2)%>%
+  summarise(frecuencia=n())
 ```
 
-## Capacidad y proyecciones
 
 
-
-## FakeNews 
 

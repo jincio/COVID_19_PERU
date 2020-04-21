@@ -13,6 +13,7 @@ library(sf)
 library(ggrepel)
 library(ggpubr)
 library(cowplot)
+library(kableExtra)
 data=rio::import("reportes_minsa.xlsx")
 
 source("global.R", encoding = "UTF-8")
@@ -117,7 +118,6 @@ knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril
 knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-11.png')
 ```
 
-
 ## Por Macro-Región
 
 
@@ -158,7 +158,47 @@ plot_macro(data4, "SUR")
 plot_macro(data4, "ORIENTE")
 ```
 
-## Tabla 
+
+## Información de las DIRESA: 
+
+### Información sobre Fallecidos
+
+```{r}
+d3=import("./data/Data_departamental .xlsx", sheet="Detalles_Fallecidos") 
+
+d3%>%group_by(Region,Sexo)%>%
+  dplyr::summarise(Frecuencia=n(), Edad_promedio=round(mean(Edad,na.rm=TRUE),2))%>%
+  kable("markdown")
+
+```
+
+**Condiciones Previas**
+
+```{r}
+d3%>%
+  mutate(v2=strsplit(as.character(`Condición Preexistente`),","))%>%
+  unnest(v2)%>%
+  dplyr::select(v2)%>%
+  group_by(v2)%>%
+  summarise(frecuencia=n())%>%kable("markdown")
+```
+
+
+### Información sobre casos Positivos 
+
+```{r}
+d4=import("./data/Data_departamental .xlsx", sheet="Detalles_Positivos") 
+
+d4%>%group_by(Region,Sexo)%>%
+  dplyr::summarise(Frecuencia=n(), 
+                   Edad_promedio=round(mean(Edad,na.rm=TRUE),2))%>%
+  kable("markdown")
+  
+```
+
+
+
+## Tabla reporte Minsa 
 
 ```{r}
 data2%>%
