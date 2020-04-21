@@ -100,26 +100,26 @@ plot_grid(m1,m2)
 
 ### Gif casos positivos 
 <p align = center>
-![Gif](./Imagenes/peruheatmap-es-covid-hasta-abril-18.gif)</p>
+![Gif](./Imagenes/peruheatmap-es-covid-hasta-abril-19.gif)</p>
 
 ### Gif Fallecidos 
 <p align = center>
-![Gif](./Imagenes/peruheatmap-es-fallecidos-covid-hasta-abril-18.gif)</p>
+![Gif](./Imagenes/peruheatmap-es-fallecidos-covid-hasta-abril-19.gif)</p>
 
 # Tendencias por departamento
 
 ## Comparadas con Nacional y Lima
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-18.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-abril-19.png')
 ```
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-18.png')
+knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-abril-19.png')
 ```
 
 ```{r echo=FALSE, out.width='80%'}
-knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-18.png')
+knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-abril-19.png')
 ```
 
 ## Por Macro-Región
