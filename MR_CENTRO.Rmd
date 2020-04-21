@@ -1,6 +1,7 @@
 ---
-title: "Macro Region Norte"
+title: "Macro Región Centro"
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE,warning = FALSE, message = FALSE)
@@ -44,7 +45,7 @@ data5 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
         REGION %in% c("AYACUCHO","APURIMAC","JUNIN", "HUANCAVELICA", "HUANUCO", "PASCO") ~ "CENTRO",
         TRUE ~ "OTRO"),
     Fecha = as.Date(Fecha),
-    Positivos=Fallecidos
+    Fallecidos=Fallecidos
   )
 ```
 
@@ -52,11 +53,11 @@ data5 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
 ## Tendencias
 
 ```{r,panelNORTE1}
-plot_macro(data4, "NORTE")
+plot_macro(data4, "CENTRO")
 ```
 
 ```{r,panelNORTE2}
-plot_macro2(data5, "NORTE")
+plot_macro2(data5, "CENTRO")
 ```
 
 
@@ -82,13 +83,10 @@ dd=import("./data/Data_departamental .xlsx", sheet="Ubicacion_casos")
 Aquí te mostramos el número de registros que tenemos por región.
 
 ```{r}
-dd%>%filter(Region%in%c("TUMBES","LAMBAYEQUE","PIURA","LA LIBERTAD",
-                             "CAJAMARCA","ANCASH"))%>%
+dd%>%filter(Region%in%c("AYACUCHO","APURIMAC","JUNIN", "HUANCAVELICA", "HUANUCO", "PASCO"))%>%
   dplyr::select(Region,Provincia,Distrito,
                 tipo, Valor, Fecha)%>%
   group_by(Region)%>%
   dplyr::summarise(numero_registros=n())%>%
   kable("markdown")
 ```
-
-

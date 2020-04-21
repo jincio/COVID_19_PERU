@@ -1,5 +1,5 @@
 ---
-title: "Macro Region Norte"
+title: "Macro Region Oriente"
 ---
 
 ```{r setup, include=FALSE}
@@ -52,11 +52,11 @@ data5 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
 ## Tendencias
 
 ```{r,panelNORTE1}
-plot_macro(data4, "NORTE")
+plot_macro(data4, "ORIENTE")
 ```
 
 ```{r,panelNORTE2}
-plot_macro2(data5, "NORTE")
+plot_macro2(data5, "ORIENTE")
 ```
 
 
@@ -82,13 +82,10 @@ dd=import("./data/Data_departamental .xlsx", sheet="Ubicacion_casos")
 Aquí te mostramos el número de registros que tenemos por región.
 
 ```{r}
-dd%>%filter(Region%in%c("TUMBES","LAMBAYEQUE","PIURA","LA LIBERTAD",
-                             "CAJAMARCA","ANCASH"))%>%
+dd%>%filter(Region%in%c("AMAZONAS","LORETO","UCAYALI","MADRE DE DIOS","SAN MARTIN"))%>%
   dplyr::select(Region,Provincia,Distrito,
                 tipo, Valor, Fecha)%>%
   group_by(Region)%>%
   dplyr::summarise(numero_registros=n())%>%
   kable("markdown")
 ```
-
-

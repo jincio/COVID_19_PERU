@@ -57,7 +57,7 @@ plot_macro <-
            ncol = 2) {
     temp <- .data %>%
       dplyr::filter(MACROREG == macroregion) %>%
-      dplyr::group_by(REGION, Positivos_totales) %>%
+      dplyr::group_by(REGION, Positivos) %>%
       dplyr::mutate(label = ifelse(dplyr::row_number() == 1, Positivos, NA)) %>%
       dplyr::ungroup() %>%
       dplyr::group_by(REGION) %>%

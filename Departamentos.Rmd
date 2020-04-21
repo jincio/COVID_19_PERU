@@ -140,28 +140,19 @@ data4 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
 
 ### CENTRO 
 
-```{r,panelcentro1}
-plot_macro(data4, "CENTRO")
-```
+[CENTRO](https://perucovid19.netlify.app/mr_centro)
 
 ### NORTE
 
-[NORTE]()
-
-```{r,panelNORTE1}
-plot_macro(data4, "NORTE")
-```
+[NORTE](https://perucovid19.netlify.app/mr_norte)
 
 ### SUR
-```{r,panelSUR1}
-plot_macro(data4, "SUR")
-```
+
+[SUR](https://perucovid19.netlify.app/mr_sur)
 
 ### ORIENTE
 
-```{r,panelORIENTE1}
-plot_macro(data4, "ORIENTE")
-```
+[ORIENTE](https://perucovid19.netlify.app/mr_oriente)
 
 ## Información de las DIRESA: 
 
