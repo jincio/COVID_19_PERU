@@ -67,7 +67,7 @@ plot_macro2(data5, "NORTE")
 
 #### Por Distrito
 
-```{r}
+```{r, eval=FALSE}
 #load("./data/provincial_distrital/provincial_distrital.RData")
 dd=import("./data/Data_departamental .xlsx", sheet="Ubicacion_casos")
 
@@ -79,9 +79,10 @@ dd=import("./data/Data_departamental .xlsx", sheet="Ubicacion_casos")
 
 ```
 
+
+```{r, eval=FALSE}
 Aquí te mostramos el número de registros que tenemos por región.
 
-```{r}
 dd%>%filter(Region%in%c("TUMBES","LAMBAYEQUE","PIURA","LA LIBERTAD",
                              "CAJAMARCA","ANCASH"))%>%
   dplyr::select(Region,Provincia,Distrito,

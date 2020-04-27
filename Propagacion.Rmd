@@ -238,7 +238,7 @@ f6=data%>%
              color = "orange", size=1)+
       geom_hline(yintercept=656, linetype="dashed", 
              color = "orange", size=1)+
-  geom_hline(yintercept=726, linetype="dashed", 
+  geom_hline(yintercept=719, linetype="dashed", 
              color = "blue", size=1)+
   annotate(geom="text", 
            label="Capacidad inicial: 276", x=max(data$Dia), 
@@ -250,7 +250,7 @@ f6=data%>%
            label="Dato al 23/04: 656", x=max(data$Dia), 
            y=656, vjust=-1,hjust = 1) +
       annotate(geom="text", 
-           label="Capacidad actual: 726", x=max(data$Dia), 
+           label="Capacidad actual: 719", x=max(data$Dia), 
            y=726, vjust=-1,hjust = 1) +
   theme_minimal() +
   theme(legend.position="bottom")
@@ -445,8 +445,6 @@ panel<- ggarrange(f5,
 
 
 ## Hospitalizados Camas-UCI
-
-Al 20 de Abril el presidente anunció que actualmente se tienen 525 camas UCI.  
 
 ```{r}
 panel<- ggarrange(f6,
