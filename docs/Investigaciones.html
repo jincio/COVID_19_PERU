@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
@@ -72,7 +71,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -221,6 +219,7 @@ $(document).ready(function () {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -249,6 +248,12 @@ $(document).ready(function () {
 }
 }
 
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
 
 .toc-content {
   padding-left: 30px;
@@ -373,7 +378,7 @@ div.tocify {
 
 
 <p>Papers/links/findings de revistas científicas.</p>
-<div id="links-utiles" class="section level1">
+<div id="links-útiles" class="section level1">
 <h1><span class="header-section-number">1</span> Links útiles</h1>
 <div id="para-consulta" class="section level2">
 <h2><span class="header-section-number">1.1</span> Para Consulta</h2>
@@ -383,7 +388,7 @@ div.tocify {
 </ul>
 </div>
 </div>
-<div id="resumenes-y-articulos" class="section level1">
+<div id="resumenes-y-artículos" class="section level1">
 <h1><span class="header-section-number">2</span> Resumenes y artículos</h1>
 <div id="efecto-en-los-pulmones" class="section level2">
 <h2><span class="header-section-number">2.1</span> Efecto en los pulmones</h2>
@@ -415,9 +420,9 @@ The ongoing COVID-19 outbreak expanded rapidly throughout China. Major behaviora
 <h2><span class="header-section-number">2.5</span> Sobre el origen del virus</h2>
 <p><a href="https://www.nature.com/articles/s41591-020-0820-9?utm_source=twitter&amp;utm_medium=social&amp;utm_content=organic&amp;utm_campaign=NGMT_USG_JC01_GL_NRJournals">The proximal origin of SARS-COV-2</a></p>
 </div>
-<div id="efecto-de-farmacos" class="section level2">
+<div id="efecto-de-fármacos" class="section level2">
 <h2><span class="header-section-number">2.6</span> Efecto de fármacos</h2>
-<div id="reportes-de-essalud-sobre-el-efecto-de-farmacos-en-el-tratamiendto-de-pacientes-con-coronavirus" class="section level3">
+<div id="reportes-de-essalud-sobre-el-efecto-de-fármacos-en-el-tratamiendto-de-pacientes-con-coronavirus" class="section level3">
 <h3><span class="header-section-number">2.6.1</span> Reportes de ESSALUD sobre el efecto de fármacos en el tratamiendto de pacientes con Coronavirus</h3>
 <p>IETSI-EsSalud acaba de sacar reportes breves basados en evidencias sobre el manejo de COVID-19:</p>
 <p><a href="https://www.dropbox.com/sh/fvv75489t7t0yi7/AACM7HowfgRtwWYo8PA1Ilpha?dl=0&amp;fbclid=IwAR1lnZiYDltoT_4CFT0a9R1uHLDt95kNGwZX8Tn1R6H28ntBh_ttrc7c7mk">LINK A REPORTES</a></p>
@@ -440,7 +445,7 @@ The ongoing COVID-19 outbreak expanded rapidly throughout China. Major behaviora
 Por otro lado, el conocimiento de la estructura de diferentes proteínas del COVID-19, que también son similares en otros virus, son también de suma importancia para confirmar mediante la predicción con herramientas computacionales, la reutilización de fármacos ya conocidos.
 En palabras de Bryan Mounce, profesor asistente del Departamento de Microbiología e Inmunología, Universidad de Loyola, Chicago: “Los agentes (medicamentos) de amplio espectro (amplia acción) son ideales para situaciones de brotes [epidémicos] en las que no sabemos completamente a qué nos enfrentamos…”</p>
 </div>
-<div id="startups-estan-desarrollando-pruebas-rapidas-para-el-diagnostico-de-sars-cov-2-coronavirus-link" class="section level3">
+<div id="startups-están-desarrollando-pruebas-rápidas-para-el-diagnostico-de-sars-cov-2-coronavirus-link" class="section level3">
 <h3><span class="header-section-number">2.6.4</span> Startups están desarrollando pruebas rápidas para el diagnostico de SARS-CoV-2 (Coronavirus) <a href="https://www.medrxiv.org/content/10.1101/2020.03.06.20032334v1">link</a></h3>
 </div>
 </div>
