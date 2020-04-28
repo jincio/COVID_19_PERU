@@ -167,9 +167,10 @@ La información fue recopilada por los siguientes voluntari@s:
 
 Toda la información está disponible en la carpeta "data" del repositorio.
 
-### Información sobre Fallecidos
 
-```{r}
+
+```{r, eval=FALSE}
+### Información sobre Fallecidos
 d3=import("./data/Data_departamental .xlsx", sheet="Detalles_Fallecidos") 
 
 d3%>%group_by(Region,Sexo)%>%
@@ -178,9 +179,10 @@ d3%>%group_by(Region,Sexo)%>%
 
 ```
 
-**Condiciones Previas**
 
-```{r}
+
+```{r, eval=FALSE}
+**Condiciones Previas**
 d3%>%
   mutate(v2=strsplit(as.character(`Condición Preexistente`),","))%>%
   unnest(v2)%>%
@@ -190,9 +192,10 @@ d3%>%
 ```
 
 
-### Información sobre casos Positivos 
 
-```{r}
+
+```{r, eval=FALSE}
+### Información sobre casos Positivos 
 d4=import("./data/Data_departamental .xlsx", sheet="Detalles_Positivos") 
 
 d4%>%group_by(Region,Sexo)%>%
