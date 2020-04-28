@@ -29,14 +29,20 @@ En la siguiente tabla listamos los files y los contribuidores.
 
   - Datos de Google "movility" - Recopilado por @hugonopo
 
-## informacion_distritos
+# Diresa 
 
+## informacion_distritos
 
 Información de casos positivos y fallecidos por distrito a nivel nacional. La información se recoge de las DIRESAs. 
 
+## informacion_diresa_fallecidos
+
+Información de los fallecidos (sexo, edad, entre otros) reportado por las direcciones regionales de Salud
+
 Los responsables: 
 
-  - José Incio 
+  - José Incio (twitter: [jlincio](https://twitter.com/jlincio))
   - Viviana Maldonado Garcia (twitter: [avimaga](https://twitter.com/avimaga))
   - Rosmery Juyo Juyo (twitter: [chicaidealista](https://twitter.com/chicaidealista))
   - Lucero Flores Werlen (twitter: [LuceroFloresW)](https://twitter.com/LuceroFloresW))
+  - Rodrigo Chocano

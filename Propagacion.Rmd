@@ -21,63 +21,47 @@ library(readxl)
 library(cowplot)
 library(ggpubr)
 library(directlabels)
+library(ggiraph)
 data=import("reportes_minsa.xlsx")
 ```
 
 En esta página complementamos los gráficos presentados en la [sala situacional del coronavirus](https://covid19.minsa.gob.pe/sala_situacional.asp) página oficial del MINSA
 
 
-```{r Graficos}
+```{r Graficos, message=FALSE,error=FALSE}
 f1=data %>%
   ggplot(aes(x = Dia)) +
   ylim(0,max(data$Positivos)*1.1)+
-  geom_bar(aes(y = Nuevos_Positivos, fill = "Nuevos"), stat = "identity", alpha=.5)+
+  geom_bar_interactive(aes(y = Nuevos_Positivos,
+                           tooltip = Nuevos_Positivos,fill = "Nuevos"), stat = "identity", alpha=.5)+
   #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
-  geom_text_repel(
-    aes(x=Dia,y=Nuevos_Positivos,label = Nuevos_Positivos), 
-    vjust = -0.3,
-    size = 3.1,
-    box.padding = 0.05)+
   geom_line(aes(y = Positivos, col = "Acumulados"), size=1) +
-  geom_point(aes(y = Positivos), col = "#8B1C62")+
-  geom_text_repel(
-    aes(x=Dia,y=Positivos,label = Positivos), 
-    vjust = -0.3,
-    size = 3.1,
-    box.padding = 0.05)+
+  geom_point_interactive(aes(y = Positivos,tooltip = Positivos), col = "#8B1C62")+
   labs(y = "Número de casos reportados", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
+                        "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
+  ggtitle("Número de casos positivos de pacientes COVID-19, Perú")+
   theme_minimal() +
   theme(legend.position="bottom")
-
 
 f1_1=data %>%
   mutate(Positivos=Positivos+replace_na(RapidasPositivos,0),
          Nuevos_Positivos=Nuevos_Positivos+replace_na(PR_nuevos,0))%>%
   ggplot(aes(x = Dia)) +
   ylim(0,max(data$Positivos+data$RapidasPositivos,na.rm=TRUE)*1.1)+
-  geom_bar(aes(y = Nuevos_Positivos, fill = "Nuevos"), stat = "identity", alpha=.5)+
-  #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
-  geom_text_repel(
-    aes(x=Dia,y=Nuevos_Positivos,label = Nuevos_Positivos), 
-    vjust = -0.3,
-    size = 3.1,
-    box.padding = 0.05)+
+  geom_bar_interactive(aes(y = Nuevos_Positivos,tooltip =Nuevos_Positivos, fill = "Nuevos"), stat = "identity", alpha=.5)+
   geom_line(aes(y = Positivos, col = "Acumulados"), size=1) +
-  geom_point(aes(y = Positivos), col = "#8B1C62")+
-  geom_text_repel(
-    aes(x=Dia,y=Positivos,label = Positivos), 
-    vjust = -0.3,
-    size = 3.1,
-    box.padding = 0.05)+
+  geom_point_interactive(aes(y = Positivos,tooltip=Positivos), col = "#8B1C62")+
   labs(y = "Número de casos reportados", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
+                        "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
+  ggtitle("Número de casos positivos de pacientes COVID-19,\n Perú (Moleculares+PR)")+
   theme_minimal() +
   theme(legend.position="bottom")
 
@@ -156,25 +140,16 @@ f3_1=data%>%
 f4=data %>%
   ggplot(aes(x = Dia)) +
   ylim(0,max(data$Total_Pruebas)*1.1)+
-  geom_bar(aes(y = Pruebas_dia, fill = "Nuevos"), stat = "identity", alpha=.5)+
-  #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
-  geom_text_repel(
-    aes(x=Dia,y=Pruebas_dia,label = Pruebas_dia), 
-    vjust = -0.3,
-    size = 3.1,
-    box.padding = 0.05)+
+  geom_bar_interactive(aes(y = Pruebas_dia,tooltip =Pruebas_dia, fill = "Nuevos"), stat = "identity", alpha=.5)+
   geom_line(aes(y = Total_Pruebas, col = "Acumulados"), size=1) +
-  geom_point(aes(y = Total_Pruebas), col = "#8B1C62")+
-  geom_text_repel(
-    aes(x=Dia,y=Total_Pruebas,label = Total_Pruebas), 
-    vjust = -0.3,
-    size = 2.1,
-    box.padding = 0.05)+
+  geom_point_interactive(aes(y = Total_Pruebas,tooltip=Total_Pruebas), col = "#8B1C62")+
   labs(y = "Número de pruebas analizadas", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
+                        "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
+  ggtitle("Número de pruebas moleculares analizadas COVID-19 \n (acumulados y nuevos), Perú")+
   theme_minimal() +
   theme(legend.position="bottom")
 
@@ -184,24 +159,16 @@ f4_1=data %>%
   dplyr::select(Dia,Pruebas_dias,Total_Pruebas)%>%
   ggplot(aes(x = Dia)) +
   ylim(0,max(data$Total_Pruebas+data$PruebasRapidas,na.rm=TRUE)*1.1)+
-  geom_bar(aes(y = Pruebas_dias, fill = "Nuevos"), stat = "identity", alpha=.5)+
-  geom_text_repel(
-    aes(x=Dia,y=Pruebas_dias,label = Pruebas_dias), 
-    vjust = -0.3,
-    size = 2.1,
-    box.padding = 0.05)+
+  geom_bar_interactive(aes(y = Pruebas_dias,tooltip =Pruebas_dias, fill = "Nuevos"), stat = "identity", alpha=.5)+
   geom_line(aes(y = Total_Pruebas, col = "Acumulados"), size=1) +
-  geom_point(aes(y = Total_Pruebas), col = "#8B1C62")+
-  geom_text_repel(
-    aes(x=Dia,y=Total_Pruebas,label = Total_Pruebas), 
-    vjust = -0.3,
-    size = 2.1,
-    box.padding = 0.05)+
+  geom_point_interactive(aes(y = Total_Pruebas,tooltip =Total_Pruebas), col = "#8B1C62")+
   labs(y = "Número de pruebas analizadas", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
+                        "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
+  ggtitle("Número de pruebas moleculares y rápidas \n analizadas COVID-19 (acumulados y nuevos), Perú")+
   theme_minimal() +
   theme(legend.position="bottom")
 
@@ -234,11 +201,11 @@ f6=data%>%
   ggtitle("Hospitalizados en camas UCI")+
   geom_hline(yintercept=276, linetype="dashed", 
              color = "red", size=1)+
-    geom_hline(yintercept=525, linetype="dashed", 
+  geom_hline(yintercept=525, linetype="dashed", 
              color = "orange", size=1)+
-      geom_hline(yintercept=656, linetype="dashed", 
+  geom_hline(yintercept=656, linetype="dashed", 
              color = "orange", size=1)+
-  geom_hline(yintercept=719, linetype="dashed", 
+  geom_hline(yintercept=773, linetype="dashed", 
              color = "blue", size=1)+
   annotate(geom="text", 
            label="Capacidad inicial: 276", x=max(data$Dia), 
@@ -246,11 +213,11 @@ f6=data%>%
   annotate(geom="text", 
            label="Dato al 20/04: 525", x=max(data$Dia), 
            y=525, vjust=-1,hjust = 2) +
-    annotate(geom="text", 
+  annotate(geom="text", 
            label="Dato al 23/04: 656", x=max(data$Dia), 
            y=656, vjust=-1,hjust = 1) +
-      annotate(geom="text", 
-           label="Capacidad actual: 719", x=max(data$Dia), 
+  annotate(geom="text", 
+           label="Capacidad actual: 773", x=max(data$Dia), 
            y=726, vjust=-1,hjust = 1) +
   theme_minimal() +
   theme(legend.position="bottom")
@@ -304,32 +271,20 @@ f7<-dat2 %>%
 
 ## Tendencia y número de casos (Acumulados y diarios) pruebas moleculares
 
+- Usa el cursor para ver el número 
 
 ```{r Panelf1, message=FALSE, echo=FALSE}
-## Tendencia y número de casos (Acumulados y diarios)
-# Panel para publicacion
-panel<- ggarrange(f1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de casos positivos de pacientes COVID-19, Perú", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-)
-
+girafe(code = print(f1) )
 ```
+
 
 ## Tendencia y número de casos (Acumulados y diarios) pruebas moleculares y pruebas rápidas
 
+- Usa el cursor para ver el número 
+
 ```{r Panelf1_1, message=FALSE, echo=FALSE}
 
-panel<- ggarrange(f1_1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de casos positivos de pacientes COVID-19,\n Perú (Moleculares+PR)", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-)
-
+girafe(code = print(f1_1) )
 
 ```
 
@@ -399,33 +354,21 @@ panel<- ggarrange(f3_1,
 
 ## Número de pruebas moleculares analizadas (acumulados y diarios)
 
+- Usa el cursor para ver el número 
+
 ```{r Panelf4, message=FALSE, echo=FALSE}
 # Panel para publicacion
-panel<- ggarrange(f4,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de pruebas moleculares analizadas COVID-19 \n (acumulados y nuevos), Perú", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
+girafe(code = print(f4) )
 
 ```
 
 ## Número de pruebas moleculares + rápidas analizadas (acumulados y diarios)
 
+- Usa el cursor para ver el número 
+
 ```{r Panelf4_1, message=FALSE, echo=FALSE}
 # Panel para publicacion
-panel<- ggarrange(f4_1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de pruebas moleculares y rápidas \n analizadas COVID-19 (acumulados y nuevos), Perú", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
+girafe(code = print(f4_1) )
 
 ```
 
