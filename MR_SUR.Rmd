@@ -65,9 +65,10 @@ plot_macro2(data5, "SUR")
 **Nota**: Con información de las DIRESAS. No es información completa, estamos tratando de recolectar la información faltante. Puedes acceder a la data completa en el repositorio: https://github.com/jincio/COVID_19_PERU
 
 
-#### Por Distrito
 
-```{r}
+
+```{r, eval=FALSE}
+#### Por Distrito
 #load("./data/provincial_distrital/provincial_distrital.RData")
 dd=import("./data/Data_departamental .xlsx", sheet="Ubicacion_casos")
 
@@ -79,9 +80,10 @@ dd=import("./data/Data_departamental .xlsx", sheet="Ubicacion_casos")
 
 ```
 
-Aquí te mostramos el número de registros que tenemos por región.
 
-```{r}
+```{r, eval=FALSE}
+#Aquí te mostramos el número de registros que tenemos por región.
+
 dd%>%filter(Region%in%c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO"))%>%
   dplyr::select(Region,Provincia,Distrito,
                 tipo, Valor, Fecha)%>%
