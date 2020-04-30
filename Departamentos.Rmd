@@ -108,7 +108,17 @@ plot_grid(m1,m2)
 
 # Tendencias por departamento
 
-## Comparadas con Nacional y Lima
+## Comparando nacional, departamentos y Lima
+
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/plotFallecimientosPromedio-nacional-departamento-latest.png')
+```
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/plotFallecimientosPromedioPorMillon-nacional-departamento-latest.png')
+```
+
 
 ```{r echo=FALSE, out.width='80%'}
 knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-latest.png')
@@ -121,6 +131,7 @@ knitr::include_graphics('./Imagenes/tendenciaCaso100-nacional-departamento-lates
 ```{r echo=FALSE, out.width='80%'}
 knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departamento-latest.png')
 ```
+
 
 ## Por Macro-Región
 

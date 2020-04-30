@@ -24,7 +24,9 @@ kable(data,format = "markdown")
 
 ## Notas 
 
-### Reporte Minsa
+### Folder Principal
+
+**Reporte Minsa**
 
 - Tiene información de los reportes de MINSA a nivel nacional y regional. Es la fuente principal para 
 https://perucovid19.netlify.app/propagacion
@@ -37,5 +39,21 @@ Responsables:
   - Sara Kelly Rebaza Cardenas (twitter: [KellyRebazaC](https://twitter.com/KellyRebazaC))
   - Bryan Gianfranco Fernandez Camacho (twitter: [bryanferncam](https://twitter.com/bryanferncam))
 
+### Folder: Diresa
+
+Informes recopilados de las Diresas
+
+- **informacion_distritos**
+- **información_diresa_fallecidos**
+
+
+
+Responsables:
+
+  - José Incio
+  - Nathan Nadramija (twitter: [NNadramija](https://twitter.com/nnnadramija))
+  - Viviana Maldonado Garcia (twitter: [avimaga](https://twitter.com/avimaga))
+  - Rosmery Juyo Juyo (twitter: [chicaidealista](https://twitter.com/chicaidealista))
+  - Lucero Flores Werlen (twitter: [LuceroFloresW)](https://twitter.com/LuceroFloresW))
 
 
