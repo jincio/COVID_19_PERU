@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Noticias Falsas</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="Fake.html">Noticias Falsas</a>
+</li>
+<li>
+  <a href="Propagacion.html">Datos Nacionales</a>
+</li>
+<li>
+  <a href="Departamentos.html">Datos Regiones</a>
+</li>
+<li>
+  <a href="Investigaciones.html">Investigaciones Científicas</a>
+</li>
+<li>
+  <a href="Noticias_historias.html">Notas periodisticas</a>
+</li>
+<li>
+  <a href="Proyectos.html">Proyectos</a>
+</li>
+<li>
+  <a href="Datas.html">Bases_disponibles</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Noticias Falsas</h1>
+
+</div>
+
+
+<div id="noticias-falsas" class="section level2">
+<h2><span class="header-section-number">0.1</span> Noticias Falsas</h2>
+<p>En esta página listasmo las noticias falsas que están circulando. Si se puede identificar quien las propaga o genera aun mejor.</p>
+<div id="tratamientos-o-curas" class="section level3">
+<h3><span class="header-section-number">0.1.1</span> Tratamientos o curas</h3>
+<blockquote class="twitter-tweet">
+<p lang="es" dir="ltr">
+🔴 ATENCIÓN | Respecto a la publicación en redes sociales que informa sobre un presunto descubrimiento para combatir el <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a>, el <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> informa que es FALSA. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> 🇵🇪 <a href="https://t.co/ZtzTVuRcU0">pic.twitter.com/ZtzTVuRcU0</a>
+</p>
+— Ministerio de Salud (<span class="citation">@Minsa_Peru</span>) <a href="https://twitter.com/Minsa_Peru/status/1243555575356686341?ref_src=twsrc%5Etfw">March 27, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div id="huida-de-ciudadanos" class="section level3">
+<h3><span class="header-section-number">0.1.2</span> Huida de ciudadanos</h3>
+<blockquote class="twitter-tweet">
+<p lang="es" dir="ltr">
+⚠️ ATENCIÓN | Respecto a publicaciones en redes sociales que señalan la huida de pacientes con <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> del Hospital Cayetano Heredia y el Hospital Dos de Mayo, el <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> informa que son FALSAS.<br> <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> <a href="https://t.co/63oahpTzfU">pic.twitter.com/63oahpTzfU</a>
+</p>
+— Ministerio de Salud (<span class="citation">@Minsa_Peru</span>) <a href="https://twitter.com/Minsa_Peru/status/1242218168803823621?ref_src=twsrc%5Etfw">March 23, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet">
+<p lang="es" dir="ltr">
+⚠ ATENCIÓN | Respecto a publicaciones en redes sociales que señalan la huida de ciudadanos con casos confirmados de <a href="https://twitter.com/hashtag/COVID19?src=hash&amp;ref_src=twsrc%5Etfw">#COVID19</a> del <a href="https://twitter.com/HospitalOficial?ref_src=twsrc%5Etfw"><span class="citation">@HospitalOficial</span></a>, el <a href="https://twitter.com/hashtag/Minsa?src=hash&amp;ref_src=twsrc%5Etfw">#Minsa</a> informa que son FALSAS. <a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a><br><br>Para más información ➡ <a href="https://t.co/F4GaDrN5dc">https://t.co/F4GaDrN5dc</a> <a href="https://t.co/uzBOiCr23K">pic.twitter.com/uzBOiCr23K</a>
+</p>
+— Ministerio de Salud (<span class="citation">@Minsa_Peru</span>) <a href="https://twitter.com/Minsa_Peru/status/1240466773704507392?ref_src=twsrc%5Etfw">March 19, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div id="mensaje-sobre-bono" class="section level3">
+<h3><span class="header-section-number">0.1.3</span> Mensaje sobre Bono</h3>
+<blockquote class="twitter-tweet">
+<p lang="es" dir="ltr">
+📢<a href="https://twitter.com/hashtag/MEFInforma?src=hash&amp;ref_src=twsrc%5Etfw">#MEFInforma</a> que este mensaje de texto es falso. <br>Pedimos a la población no dejarse sorprender con noticias falsas. <br>La información sobre la asignación del bono anunciado se dará a conocer a través de los canales oficiales.<a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> <a href="https://t.co/Ubq6UMq7hF">pic.twitter.com/Ubq6UMq7hF</a>
+</p>
+— Ministerio de Economía y Finanzas (<span class="citation">@MEF_Peru</span>) <a href="https://twitter.com/MEF_Peru/status/1240372186801754112?ref_src=twsrc%5Etfw">March 18, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div id="whatssapp-sobre-estado-de-emergencia" class="section level3">
+<h3><span class="header-section-number">0.1.4</span> Whatssapp sobre Estado de Emergencia</h3>
+<blockquote class="twitter-tweet">
+<p lang="es" dir="ltr">
+Advertimos a la opinión pública sobre un falso pronunciamiento que viene circulando en redes sociales. Instamos a los ciudadanos a no dejarse engañar e informarse a través de los canales oficiales. <a href="https://t.co/yLPYnYTJHN">pic.twitter.com/yLPYnYTJHN</a>
+</p>
+— Presidencia Perú (<span class="citation">@presidenciaperu</span>) <a href="https://twitter.com/presidenciaperu/status/1242563472380121089?ref_src=twsrc%5Etfw">March 24, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet">
+<p lang="es" dir="ltr">
+Este mensaje que circula por WhatsApp es falso. <br>Pedimos a la población no dejarse sorprender por información anónima que circula por medios digitales. ¡Acude siempre a fuentes oficiales!<a href="https://twitter.com/hashtag/Per%C3%BAEst%C3%A1EnNuestrasManos?src=hash&amp;ref_src=twsrc%5Etfw">#PerúEstáEnNuestrasManos</a> <a href="https://t.co/iGX5cwfzCX">pic.twitter.com/iGX5cwfzCX</a>
+</p>
+— MINDEF PERU (<span class="citation">@MindefPeru</span>) <a href="https://twitter.com/MindefPeru/status/1240103199433994240?ref_src=twsrc%5Etfw">March 18, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div id="cartilla-sobre-estado-de-emergencia" class="section level3">
+<h3><span class="header-section-number">0.1.5</span> Cartilla sobre Estado de Emergencia</h3>
+<blockquote class="twitter-tweet">
+<p lang="es" dir="ltr">
+<a href="https://twitter.com/hashtag/PNPInforma?src=hash&amp;ref_src=twsrc%5Etfw">#PNPInforma</a>📢| Con relación a una cartilla que viene circulando por redes sociales, sobre instrucciones para el Estado de Emergencia Nacional, informamos a la opinión pública que dicha información es falsa. <a href="https://twitter.com/hashtag/FakeNews?src=hash&amp;ref_src=twsrc%5Etfw">#FakeNews</a> <a href="https://twitter.com/hashtag/NoCaigas?src=hash&amp;ref_src=twsrc%5Etfw">#NoCaigas</a> <a href="https://t.co/W9QCarA3DG">pic.twitter.com/W9QCarA3DG</a>
+</p>
+— Policía Nacional del Perú (<span class="citation">@PoliciaPeru</span>) <a href="https://twitter.com/PoliciaPeru/status/1239752286001397762?ref_src=twsrc%5Etfw">March 17, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div id="mascarillas" class="section level3">
+<h3><span class="header-section-number">0.1.6</span> Mascarillas</h3>
+<p><a href="https://elcomercio.pe/lima/sucesos/coronavirus-en-peru-estas-son-las-especificaciones-del-minsa-para-elaborar-mascarillas-de-forma-casera-covid-19-nndc-noticia/">Especificaciones para elaboración de mascarillas</a></p>
+</div>
+<div id="gárgaras" class="section level3">
+<h3><span class="header-section-number">0.1.7</span> Gárgaras</h3>
+<p>FALSO:</p>
+<p><img src="Imagenes/fake1.jpg" width="80%" /></p>
+</div>
+</div>
+<div id="artículos-imprecisos" class="section level2">
+<h2><span class="header-section-number">0.2</span> Artículos imprecisos</h2>
+<div id="estimación-de-la-propagación-del-coronavirus-2019" class="section level3">
+<h3><span class="header-section-number">0.2.1</span> Estimación de la propagación del coronavirus 2019</h3>
+<p>Está circulando por redes sociales un PDF titulado:</p>
+<p>“ESTIMACIÓN DE LA PROPAGACIÓN DEL CORONAVIRUS 2019 (COVID-19) EN PERU UN MODELO SIR”
+De: Jairo Pinedo Taquía &amp; Jhelly Peréz Núñez</p>
+<p>Los responsables de este sitio creemos que es el documento en el estado actual es impreciso, y que su difusión puede generar mayor desinformación en la población.</p>
+<ol style="list-style-type: decimal">
+<li><p>El PDF de tres páginas no es un artículo científico. No se le puede dar tal credibilidad. El artículo no ha pasado por revisión de pares, ni está avalado por algún revista especializada nacional o extranjera y se debió aclarar que el documento es un borrador/proyecto etc, más no un artículo.</p></li>
+<li><p>El texto tiene varias imprecisiones o supuestos que no son discutidos con la profundidad que corresponde. Entre ellos que:</p></li>
+</ol>
+<ul>
+<li>No se puede asumir a Perú como un bloque interconectado.</li>
+<li>No tienen un ajuste de datos apropiado y un control de sensibilidad de variables. El inicio de la curva epidémica ajustado a pocos datos puede generar imprecisión si tratamos de inferir a partir de ella. Estos nos podrían llevar a escenarios tan disímiles como Corea del Sur o Italia.</li>
+<li>No se puede ignorar el periodo asintomático en esta epidemia. Hay reportes clínicos y epidemiológicos de ser un factor importante de contagio. En ese sentido, el modelo más simple a usar no sería SIR, sino SEIR. Este cambio es importante pues ralentiza el paso de la población susceptible a la población infectada.</li>
+</ul>
+</div>
+<div id="tendencia-de-crecimiento-exponencial-del-numero-de-casos-de-covid-19-no-número-de-muertos" class="section level3">
+<h3><span class="header-section-number">0.2.2</span> Tendencia de crecimiento exponencial del numero de casos de COVID-19, no número de muertos</h3>
+<p><strong>Comentario: Joan Martinez</strong></p>
+<p>Articulos como los publicados por el periódico <a href="https://www.vox.com/future-perfect/2020/3/20/21179040/coronavirus-us-italy-not-overreacting">New York Times</a> or <a href="https://www.washingtonpost.com/graphics/2020/world/corona-simulator/">Washintong Post</a> han empleado visualzaciones de la evolución del número total de casos en países con alta incidencia del COVID-19 como Italia o China. Estos gráficos permiten ver una tendencia exponencial en el número de casos de pacientes de COVID-19, lo cual se usa principalmente para enfatizar la importancia de implementar medidas de mitigación <strong>inmediatas</strong> para reducir la propagación del virus a nivel mundial. En Peru, tambien hubo esfuerzos recientes de periodistas locales buscando replicar este ejercicio. No obstante, sus artículos caen en algunas imprecisiones que serán mencionadas a continuación.</p>
+<ul>
+<li>Con fecha 19 de Marzo, el 2020 artículo de Jaime Althaus publicado en <a href="https://www.lampadia.com/analisis/economia/podrian-morir-125-mil-peruanos">Lampadia</a> estima que <span class="math inline">\(125,000\)</span> peruanos podrian fallecer a causa del Coronavirus.</li>
+<li>Asimismo el artículo publicado en <a href="http://www.hildebrandtensustrece.com">Hildebrant en sus Trece</a> y la portada su Edición 484 indica que es una curva “mortal”.</li>
+</ul>
+<p><img src="Imagenes/Althaus.png" width="80%" /></p>
+<p><img src="Imagenes/Hildebrandt.png" width="80%" /></p>
+<p><strong>Ambos artículos asumen que los pacientes que hayan contraido el virus se convertirán en víctimas mortales lo cual no es enteramente cierto.</strong> De acuerdo al sistema de información de <a href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6">John Hopkins University</a> solo el 4.13% de pacientes que han contraido el virus a nivel mundial han sido víctimas fatales.</p>
+<p>Asimismo, los artículos de los periodistas locales referidos incluyen <em>proyecciones</em> puntuales del número de casos de pacientes contagiados. Sus proyecciones son elaboradas directamente por el equipo periodístico a cargo de la nota en el caso de Hildebrant y citando a un colaborador (doctor) del Sistema Integral de Salud, en el caso de Althaus. Comunicar una proyección del número de casos puede ser alarmante (e incluso irresponsable) para la población no especializada. Siendo concientes de esto, las notas periodisticas de NYT y WP <em>describen</em> el número de casos que ya han sido reportados a las autoridades de salud de sus respectivos países y los comparan con las tendencias de crecimiento <em>observadas</em> para otras naciones con un ratio de contagio y número de días de exposición más alto. <strong>Es decir, a diferencia de los periodistas locales, otros medios de comunicacióon no incurren en reportar proyecciones dado que esto requiere de estimaciones epidemiológicas o bioestadísticas por parte de especialistas en la materia.</strong></p>
+<p>Una visualización de la tendencia que sigue el número de casos de COVID-19 a la fecha se reporta a continuación. Esta tendencia puede ser revertida con el acatamiento del distanciamiento social impuesto por el gobierno.</p>
+<p><img src="Fake_files/figure-html/Panel-1.png" width="672" /></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

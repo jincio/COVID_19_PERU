@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Investigaciones</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="Fake.html">Noticias Falsas</a>
+</li>
+<li>
+  <a href="Propagacion.html">Datos Nacionales</a>
+</li>
+<li>
+  <a href="Departamentos.html">Datos Regiones</a>
+</li>
+<li>
+  <a href="Investigaciones.html">Investigaciones Científicas</a>
+</li>
+<li>
+  <a href="Noticias_historias.html">Notas periodisticas</a>
+</li>
+<li>
+  <a href="Proyectos.html">Proyectos</a>
+</li>
+<li>
+  <a href="Datas.html">Bases_disponibles</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Investigaciones</h1>
+
+</div>
+
+
+<p>Papers/links/findings de revistas científicas.</p>
+<div id="links-útiles" class="section level1">
+<h1><span class="header-section-number">1</span> Links útiles</h1>
+<div id="para-consulta" class="section level2">
+<h2><span class="header-section-number">1.1</span> Para Consulta</h2>
+<ul>
+<li>Biblioteca de UPC: Artículos sobre coronavirus
+<a href="https://biblioteca.upc.edu.pe/covid-19/">Biblioteca-UPC-Coronavirus</a></li>
+</ul>
+</div>
+</div>
+<div id="resumenes-y-artículos" class="section level1">
+<h1><span class="header-section-number">2</span> Resumenes y artículos</h1>
+<div id="efecto-en-los-pulmones" class="section level2">
+<h2><span class="header-section-number">2.1</span> Efecto en los pulmones</h2>
+<p><a href="https://www.sciencemag.org/news/2020/04/how-does-coronavirus-kill-clinicians-trace-ferocious-rampage-through-body-brain-toes">Nature como afecta en los pulmones</a></p>
+</div>
+<div id="testeo" class="section level2">
+<h2><span class="header-section-number">2.2</span> Testeo</h2>
+<p><a href="https://www.the-scientist.com/news-opinion/fda-gives-abbott-emergency-use-of-five-minute-coronavirus-test-67351?utm_content=124004813&amp;utm_medium=social&amp;utm_source=facebook&amp;hss_channel=fbp-212009668822281">FDA aprueba el uso de máquina que entrega resultado en 5 minutos</a></p>
+</div>
+<div id="modelos-sobre-contagio" class="section level2">
+<h2><span class="header-section-number">2.3</span> Modelos sobre contagio</h2>
+<ul>
+<li><a href="https://science.sciencemag.org/content/early/2020/03/25/science.abb4218">The effect of human mobility and control measures on the COVID-19 epidemic in China</a></li>
+</ul>
+<p><strong>Abstract</strong>
+The ongoing COVID-19 outbreak expanded rapidly throughout China. Major behavioral, clinical, and state interventions have been undertaken to mitigate the epidemic and prevent the persistence of the virus in human populations in China and worldwide. It remains unclear how these unprecedented interventions, including travel restrictions, affected COVID-19 spread in China. We use real-time mobility data from Wuhan and detailed case data including travel history to elucidate the role of case importation on transmission in cities across China and ascertain the impact of control measures. Early on, the spatial distribution of COVID-19 cases in China was explained well by human mobility data. Following the implementation of control measures, this correlation dropped and growth rates became negative in most locations, although shifts in the demographics of reported cases were still indicative of local chains of transmission outside Wuhan. This study shows that the drastic control measures implemented in China substantially mitigated the spread of COVID-19.</p>
+<ul>
+<li><a href="https://www.thelancet.com/pdfs/journals/lancet/PIIS0140-6736(20)30260-9.pdf">Nowcasting and forecasting the potential domestic and international spread of the 2019-nCoV outbreak originating in Wuhan, China: a modelling study</a></li>
+</ul>
+<p><strong>Findings</strong></p>
+<p>Findings In our baseline scenario, we estimated that the basic reproductive number for 2019-nCoV was 2·68 (95% CrI 2·47–2·86) and that 75 815 individuals (95% CrI 37 304–130 330) have been infected in Wuhan as of Jan 25, 2020. The epidemic doubling time was 6·4 days (95% CrI 5·8–7·1). We estimated that in the baseline scenario, Chongqing, Beijing, Shanghai, Guangzhou, and Shenzhen had imported 461 (95% CrI 227–805),
+113 (57–193), 98 (49–168), 111 (56–191), and 80 (40–139) infections from Wuhan, respectively. If the transmissibility of 2019-nCoV were similar everywhere domestically and over time, we inferred that epidemics are already growing exponentially in multiple major cities of China with a lag time behind the Wuhan outbreak of about 1–2 weeks.</p>
+</div>
+<div id="cuanto-dura-el-sars-cov-2-coronavirus-en-superficies" class="section level2">
+<h2><span class="header-section-number">2.4</span> Cuanto dura el SARS-COV-2 (Coronavirus) en superficies</h2>
+<p><a href="https://www.nejm.org/doi/full/10.1056/NEJMc2004973">Aerosol and Surface Stability of SARS-CoV-2 as Compared with SARS-CoV-1</a></p>
+</div>
+<div id="sobre-el-origen-del-virus" class="section level2">
+<h2><span class="header-section-number">2.5</span> Sobre el origen del virus</h2>
+<p><a href="https://www.nature.com/articles/s41591-020-0820-9?utm_source=twitter&amp;utm_medium=social&amp;utm_content=organic&amp;utm_campaign=NGMT_USG_JC01_GL_NRJournals">The proximal origin of SARS-COV-2</a></p>
+</div>
+<div id="efecto-de-fármacos" class="section level2">
+<h2><span class="header-section-number">2.6</span> Efecto de fármacos</h2>
+<div id="reportes-de-essalud-sobre-el-efecto-de-fármacos-en-el-tratamiendto-de-pacientes-con-coronavirus" class="section level3">
+<h3><span class="header-section-number">2.6.1</span> Reportes de ESSALUD sobre el efecto de fármacos en el tratamiendto de pacientes con Coronavirus</h3>
+<p>IETSI-EsSalud acaba de sacar reportes breves basados en evidencias sobre el manejo de COVID-19:</p>
+<p><a href="https://www.dropbox.com/sh/fvv75489t7t0yi7/AACM7HowfgRtwWYo8PA1Ilpha?dl=0&amp;fbclid=IwAR1lnZiYDltoT_4CFT0a9R1uHLDt95kNGwZX8Tn1R6H28ntBh_ttrc7c7mk">LINK A REPORTES</a></p>
+<p>Fuente <a href="https://www.facebook.com/photo.php?fbid=10156630222781780&amp;set=a.462103211779&amp;type=3&amp;theater">link</a></p>
+</div>
+<div id="resumen-elaborado-por-comciencia" class="section level3">
+<h3><span class="header-section-number">2.6.2</span> Resumen Elaborado por Comciencia</h3>
+<blockquote class="twitter-tweet">
+<p lang="es" dir="ltr">
+<a href="https://twitter.com/hashtag/COVID%E3%83%BC19?src=hash&amp;ref_src=twsrc%5Etfw">#COVIDー19</a> <br>Uno de los instrumentos más necesarios para salvar la vida a los pacientes son los FÁRMACOS eficaces y seguros. Lamentablemente, a pesar de ya disponer de una buena cantidad de candidatos a la fecha, ninguno dispone de evidencias suficientes <a href="https://twitter.com/hashtag/coronavirus?src=hash&amp;ref_src=twsrc%5Etfw">#coronavirus</a> <a href="https://twitter.com/hashtag/ciencia?src=hash&amp;ref_src=twsrc%5Etfw">#ciencia</a> <a href="https://t.co/EGUjuTzz5p">pic.twitter.com/EGUjuTzz5p</a>
+</p>
+— Comciencia . (<span class="citation">@comcienciacrac</span>) <a href="https://twitter.com/comcienciacrac/status/1241561946614190080?ref_src=twsrc%5Etfw">March 22, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+<div id="coronavirus-puts-drugs-repurposing-on-the-fast-track-link" class="section level3">
+<h3><span class="header-section-number">2.6.3</span> Coronavirus puts drugs repurposing on the fast track <a href="https://www.nature.com/articles/d41587-020-00003-1">link</a></h3>
+<p>Resumen elaborado por <strong>Cleidy Osorio</strong>:</p>
+<p>La empresa Ascletis Pharma fue autorizada por el gobierno chino para probar medicamentos contra el VIH para el tratamiento del nuevo COVID-19. Kaletra es una de estos medicamentos, con la cual se reportó que un paciente con COVID-19 mejoró rápidamente con dicho fármaco. Por otro lado, la empresa BrightGene Bio-Medical Technology anunció que a inicios de febrero fabricaría el antiviral remdesivir. Este medicamento tiene acción para diversos virus, entre ellos MERS Y SARS, los cuales son virus biológicamente parecidos a Covid-19, y por tal motivo podría tener un efecto positivo para tratar esta nueva pandemia. De hecho, el primer paciente en los Estados Unidos con COVID-19 confirmado mejoró después de haber sido durante un día con remdesivir, y aunque no se ha podido demostrar si este medicamento tuvo un efecto directo en la recuperación, lo cierto es que las pruebas con medicamente ya conocidos que son parte del tratamiento de otros virus similares al COVID-19, podrían ayudar a tener una respuesta rápida en el tratamiento de los infectados.
+Por otro lado, el conocimiento de la estructura de diferentes proteínas del COVID-19, que también son similares en otros virus, son también de suma importancia para confirmar mediante la predicción con herramientas computacionales, la reutilización de fármacos ya conocidos.
+En palabras de Bryan Mounce, profesor asistente del Departamento de Microbiología e Inmunología, Universidad de Loyola, Chicago: “Los agentes (medicamentos) de amplio espectro (amplia acción) son ideales para situaciones de brotes [epidémicos] en las que no sabemos completamente a qué nos enfrentamos…”</p>
+</div>
+<div id="startups-están-desarrollando-pruebas-rápidas-para-el-diagnostico-de-sars-cov-2-coronavirus-link" class="section level3">
+<h3><span class="header-section-number">2.6.4</span> Startups están desarrollando pruebas rápidas para el diagnostico de SARS-CoV-2 (Coronavirus) <a href="https://www.medrxiv.org/content/10.1101/2020.03.06.20032334v1">link</a></h3>
+</div>
+</div>
+<div id="investigaciones-de-vacunas" class="section level2">
+<h2><span class="header-section-number">2.7</span> Investigaciones de vacunas</h2>
+<div id="sobre-la-vacuna" class="section level3">
+<h3><span class="header-section-number">2.7.1</span> Sobre la vacuna</h3>
+<p><a href="https://elcomercio.pe/tecnologia/ciencias/coronavirus-vacuna-tratamiento-investigadores-peruanos-ya-trabajan-en-una-posible-vacuna-contra-el-covid-19-noticia/">UPCH y FARVET Perú buscan desarrollar una vacuna contra el COVID-19</a></p>
+<p><a href="https://presse-inserm-fr.cdn.ampproject.org/c/s/presse.inserm.fr/en/launch-of-a-european-clinical-trial-against-covid-19/38737/amp/">Europa Lanza clinical trial para probar vacuna</a></p>
+<blockquote class="twitter-tweet">
+<p lang="es" dir="ltr">
+<a href="https://twitter.com/hashtag/vacunas?src=hash&amp;ref_src=twsrc%5Etfw">#vacunas</a><br><br>Aún faltan meses para que podamos contar con una vacuna segura contra el COVID-19. A la fecha se han identificado una serie de candidatos para esta vacuna, los cuales han sido resumidos por el equipo de COMCIENCIA en la infografía de hoy.<a href="https://twitter.com/hashtag/ciencia?src=hash&amp;ref_src=twsrc%5Etfw">#ciencia</a> <a href="https://twitter.com/hashtag/coronavirus?src=hash&amp;ref_src=twsrc%5Etfw">#coronavirus</a> <a href="https://twitter.com/hashtag/salud?src=hash&amp;ref_src=twsrc%5Etfw">#salud</a> <a href="https://t.co/dENVitqLmM">pic.twitter.com/dENVitqLmM</a>
+</p>
+— Comciencia . (<span class="citation">@comcienciacrac</span>) <a href="https://twitter.com/comcienciacrac/status/1241200175240052736?ref_src=twsrc%5Etfw">March 21, 2020</a>
+</blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
