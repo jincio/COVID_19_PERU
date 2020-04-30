@@ -1,0 +1,44 @@
+---
+title: "Distrital"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r library}
+library(tidyverse)
+library(sf)
+
+info_distrital <- readxl::read_xlsx("data/Diresas/informacion_distritos.xlsx") %>% 
+  filter(Fecha == as.Date("2020-04-26"))
+
+mapa_distrital <- read_sf("data/distrital_shp/Distritos.shp")%>%
+  select(Region = NOMBDEP,
+         Provincia = NOMBPROV,
+         Distrito = NOMBDIST,
+         geometry)
+```
+
+```{r eda}
+regiones <- info_distrital %>% 
+  filter(!is.na(Valor)) %>% 
+  distinct(Region) %>% 
+  pull(Region)
+
+mapa_distrital %>% 
+  left_join(info_distrital) %>% 
+  filter(Region %in% regiones[1]) %>% 
+  ggplot()+
+  geom_sf(aes(fill = Valor)) +
+  scale_x_discrete()+
+  labs(title = paste("Contagios por distrito en", regiones[1]))+
+  theme(legend.position = "none")
+
+
+# se encuentra que hay una observacion fechada como 2020-07-04, se asume que debería ser 2020-04-07
+```
+
+
+
+
