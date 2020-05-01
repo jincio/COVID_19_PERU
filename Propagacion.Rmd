@@ -43,7 +43,7 @@ f1=data %>%
                         "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
-  ggtitle("Número de casos positivos de pacientes COVID-19, Perú")+
+  ggtitle("Número de casos positivos de pacientes COVID-19\n Perú (solo moleculares)")+
   theme_minimal() +
   theme(legend.position="bottom")
 
