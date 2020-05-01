@@ -172,17 +172,32 @@ f4_1=data %>%
   theme_minimal() +
   theme(legend.position="bottom")
 
+# f5=data%>%#mutate(Pruebas_diaPR=replace_na(Pruebas_diaPR,0))%>%
+#   select(Dia,
+#          Moleculares=Pruebas_dia,
+#          Pruebas_Rap=Pruebas_diaPR)%>%
+#   gather(tipo,numero, -Dia)%>%
+#   ggplot(aes(fill=tipo, y=numero, x=Dia)) + 
+#   geom_bar(position="dodge", stat="identity")+
+#   geom_text(aes(label=numero), position=position_dodge(width=0.9),
+#             angle = 90,size = 3)+
+#   theme_minimal() +
+#   theme(legend.position="bottom")
+
 f5=data%>%#mutate(Pruebas_diaPR=replace_na(Pruebas_diaPR,0))%>%
   select(Dia,
          Moleculares=Pruebas_dia,
          Pruebas_Rap=Pruebas_diaPR)%>%
   gather(tipo,numero, -Dia)%>%
-  ggplot(aes(fill=tipo, y=numero, x=Dia)) + 
-  geom_bar(position="dodge", stat="identity")+
-  geom_text(aes(label=numero), position=position_dodge(width=0.9),
-            angle = 90,size = 3)+
-  theme_minimal() +
+  ggplot(aes(fill=tipo, y=numero, x=Dia,tooltip=numero)) + 
+  geom_bar_interactive(stat="identity")+
+  labs(y = "Número de pruebas analizadas", color = " Casos", fill = " ", 
+       #title = paste0("Numero de casos confirmados"),
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
+                        "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU"))+
+  ggtitle("Número de casos positivos de pacientes COVID-19, Perú")+
   theme(legend.position="bottom")
+
 
 f6=data%>%
   slice(21:n())%>%
@@ -372,17 +387,10 @@ girafe(code = print(f4_1) )
 
 ```
 
+
 ```{r Panelf5, message=FALSE, echo=FALSE}
 # Panel para publicacion
-panel<- ggarrange(f5,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Número de pruebas moleculares y rápidas analizadas COVID-19 x dia, Perú", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
+girafe(code = print(f5) )
 
 ```
 
