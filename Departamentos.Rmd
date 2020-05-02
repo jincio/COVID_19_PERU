@@ -149,6 +149,33 @@ data4 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
   )
 ```
 
+
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-centro-latest.png')
+```
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-costa-latest.png')
+```
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-selva-latest.png')
+```
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-sierra-latest.png')
+```
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-costa-latest.png')
+```
+
+```{r echo=FALSE, out.width='80%'}
+knitr::include_graphics('./Imagenes/tendenciaCaso10-nacional-departamento-norte-latest.png')
+```
+
+
 ### CENTRO 
 
 [CENTRO](https://perucovid19.netlify.app/mr_centro)
