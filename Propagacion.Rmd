@@ -195,7 +195,7 @@ f5=data%>%#mutate(Pruebas_diaPR=replace_na(Pruebas_diaPR,0))%>%
        #title = paste0("Numero de casos confirmados"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
                         "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU"))+
-  ggtitle("Número de casos positivos de pacientes COVID-19, Perú")+
+  ggtitle("Número de pruebas analizadas (moleculares y rápidas), Perú")+
   theme(legend.position="bottom")
 
 
@@ -218,22 +218,17 @@ f6=data%>%
              color = "red", size=1)+
   geom_hline(yintercept=525, linetype="dashed", 
              color = "orange", size=1)+
-  geom_hline(yintercept=656, linetype="dashed", 
-             color = "orange", size=1)+
-  geom_hline(yintercept=820, linetype="dashed", 
+  geom_hline(yintercept=849, linetype="dashed", 
              color = "blue", size=1)+
   annotate(geom="text", 
            label="Capacidad inicial", x=max(data$Dia), 
            y=276, vjust=-1,hjust = 1)+
   annotate(geom="text", 
            label="Capacidad al 20/04", x=max(data$Dia), 
-           y=525, vjust=-1,hjust = 2) +
+           y=525, vjust=-1,hjust = 2)  +
   annotate(geom="text", 
-           label="Capacidad al 23/04", x=max(data$Dia), 
-           y=656, vjust=-1,hjust = 2) +
-  annotate(geom="text", 
-           label="Capacidad actual: 820", x=max(data$Dia), 
-           y=726, vjust=-1,hjust = 2) +
+           label="Capacidad actual: 849", x=max(data$Dia), 
+           y=849, vjust=-1,hjust = 2) +
   theme_minimal() +
   theme(legend.position="bottom")
 ```
