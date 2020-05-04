@@ -14,6 +14,8 @@ library(ggrepel)
 library(ggpubr)
 library(cowplot)
 library(kableExtra)
+library(directlabels)
+library(ggiraph)
 data=rio::import("reportes_minsa.xlsx")
 
 source("global.R", encoding = "UTF-8")
@@ -149,6 +151,68 @@ data4 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
   )
 ```
 
+```{r tendencias1}
+temp2=data2%>%dplyr::select(REGION, Fallecidos,Fecha)%>%
+  mutate(
+  MACROREG= dplyr::case_when(
+    REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH") ~"NORTE",
+    REGION %in% c("AMAZONAS","LORETO","UCAYALI","MADRE DE DIOS","SAN MARTIN") ~ "ORIENTE",
+    REGION %in% c("ICA","MOQUEGUA","AREQUIPA","TACNA","PUNO","CUSCO") ~ "SUR",
+    REGION %in% c("AYACUCHO","APURIMAC","JUNIN", "HUANCAVELICA", "HUANUCO", "PASCO") ~ "CENTRO",
+    REGION %in% c("LIMA", "CALLAO") ~ "LIMAyCALLAO",
+    TRUE ~ "OTRO"))%>%
+  na.omit()%>%
+  group_by(Fecha,MACROREG)%>%
+  summarise(Fallecidos=sum(Fallecidos))%>%
+  ungroup()%>%
+  filter(Fallecidos>10)%>%
+  group_by(MACROREG)%>%
+  mutate(Fallecidos2=ifelse(Fallecidos==min(Fallecidos),10,Fallecidos)
+           )%>%
+  mutate(days=seq(0,n()-1,1))%>%
+  ungroup()
+
+data1=data.frame(days=seq(0,max(temp2$days),1))%>%
+  mutate(dd=10*2^(days/2),
+         d4=10*2^(days/4),
+         d4=10*2^(days/4),
+         d6=10*2^(days/6),
+         d10=10*2^(days/10))
+
+gg=ggplot()+
+  geom_line(data=temp2,aes(x=days,y=Fallecidos2,
+                           color=MACROREG,group=MACROREG))+
+  geom_point_interactive(data=temp2,aes(x=days,y = Fallecidos2,tooltip = Fallecidos2,
+                             group=MACROREG, color=MACROREG),
+                         size=1)+
+  theme_bw() +
+  geom_line(data=data1,aes(x=days,y=dd), linetype="dashed")+
+  geom_line(data=data1,aes(x=days,y=d4),linetype="dashed")+
+  geom_line(data=data1,aes(x=days,y=d6),linetype="dashed")+
+  geom_line(data=data1,aes(x=days,y=d10),linetype="dashed")+
+  coord_cartesian(ylim=c(10, 1600),
+                  xlim=c(0,30))+
+  scale_y_continuous(trans = "log10")+
+  annotate("text", x = 11, y = 510, label = "duplica:2 dias",
+           angle=55, color="red", size=3)+
+  annotate("text", x = 16, y = 198, label = "duplica:4 dias",
+           angle=35, color="orange",size=3)+
+  annotate("text", x = 22, y = 150, label = "duplica: 6 dias",
+           angle=28, color="orange", size=3)+
+  annotate("text", x = 20, y = 50, label = "duplica: 10 dias",
+           angle=19, color="orange", size=3)+
+  ggtitle("Tendencia de fallecidos por Macro-Región")+
+  theme(legend.position="bottom")+
+  labs(y = "Número de Fallecidos", x= "Dias a partir del caso 10", color = " Macro-Region", fill = " ", 
+       #title = paste0("Numero de casos confirmados"),
+       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
+                        "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU",
+                        "\n créditos: @fjsistemas-@jincio"))
+```
+
+```{r}
+girafe(code = print(gg) )
+```
 
 
 ```{r echo=FALSE, out.width='80%'}

@@ -570,7 +570,9 @@ Para los gráficos he adaptado del post de Gabriel Carrasco Escobar (http://gcar
 
 # Informes de Minsa
 
-Para la construcción de la tabla he usado la información difundida por MINSA en su cuenta oficial de twitter [@Minsa_Peru](https://twitter.com/Minsa_Peru). Existe también la página https://www.gob.pe/8662. 
+Los reportes se construyen a partir de las notas de prensa publicadas aquí:
+https://www.gob.pe/busquedas?contenido[]=noticias&institucion[]=minsa&reason=sheet&sheet=1
+y de los reportes de la sala situacional. 
 
 04/13
 
