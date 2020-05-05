@@ -162,7 +162,7 @@ gg2=ggplot()+
            angle=28, color="orange", size=3)+
   annotate("text", x = 20, y = 50, label = "duplica: 10 dias",
            angle=19, color="orange", size=3)+
-  ggtitle("Tendencia de fallecidos por Macro-Región")+
+  ggtitle("Tendencia de positivos por Macro-Región")+
   theme(legend.position="bottom")+
   labs(y = "Número de Positivos", color = " Macro-Region", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
