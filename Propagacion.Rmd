@@ -239,7 +239,7 @@ f6=data%>%
              color = "red", size=1)+
   geom_hline(yintercept=525, linetype="dashed", 
              color = "orange", size=1)+
-  geom_hline(yintercept=849, linetype="dashed", 
+  geom_hline(yintercept=880, linetype="dashed", 
              color = "blue", size=1)+
   annotate(geom="text", 
            label="Capacidad inicial", x=max(data$Dia), 
@@ -248,8 +248,8 @@ f6=data%>%
            label="Capacidad al 20/04", x=max(data$Dia), 
            y=525, vjust=-1,hjust = 2)  +
   annotate(geom="text", 
-           label="Capacidad actual: 849", x=max(data$Dia), 
-           y=849, vjust=-1,hjust = 2) +
+           label="Capacidad actual: 880", x=max(data$Dia), 
+           y=880, vjust=-1,hjust = 2) +
   theme_minimal() +
   theme(legend.position="bottom")
 ```
