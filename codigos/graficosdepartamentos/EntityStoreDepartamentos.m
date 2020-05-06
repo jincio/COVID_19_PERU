@@ -3,53 +3,72 @@ EntityStore[
      <|"Entities" -> <|"AMAZONAS" -> <|"Label" -> "Amazonas", 
           "WLEntity" -> Entity["AdministrativeDivision", {"Amazonas", 
              "Peru"}], "Population" -> Quantity[379384, "People"], 
-          "MacroRegion" -> {"ORIENTE", "SELVA"}|>, 
+          "MacroRegion" -> {"ORIENTE", "SELVA"}, "Capital" -> 
+           Entity["City", {"Chachapoyas", "Amazonas", "Peru"}]|>, 
         "ANCASH" -> <|"Label" -> "Ancash", "WLEntity" -> 
            Entity["AdministrativeDivision", {"Ancash", "Peru"}], 
           "Population" -> Quantity[1083519, "People"], "MacroRegion" -> 
-           {"NORTE", "COSTA"}|>, "APURIMAC" -> 
-         <|"Label" -> "Apur\[IAcute]mac", "WLEntity" -> 
+           {"NORTE", "COSTA", "COSTANOLIMA"}, "Capital" -> 
+           Entity["City", {"Huaraz", "Ancash", "Peru"}]|>, 
+        "APURIMAC" -> <|"Label" -> "Apur\[IAcute]mac", "WLEntity" -> 
            Entity["AdministrativeDivision", {"Apurimac", "Peru"}], 
           "Population" -> Quantity[405759, "People"], "MacroRegion" -> 
-           {"CENTRO", "SIERRA"}|>, "AREQUIPA" -> <|"Label" -> "Arequipa", 
-          "WLEntity" -> Entity["AdministrativeDivision", {"Arequipa", 
-             "Peru"}], "Population" -> Quantity[1382730, "People"], 
-          "MacroRegion" -> {"SUR", "COSTA"}|>, "AYACUCHO" -> 
+           {"CENTRO", "SIERRA"}, "Capital" -> Entity["City", 
+            {"Abancay", "Apurimac", "Peru"}]|>, "AREQUIPA" -> 
+         <|"Label" -> "Arequipa", "WLEntity" -> 
+           Entity["AdministrativeDivision", {"Arequipa", "Peru"}], 
+          "Population" -> Quantity[1382730, "People"], "MacroRegion" -> 
+           {"SUR", "COSTA", "COSTANOLIMA"}, "Capital" -> Entity["City", 
+            {"Arequipa", "Arequipa", "Peru"}]|>, "AYACUCHO" -> 
          <|"Label" -> "Ayacucho", "WLEntity" -> 
            Entity["AdministrativeDivision", {"Ayacucho", "Peru"}], 
           "Population" -> Quantity[616176, "People"], "MacroRegion" -> 
-           {"CENTRO", "SIERRA"}|>, "CAJAMARCA" -> <|"Label" -> "Cajamarca", 
-          "WLEntity" -> Entity["AdministrativeDivision", {"Cajamarca", 
-             "Peru"}], "Population" -> Quantity[1341012, "People"], 
-          "MacroRegion" -> {"NORTE", "SIERRA"}|>, "CALLAO" -> 
-         <|"Label" -> "Callao", "WLEntity" -> Entity[
-            "AdministrativeDivision", {"Callao", "Peru"}], 
+           {"CENTRO", "SIERRA"}, "Capital" -> Entity["City", 
+            {"Ayacucho", "Ayacucho", "Peru"}]|>, "CAJAMARCA" -> 
+         <|"Label" -> "Cajamarca", "WLEntity" -> 
+           Entity["AdministrativeDivision", {"Cajamarca", "Peru"}], 
+          "Population" -> Quantity[1341012, "People"], "MacroRegion" -> 
+           {"NORTE", "SIERRA"}, "Capital" -> Entity["City", 
+            {"Cajamarca", "Cajamarca", "Peru"}]|>, 
+        "CALLAO" -> <|"Label" -> "Callao", "WLEntity" -> 
+           Entity["AdministrativeDivision", {"Callao", "Peru"}], 
           "Population" -> Quantity[994494, "People"], "MacroRegion" -> 
-           {"LIMACALLAO", "COSTA"}|>, "CUSCO" -> <|"Label" -> "Cusco", 
+           {"LIMACALLAO", "COSTA"}, "Capital" -> 
+           Entity["AdministrativeDivision", {"Callao", "Callao", "Callao", 
+             "Peru"}]|>, "CUSCO" -> <|"Label" -> "Cusco", 
           "WLEntity" -> Entity["AdministrativeDivision", {"Cusco", "Peru"}], 
           "Population" -> Quantity[1205527, "People"], "MacroRegion" -> 
-           {"SUR", "SIERRA"}|>, "HUANCAVELICA" -> 
-         <|"Label" -> "Huancavelica", "WLEntity" -> 
-           Entity["AdministrativeDivision", {"Huancavelica", "Peru"}], 
-          "Population" -> Quantity[347639, "People"], "MacroRegion" -> 
-           {"CENTRO", "SIERRA"}|>, "HUANUCO" -> 
-         <|"Label" -> "Hu\[AAcute]nuco", "WLEntity" -> 
+           {"SUR", "SIERRA"}, "Capital" -> Entity["City", {"Cusco", "Cusco", 
+             "Peru"}]|>, "HUANCAVELICA" -> <|"Label" -> "Huancavelica", 
+          "WLEntity" -> Entity["AdministrativeDivision", {"Huancavelica", 
+             "Peru"}], "Population" -> Quantity[347639, "People"], 
+          "MacroRegion" -> {"CENTRO", "SIERRA"}, "Capital" -> 
+           Entity["City", {"Huancavelica", "Huancavelica", "Peru"}]|>, 
+        "HUANUCO" -> <|"Label" -> "Hu\[AAcute]nuco", "WLEntity" -> 
            Entity["AdministrativeDivision", {"Huanuco", "Peru"}], 
           "Population" -> Quantity[721047, "People"], "MacroRegion" -> 
-           {"CENTRO", "SIERRA"}|>, "ICA" -> <|"Label" -> "Ica", 
-          "WLEntity" -> Entity["AdministrativeDivision", {"Ica", "Peru"}], 
+           {"CENTRO", "SIERRA"}, "Capital" -> Entity["City", 
+            {"Huanuco", "Huanuco", "Peru"}]|>, 
+        "ICA" -> <|"Label" -> "Ica", "WLEntity" -> 
+           Entity["AdministrativeDivision", {"Ica", "Peru"}], 
           "Population" -> Quantity[850765, "People"], "MacroRegion" -> 
-           {"SUR", "COSTA"}|>, "JUNIN" -> <|"Label" -> "Jun\[IAcute]n", 
-          "WLEntity" -> Entity["AdministrativeDivision", {"Junin", "Peru"}], 
+           {"SUR", "COSTA", "COSTANOLIMA"}, "Capital" -> Entity["City", 
+            {"Ica", "Ica", "Peru"}]|>, "JUNIN" -> 
+         <|"Label" -> "Jun\[IAcute]n", "WLEntity" -> 
+           Entity["AdministrativeDivision", {"Junin", "Peru"}], 
           "Population" -> Quantity[1246038, "People"], "MacroRegion" -> 
-           {"CENTRO", "SIERRA"}|>, "LA LIBERTAD" -> 
+           {"CENTRO", "SIERRA"}, "Capital" -> Entity["City", 
+            {"Huancayo", "Junin", "Peru"}]|>, "LA LIBERTAD" -> 
          <|"Label" -> "La Libertad", "WLEntity" -> 
            Entity["AdministrativeDivision", {"LaLibertad", "Peru"}], 
           "Population" -> Quantity[1778080, "People"], "MacroRegion" -> 
-           {"NORTE", "COSTA"}|>, "LAMBAYEQUE" -> <|"Label" -> "Lambayeque", 
-          "WLEntity" -> Entity["AdministrativeDivision", {"Lambayeque", 
-             "Peru"}], "Population" -> Quantity[1197260, "People"], 
-          "MacroRegion" -> {"NORTE", "COSTA"}|>, 
+           {"NORTE", "COSTA", "COSTANOLIMA"}, "Capital" -> 
+           Entity["City", {"Trujillo", "LaLibertad", "Peru"}]|>, 
+        "LAMBAYEQUE" -> <|"Label" -> "Lambayeque", "WLEntity" -> 
+           Entity["AdministrativeDivision", {"Lambayeque", "Peru"}], 
+          "Population" -> Quantity[1197260, "People"], "MacroRegion" -> 
+           {"NORTE", "COSTA", "COSTANOLIMA"}, "Capital" -> 
+           Entity["City", {"Chiclayo", "Lambayeque", "Peru"}]|>, 
         "LIMA" -> <|"Label" -> "Lima", "WLEntity" -> 
            Entity["AdministrativeDivision", {"Lima", "Peru"}], 
           "Population" -> Quantity[9485405, "People"], "SpecialPolygon" -> 
@@ -164,42 +183,56 @@ EntityStore[
              {-12.404026, -76.77597}, {-12.439028, -76.775138}, {-12.444026, 
              -76.786529}, {-12.478471, -76.791252}, {-12.472639, -76.802635}, 
              {-12.495139, -76.805694}, {-12.509305, -76.804031}}]], 
-          "MacroRegion" -> {"LIMACALLAO", "COSTA"}|>, 
+          "MacroRegion" -> {"LIMACALLAO", "COSTA"}, "Capital" -> 
+           Entity["City", {"Lima", "Lima", "Peru"}]|>, 
         "LORETO" -> <|"Label" -> "Loreto", "WLEntity" -> 
            Entity["AdministrativeDivision", {"Loreto", "Peru"}], 
           "Population" -> Quantity[883510, "People"], "MacroRegion" -> 
-           {"ORIENTE", "SELVA"}|>, "MADRE DE DIOS" -> 
+           {"ORIENTE", "SELVA"}, "Capital" -> Entity["City", 
+            {"Iquitos", "Loreto", "Peru"}]|>, "MADRE DE DIOS" -> 
          <|"Label" -> "Madre de Dios", "WLEntity" -> 
            Entity["AdministrativeDivision", {"MadreDeDios", "Peru"}], 
           "Population" -> Quantity[141070, "People"], "MacroRegion" -> 
-           {"ORIENTE", "SELVA"}|>, "MOQUEGUA" -> <|"Label" -> "Moquegua", 
-          "WLEntity" -> Entity["AdministrativeDivision", {"Moquegua", 
-             "Peru"}], "Population" -> Quantity[174863, "People"], 
-          "MacroRegion" -> {"SUR", "COSTA"}|>, "PASCO" -> 
+           {"ORIENTE", "SELVA"}, "Capital" -> Entity["City", 
+            {"PuertoMaldonado", "MadreDeDios", "Peru"}]|>, 
+        "MOQUEGUA" -> <|"Label" -> "Moquegua", "WLEntity" -> 
+           Entity["AdministrativeDivision", {"Moquegua", "Peru"}], 
+          "Population" -> Quantity[174863, "People"], "MacroRegion" -> 
+           {"SUR", "COSTA", "COSTANOLIMA"}, "Capital" -> Entity["City", 
+            {"Moquegua", "Moquegua", "Peru"}]|>, "PASCO" -> 
          <|"Label" -> "Pasco", "WLEntity" -> Entity["AdministrativeDivision", 
             {"Pasco", "Peru"}], "Population" -> Quantity[254065, "People"], 
-          "MacroRegion" -> {"CENTRO", "SIERRA"}|>, 
+          "MacroRegion" -> {"CENTRO", "SIERRA"}, "Capital" -> 
+           Entity["City", {"CerroDePasco", "Pasco", "Peru"}]|>, 
         "PIURA" -> <|"Label" -> "Piura", "WLEntity" -> 
            Entity["AdministrativeDivision", {"Piura", "Peru"}], 
           "Population" -> Quantity[1856809, "People"], "MacroRegion" -> 
-           {"NORTE", "COSTA"}|>, "PUNO" -> <|"Label" -> "Puno", 
-          "WLEntity" -> Entity["AdministrativeDivision", {"Puno", "Peru"}], 
+           {"NORTE", "COSTA", "COSTANOLIMA"}, "Capital" -> 
+           Entity["City", {"Piura", "Piura", "Peru"}]|>, 
+        "PUNO" -> <|"Label" -> "Puno", "WLEntity" -> 
+           Entity["AdministrativeDivision", {"Puno", "Peru"}], 
           "Population" -> Quantity[1172697, "People"], "MacroRegion" -> 
-           {"SUR", "SIERRA"}|>, "SAN MARTIN" -> 
-         <|"Label" -> "San Mart\[IAcute]n", "WLEntity" -> 
-           Entity["AdministrativeDivision", {"SanMartin", "Peru"}], 
-          "Population" -> Quantity[813381, "People"], "MacroRegion" -> 
-           {"ORIENTE", "SELVA"}|>, "TACNA" -> <|"Label" -> "Tacna", 
-          "WLEntity" -> Entity["AdministrativeDivision", {"Tacna", "Peru"}], 
+           {"SUR", "SIERRA"}, "Capital" -> Entity["City", {"Puno", "Puno", 
+             "Peru"}]|>, "SAN MARTIN" -> <|"Label" -> "San Mart\[IAcute]n", 
+          "WLEntity" -> Entity["AdministrativeDivision", {"SanMartin", 
+             "Peru"}], "Population" -> Quantity[813381, "People"], 
+          "MacroRegion" -> {"ORIENTE", "SELVA"}, "Capital" -> 
+           Entity["City", {"Moyobamba", "SanMartin", "Peru"}]|>, 
+        "TACNA" -> <|"Label" -> "Tacna", "WLEntity" -> 
+           Entity["AdministrativeDivision", {"Tacna", "Peru"}], 
           "Population" -> Quantity[329332, "People"], "MacroRegion" -> 
-           {"SUR", "COSTA"}|>, "TUMBES" -> <|"Label" -> "Tumbes", 
+           {"SUR", "COSTA", "COSTANOLIMA"}, "Capital" -> Entity["City", 
+            {"Tacna", "Tacna", "Peru"}]|>, "TUMBES" -> <|"Label" -> "Tumbes", 
           "WLEntity" -> Entity["AdministrativeDivision", {"Tumbes", "Peru"}], 
           "Population" -> Quantity[224863, "People"], "MacroRegion" -> 
-           {"NORTE", "COSTA"}|>, "UCAYALI" -> <|"Label" -> "Ucayali", 
-          "WLEntity" -> Entity["AdministrativeDivision", {"Ucayali", 
-             "Peru"}], "Population" -> Quantity[496459, "People"], 
-          "MacroRegion" -> {"ORIENTE", "SELVA"}|>|>, 
-      "Properties" -> <|"Population" -> <|"Label" -> "Poblaci\[OAcute]n"|>, 
+           {"NORTE", "COSTA", "COSTANOLIMA"}, "Capital" -> 
+           Entity["City", {"Tumbes", "Tumbes", "Peru"}]|>, 
+        "UCAYALI" -> <|"Label" -> "Ucayali", "WLEntity" -> 
+           Entity["AdministrativeDivision", {"Ucayali", "Peru"}], 
+          "Population" -> Quantity[496459, "People"], "MacroRegion" -> 
+           {"ORIENTE", "SELVA"}, "Capital" -> Entity["City", 
+            {"Pucallpa", "Ucayali", "Peru"}]|>|>, "Properties" -> 
+       <|"Population" -> <|"Label" -> "Poblaci\[OAcute]n"|>, 
         "Polygon" -> <|"Label" -> "Pol\[IAcute]gono", "DefaultFunction" -> 
            Function[e, Replace[e["SpecialPolygon"], _?MissingQ :> 
               e["WLEntity"]["Polygon"]]]|>, "Position" -> 
@@ -207,8 +240,9 @@ EntityStore[
            Function[e, e["WLEntity"]["Position"]]|>, 
         "Name" -> <|"Label" -> "Nombre", "DefaultFunction" -> 
            Function[e, e["Label"]]|>, "MacroRegion" -> 
-         <|"Label" -> "Macrorregiones"|>, "Label" -> <||>, 
-        "WLEntity" -> <||>, "SpecialPolygon" -> <||>|>, 
+         <|"Label" -> "Macrorregiones", "Capital" -> 
+           <|"Label" -> "Capital"|>|>, "Label" -> <||>, "WLEntity" -> <||>, 
+        "Capital" -> <||>, "SpecialPolygon" -> <||>|>, 
       "EntityClasses" -> <|"PERU" -> <|"Entities" -> {"AMAZONAS", "ANCASH", 
             "APURIMAC", "AREQUIPA", "AYACUCHO", "CAJAMARCA", "CALLAO", 
             "CUSCO", "HUANCAVELICA", "HUANUCO", "ICA", "JUNIN", 
@@ -234,4 +268,7 @@ EntityStore[
           "Label" -> "departamentos de la sierra"|>, 
         "SELVA" -> <|"Entities" -> {"AMAZONAS", "LORETO", "MADRE DE DIOS", 
             "SAN MARTIN", "UCAYALI"}, "Label" -> 
-           "departamentos de la selva"|>|>|>|>|>]
+           "departamentos de la selva"|>, "COSTANOLIMA" -> 
+         <|"Entities" -> {"ANCASH", "AREQUIPA", "ICA", "LA LIBERTAD", 
+            "LAMBAYEQUE", "MOQUEGUA", "PIURA", "TACNA", "TUMBES"}, 
+          "Label" -> "departamentos de la costa sin Lima-Callao"|>|>|>|>|>]
