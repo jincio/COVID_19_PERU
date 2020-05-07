@@ -7,14 +7,15 @@
 Options[referenceNiceListLogPlot] = {
 	"Size" -> 800,
 	"StartValue" -> 10,
-	"Lines" -> {1, 2, 3, 5, 7, 14},
+	"Lines" -> {1, 2, 3, 4, 5, 7, 14},
 	"PlotStyleRules" -> None,
 	"Copyright" -> Nothing,
 	"Title" -> None,
 	"FrameLeft" -> Automatic,
 	"FrameBottom" -> Automatic,
 	"FrameTop" -> Automatic,
-	"ExtraOptions" -> {}
+	"ExtraOptions" -> {},
+	"Language" -> "es"
 };
 
 
@@ -51,12 +52,12 @@ referenceNiceListLogPlot[data_, options:OptionsPattern[]] := Module[{plot1, plot
  xTextPos = Table[Min[1 + line Log[2, plotRangebase2[[2, 2]]/b], nFinal], {line, lines}];
  texts = MapThread[
 	Text[
-		Rotate[Style[lineToText["es", #1], FontSize -> Scaled[10/size]], #2],
+		Rotate[Style[lineToText[OptionValue["Language"], #1], FontSize -> Scaled[10/size]], #2],
 		{#3, Log[b 2^((#3 - 1)/#1)]},
 		{1, 1} + If[#2 < .2, .1, .15] {1, -1/Tan[#2]}
 	]&, {lines, angles, xTextPos}];
  epilog = {{Opacity[.8], Directive[Black, Dashed], Table[HalfLine[{{1, Log[b]}, {2, Log[b] + Log[2]/d}}], {d, lines}]}, Opacity[.5], texts};
- Show[plot1, Epilog -> epilog] /. HoldPattern[Legended[g_,Placed[lg_,___],opts___]]:>Legended[g,Placed[lg,{{0.045,.98},{0,1}}]]
+ Show[plot1, Epilog -> epilog] /. HoldPattern[Legended[g_,Placed[lg_,___],opts___]]:>Legended[g,Placed[lg,{{0.045,.98},{0,1}}],opts]
 ];
 
 
@@ -65,6 +66,14 @@ lineToText["es", 7] := "duplica cada semana";
 lineToText["es", i_] := If[Mod[i, 7] === 0,
 	"duplica cada "<>IntegerName[i/7, {"Spanish", "Cardinal"}]<>" semanas",
 	"duplica cada "<>IntegerName[i, {"Spanish", "Cardinal"}]<>" d\[IAcute]as"
+];
+
+
+lineToText["en", 1] := "doubles every day";
+lineToText["en", 7] := "doubles every week";
+lineToText["en", i_] := If[Mod[i, 7] === 0,
+	"doubles every "<>IntegerName[i/7, {"English", "Cardinal"}]<>" weeks",
+	"doubles every "<>IntegerName[i, {"English", "Cardinal"}]<>" days"
 ];
 
 
