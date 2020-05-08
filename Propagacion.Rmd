@@ -223,7 +223,7 @@ f5=data%>%#mutate(Pruebas_diaPR=replace_na(Pruebas_diaPR,0))%>%
 f6=data%>%
   slice(21:n())%>%
   ggplot(aes(x=Dia))+
-  ylim(0,900)+
+  ylim(0,1000)+
   geom_line(aes(y=Hospitalizados_UCI))+
   geom_point(aes(y = Hospitalizados_UCI), col = "#8B1C62")+
   geom_text_repel(
@@ -237,19 +237,24 @@ f6=data%>%
   ggtitle("Hospitalizados en camas UCI")+
   geom_hline(yintercept=276, linetype="dashed", 
              color = "red", size=1)+
-  geom_hline(yintercept=525, linetype="dashed", 
-             color = "orange", size=1)+
-  geom_hline(yintercept=880, linetype="dashed", 
+  # geom_hline(yintercept=525, linetype="dashed", 
+  #            color = "orange", size=1)+
+  # geom_hline(yintercept=880, linetype="dashed", 
+  #            color = "blue", size=1)+
+    geom_hline(yintercept=908, linetype="dashed", 
              color = "blue", size=1)+
-  annotate(geom="text", 
-           label="Capacidad inicial", x=max(data$Dia), 
-           y=276, vjust=-1,hjust = 1)+
-  annotate(geom="text", 
-           label="Capacidad al 20/04", x=max(data$Dia), 
-           y=525, vjust=-1,hjust = 2)  +
-  annotate(geom="text", 
-           label="Capacidad actual: 880", x=max(data$Dia), 
-           y=880, vjust=-1,hjust = 2) +
+   annotate(geom="text", 
+            label="Capacidad inicial", x=max(data$Dia), 
+            y=276, vjust=-1,hjust = 1)+
+  # annotate(geom="text", 
+  #          label="Capacidad al 20/04", x=max(data$Dia), 
+  #          y=525, vjust=-1,hjust = 2)  +
+  # annotate(geom="text", 
+  #          label="Capacidad al 05/05: 880", x=max(data$Dia), 
+  #          y=880, vjust=-1,hjust = 2) +
+    annotate(geom="text", 
+           label="Capacidad actual: 908", x=max(data$Dia), 
+           y=908, vjust=-1,hjust = 2) +
   theme_minimal() +
   theme(legend.position="bottom")
 ```
@@ -432,7 +437,6 @@ panel<- ggarrange(f6,
                 #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
                 #fig.lab = "Figure 1", fig.lab.face = "bold"
 )
-
 ```
 
 ## Comparaciones con otros países. 
