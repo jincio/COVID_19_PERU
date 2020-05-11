@@ -245,7 +245,7 @@ gg=ggplot()+
   geom_line(data=data1,aes(x=days,y=d6),linetype="dashed")+
   geom_line(data=data1,aes(x=days,y=d10),linetype="dashed")+
   coord_cartesian(ylim=c(10, 1600),
-                  xlim=c(0,30))+
+                  xlim=c(0,45))+
   scale_y_continuous(trans = "log10")+
   annotate("text", x = 11, y = 510, label = "duplica:2 dias",
            angle=55, color="red", size=3)+
