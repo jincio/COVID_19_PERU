@@ -223,7 +223,7 @@ f5=data%>%#mutate(Pruebas_diaPR=replace_na(Pruebas_diaPR,0))%>%
 f6=data%>%
   slice(21:n())%>%
   ggplot(aes(x=Dia))+
-  ylim(0,1000)+
+  ylim(0,1100)+
   geom_line(aes(y=Hospitalizados_UCI))+
   geom_point(aes(y = Hospitalizados_UCI), col = "#8B1C62")+
   geom_text_repel(
@@ -241,7 +241,7 @@ f6=data%>%
   #            color = "orange", size=1)+
   # geom_hline(yintercept=880, linetype="dashed", 
   #            color = "blue", size=1)+
-    geom_hline(yintercept=979, linetype="dashed", 
+    geom_hline(yintercept=992, linetype="dashed", 
              color = "blue", size=1)+
    annotate(geom="text", 
             label="Capacidad inicial", x=max(data$Dia), 
@@ -254,7 +254,7 @@ f6=data%>%
   #          y=880, vjust=-1,hjust = 2) +
     annotate(geom="text", 
            label="Capacidad actual: 979", x=max(data$Dia), 
-           y=979, vjust=-1,hjust = 2) +
+           y=992, vjust=-1,hjust = 2) +
   theme_minimal() +
   theme(legend.position="bottom")
 ```
