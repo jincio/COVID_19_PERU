@@ -22,7 +22,7 @@ source("global.R", encoding = "UTF-8")
 
 
 ```{r plot_macro}
-data4 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
+data4 = rio::import("reportes_minsa.xlsx", sheet=3)%>%
   dplyr::mutate(
     MACROREG= dplyr::case_when(
         REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH") ~"NORTE",
@@ -36,7 +36,7 @@ data4 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
 ```
 
 ```{r plot_macro2}
-data5 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
+data5 = rio::import("reportes_minsa.xlsx", sheet=3)%>%
   dplyr::mutate(
     MACROREG= dplyr::case_when(
         REGION %in% c("TUMBES","PIURA","LAMBAYEQUE","LA LIBERTAD","CAJAMARCA","ANCASH") ~"NORTE",

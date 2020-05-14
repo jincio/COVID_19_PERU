@@ -29,7 +29,7 @@ source("global.R", encoding = "UTF-8")
 departamento <- sf::read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
   dplyr::select(Departamento = DEPARTAMEN, geometry)
 
-data2 = rio::import("reportes_minsa.xlsx", sheet=2)
+data2 = rio::import("reportes_minsa.xlsx", sheet=3)
 data3 = data2 %>%
   dplyr::filter(Fecha == max(data2$Fecha)) %>%
   dplyr::rename(Departamento = REGION) %>%
@@ -64,7 +64,7 @@ m1 = departamento %>%
 departamento <- sf::read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
   dplyr::select(Departamento = DEPARTAMEN, geometry)
 
-data2 = rio::import("reportes_minsa.xlsx", sheet=2)
+data2 = rio::import("reportes_minsa.xlsx", sheet=3)
 data3 = data2 %>%
   dplyr::filter(Fecha == max(data2$Fecha)) %>%
   dplyr::rename(Departamento = REGION) %>%
@@ -191,7 +191,7 @@ knitr::include_graphics('./Imagenes/tendenciaFallecimiento3-nacional-departament
 
 ## Por Macro-Región
 
-```{r plot_macro}
+```{r plot_macro, eval=FALSE}
 data4 = rio::import("reportes_minsa.xlsx", sheet=2)%>%
   dplyr::mutate(
     MACROREG= dplyr::case_when(
