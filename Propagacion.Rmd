@@ -37,7 +37,8 @@ f1=data %>%
   #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
   geom_line(aes(y = Positivos, col = "Acumulados"), size=1) +
   geom_point_interactive(aes(y = Positivos,tooltip = Positivos), col = "#8B1C62")+
-  labs(y = "Número de casos reportados", color = " Casos", fill = " ", 
+  scale_y_continuous(trans = "log10")+
+  labs(y = "Número de casos reportados (log10)", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
                         "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
@@ -55,7 +56,8 @@ f1_1=data %>%
   geom_bar_interactive(aes(y = Nuevos_Positivos,tooltip =Nuevos_Positivos, fill = "Nuevos"), stat = "identity", alpha=.5)+
   geom_line(aes(y = Positivos, col = "Acumulados"), size=1) +
   geom_point_interactive(aes(y = Positivos,tooltip=Positivos), col = "#8B1C62")+
-  labs(y = "Número de casos reportados", color = " Casos", fill = " ", 
+  scale_y_continuous(trans = "log10")+
+  labs(y = "Número de casos reportados (log10)", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
                         "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
@@ -76,13 +78,14 @@ fallecidos=data %>%
   #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
   geom_line(aes(y = Fallecidos, col = "Acumulados"), size=1) +
   geom_point_interactive(aes(y = Fallecidos,tooltip = Fallecidos), col = "#8B1C62")+
+  scale_y_continuous(trans = "log10")+
   labs(y = "Número de Fallecidos", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
                         "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
   scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
   scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
-  ggtitle("Número de fallecidos COVID-19\n Perú")+
+  ggtitle("Número de fallecidos COVID-19\n Perú (log10)")+
   theme_minimal() +
   theme(legend.position="bottom")
 
@@ -164,7 +167,8 @@ f4=data %>%
   geom_bar_interactive(aes(y = Pruebas_dia,tooltip =Pruebas_dia, fill = "Nuevos"), stat = "identity", alpha=.5)+
   geom_line(aes(y = Total_Pruebas, col = "Acumulados"), size=1) +
   geom_point_interactive(aes(y = Total_Pruebas,tooltip=Total_Pruebas), col = "#8B1C62")+
-  labs(y = "Número de pruebas analizadas", color = " Casos", fill = " ", 
+  scale_y_continuous(trans = "log10")+
+  labs(y = "Número de pruebas analizadas (log10)", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
                         "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
@@ -183,7 +187,8 @@ f4_1=data %>%
   geom_bar_interactive(aes(y = Pruebas_dias,tooltip =Pruebas_dias, fill = "Nuevos"), stat = "identity", alpha=.5)+
   geom_line(aes(y = Total_Pruebas, col = "Acumulados"), size=1) +
   geom_point_interactive(aes(y = Total_Pruebas,tooltip =Total_Pruebas), col = "#8B1C62")+
-  labs(y = "Número de pruebas analizadas", color = " Casos", fill = " ", 
+  scale_y_continuous(trans = "log10")+
+  labs(y = "Número de pruebas analizadas (log10)", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
        caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
                         "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
