@@ -108,6 +108,16 @@ plot_grid(m1,m2)
 <p align = center>
 ![Gif](./Imagenes/peruheatmap-es-fallecidos-covid-hasta-latest.gif)</p>
 
+### Evolución temporal de reportes de Direcciones regionales de Salud (DIRESAS) 
+```{r Diresa-map1}
+shiny::includeHTML("./codigos/diresas-project/diresas_positivos.html")
+#htmltools::includeHTML("./codigos/diresas-project/diresas_positivos.html")
+```
+
+```{r Diresa-map-regional-2}
+shiny::includeHTML("./codigos/diresas-project/diresas_fallecidos.html")
+```
+
 # Tendencias por departamento
 
 ## Comparando macroregiones
