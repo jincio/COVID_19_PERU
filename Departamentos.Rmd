@@ -275,7 +275,7 @@ gg=ggplot()+
                         "\n créditos: @fjsistemas-@jincio"))
 ```
 
-```{r}
+```{r,eval=FALSE}
 girafe(code = print(gg))
 ```
 
