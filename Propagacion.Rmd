@@ -284,15 +284,7 @@ girafe(code = print(f1_1) )
 
 ```{r Panelf2, message=FALSE, echo=FALSE}
 # Panel para publicacion
-panel<- ggarrange(f2,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Proporción de casos positivos COVID-19, Perú (moleculares)", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
+girafe(code=print(f2))
 
 ```
 
@@ -300,48 +292,21 @@ panel<- ggarrange(f2,
 
 ```{r Panelf2_1, message=FALSE, echo=FALSE}
 # Panel para publicacion
-panel<- ggarrange(f2_1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Proporción de casos positivos COVID-19 incluyendo pruebas rápidas, Perú", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
+girafe(code=print(f2_1))
 
 ```
 
 ## Proporción de casos positivos del total de pruebas moleculares analizadas (x dia)
 
 ```{r Panelf3, message=FALSE, echo=FALSE}
-
-panel<- ggarrange(f3,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Proporción de casos positivos COVID-19 x dia, Perú", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-
+girafe(code=print(f3))
 ```
 
 
 ## Proporción de casos positivos del total de pruebas moleculares y rápidas analizadas (x dia)
 
 ```{r Panelf3_1, message=FALSE, echo=FALSE}
-# Panel para publicacion
-panel<- ggarrange(f3_1,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Proporción de casos positivos COVID-19 x dia, Perú (moleculares y rápidas)", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://jincio.github.io/COVID_19_PERU/Propagacion.html)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
+girafe(code=print(f3_1))
 ```
 
 ## Fallecidos reportados 
