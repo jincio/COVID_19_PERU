@@ -30,6 +30,11 @@ departamento <- sf::read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
   dplyr::select(Departamento = DEPARTAMEN, geometry)
 
 data2 = rio::import("reportes_minsa.xlsx", sheet=3)
+data2=data2%>%mutate(REGION=
+                 case_when(REGION %in% c("LIMA METROPOLITANA",
+                                         "LIMA REGIÓN",
+                                         "LIMA")~"LIMA",
+                           TRUE~REGION))
 data3 = data2 %>%
   dplyr::filter(Fecha == max(data2$Fecha)) %>%
   dplyr::rename(Departamento = REGION) %>%
@@ -65,6 +70,11 @@ departamento <- sf::read_sf("data/departamentos/DEPARTAMENTOS.shp") %>%
   dplyr::select(Departamento = DEPARTAMEN, geometry)
 
 data2 = rio::import("reportes_minsa.xlsx", sheet=3)
+data2=data2%>%mutate(REGION=
+                 case_when(REGION %in% c("LIMA METROPOLITANA",
+                                         "LIMA REGIÓN",
+                                         "LIMA")~"LIMA",
+                           TRUE~REGION))
 data3 = data2 %>%
   dplyr::filter(Fecha == max(data2$Fecha)) %>%
   dplyr::rename(Departamento = REGION) %>%
