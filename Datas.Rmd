@@ -32,6 +32,11 @@ kable(data,format = "markdown")
 https://perucovid19.netlify.app/propagacion
 https://perucovid19.netlify.app/departamentos
 
+**ReporteMinsaDepartamento**
+
+Contiene información de los reportes de la sala situacional. Está más actualizado que "Reporte Minsa"
+
+
 Responsables: 
 
   - José Incio
