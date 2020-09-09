@@ -22,22 +22,30 @@ library(cowplot)
 library(ggpubr)
 library(directlabels)
 library(ggiraph)
-data=import("reportes_minsa.xlsx")
+#data=import("reportes_minsa.xlsx")
+data=import("ReporteMinsaDepartamento.xlsx")
 ```
 
 En esta página complementamos los gráficos presentados en la [sala situacional del coronavirus](https://covid19.minsa.gob.pe/sala_situacional.asp) página oficial del MINSA
+
+```{r Proceso,include=FALSE}
+data = data %>% group_by(Fecha) %>% summarize(POSITIVOS_PCR = sum(Positivos_PCR,na.rm = T),POSITIVOS_PR = sum(Positivos_PR,na.rm = T),FALLECIDOS = sum(Fallecidos,na.rm = T),TOTAL_MUESTREADAS = sum(Total_muestras,na.rm = T))%>%
+  mutate(Positivos_PCR_diario = POSITIVOS_PCR-lag(POSITIVOS_PCR),
+      Positivos_PR_diario = POSITIVOS_PR -lag(POSITIVOS_PR), Dia = Fecha)
+
+```
 
 
 ```{r Graficos, message=FALSE,error=FALSE}
 f1=data %>%
   ggplot(aes(x = Dia)) +
   #ylim(0,max(data$Positivos)*2.1)+
-  geom_bar_interactive(aes(y = PCR_diario_positivo,
-                           tooltip = PCR_diario_positivo,fill = "Nuevos"), 
+  geom_bar_interactive(aes(y = Positivos_PCR_diario,
+                           tooltip = Positivos_PCR_diario,fill = "Nuevos"), 
                        stat = "identity", alpha=.5)+
   #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
-  geom_line(aes(y = PCR_positivos, col = "Acumulados"), size=1) +
-  geom_point_interactive(aes(y = PCR_positivos,tooltip = PCR), col = "#8B1C62")+
+  geom_line(aes(y = POSITIVOS_PCR, col = "Acumulados"), size=1) +
+  geom_point_interactive(aes(y = POSITIVOS_PCR), col = "#8B1C62")+
   scale_y_continuous(trans = "log2")+
   labs(y = "Número de casos reportados (log2)", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
@@ -51,15 +59,15 @@ f1=data %>%
 
 
 f1_1=data %>%
-  mutate(Positivos=PCR_positivos+replace_na(PR_positivos,0),
-         Nuevos_Positivos=PCR_diario_positivo+replace_na(PR_diario_positivos,0))%>%
+  mutate(Positivos=POSITIVOS_PCR+replace_na(POSITIVOS_PCR,0),
+         Nuevos_Positivos=Positivos_PCR_diario+replace_na(Positivos_PCR_diario,0))%>%
   ggplot(aes(x = Dia)) +
-  geom_bar_interactive(aes(y = PCR_diario_positivo,
-                           tooltip = PCR_diario_positivo,fill = "Nuevos"), 
+  geom_bar_interactive(aes(y = Positivos_PCR_diario,
+                           tooltip = Positivos_PCR_diario,fill = "Nuevos"), 
                        stat = "identity", alpha=.5)+
   #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
-  geom_line(aes(y = PCR_positivos, col = "Acumulados"), size=1) +
-  geom_point_interactive(aes(y = PCR_positivos,tooltip = PCR), col = "#8B1C62")+
+  geom_line(aes(y = POSITIVOS_PCR, col = "Acumulados"), size=1) +
+  geom_point_interactive(aes(y = POSITIVOS_PCR), col = "#8B1C62")+
   scale_y_continuous(trans = "log2")+
   labs(y = "Número de casos reportados (log2)", color = " Casos", fill = " ", 
        #title = paste0("Numero de casos confirmados"),
