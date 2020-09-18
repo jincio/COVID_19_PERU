@@ -16,466 +16,229 @@ library(JLutils) # devtools::install_github("larmarange/JLutils")
 library(tidyverse)
 library(cowplot)
 library(sf)
+library(dplyr)
 library(ggrepel)
 library(readxl)
 library(cowplot)
 library(ggpubr)
-library(directlabels)
+```
+
+
+```{r Librerias, echo=FALSE, message=FALSE}
 library(ggiraph)
+library(directlabels)
+library(dplyr) ## Necesario!
+library(readr) ## Necesario!
+library(ggplot2) ## Necesario!
+library(lubridate)## Necesario!
+library(purrr) ## Necesario
+library(MMWRweek) ## Necesario
+library(covidPeru)
 #data=import("reportes_minsa.xlsx")
 data=import("ReporteMinsaDepartamento.xlsx")
-```
-
-En esta página complementamos los gráficos presentados en la [sala situacional del coronavirus](https://covid19.minsa.gob.pe/sala_situacional.asp) página oficial del MINSA
-
-```{r Proceso,include=FALSE}
-data = data %>% group_by(Fecha) %>% summarize(POSITIVOS_PCR = sum(Positivos_PCR,na.rm = T),POSITIVOS_PR = sum(Positivos_PR,na.rm = T),FALLECIDOS = sum(Fallecidos,na.rm = T),TOTAL_MUESTREADAS = sum(Total_muestras,na.rm = T))%>%
-  mutate(Positivos_PCR_diario = POSITIVOS_PCR-lag(POSITIVOS_PCR),
-      Positivos_PR_diario = POSITIVOS_PR -lag(POSITIVOS_PR), Dia = Fecha)
-
+#devtools::install_github("jincio/covidPeru")
 ```
 
 
-```{r Graficos, message=FALSE,error=FALSE}
-f1=data %>%
-  ggplot(aes(x = Dia)) +
-  #ylim(0,max(data$Positivos)*2.1)+
-  geom_bar_interactive(aes(y = Positivos_PCR_diario,
-                           tooltip = Positivos_PCR_diario,fill = "Nuevos"), 
-                       stat = "identity", alpha=.5)+
-  #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
-  geom_line(aes(y = POSITIVOS_PCR, col = "Acumulados"), size=1) +
-  geom_point_interactive(aes(y = POSITIVOS_PCR), col = "#8B1C62")+
-  scale_y_continuous(trans = "log2")+
-  labs(y = "Número de casos reportados (log2)", color = " Casos", fill = " ", 
-       #title = paste0("Numero de casos confirmados"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
-                        "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
-  scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
-  scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
-  ggtitle("Número de casos positivos de pacientes COVID-19\n Perú (solo moleculares)")+
-  theme_minimal() +
-  theme(legend.position="bottom")
-
-
-f1_1=data %>%
-  mutate(Positivos=POSITIVOS_PCR+replace_na(POSITIVOS_PCR,0),
-         Nuevos_Positivos=Positivos_PCR_diario+replace_na(Positivos_PCR_diario,0))%>%
-  ggplot(aes(x = Dia)) +
-  geom_bar_interactive(aes(y = Positivos_PCR_diario,
-                           tooltip = Positivos_PCR_diario,fill = "Nuevos"), 
-                       stat = "identity", alpha=.5)+
-  #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
-  geom_line(aes(y = POSITIVOS_PCR, col = "Acumulados"), size=1) +
-  geom_point_interactive(aes(y = POSITIVOS_PCR), col = "#8B1C62")+
-  scale_y_continuous(trans = "log2")+
-  labs(y = "Número de casos reportados (log2)", color = " Casos", fill = " ", 
-       #title = paste0("Numero de casos confirmados"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
-                        "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
-  scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
-  scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
-  ggtitle("Número de casos positivos de pacientes COVID-19\n Perú (solo moleculares)")+
-  theme_minimal() +
-  theme(legend.position="bottom")
-
-fallecidos=data %>%
-  mutate(Nuevos_Fallecidos=Fallecidos-lag(Fallecidos,1))%>%
-  dplyr::select(Dia,Fallecidos,Nuevos_Fallecidos)%>%
-  na.omit()%>%
-  ggplot(aes(x = Dia)) +
-  #ylim(0,max(data$Fallecidos)*1.1)+
-  geom_bar_interactive(aes(y = Nuevos_Fallecidos,
-                           tooltip = Nuevos_Fallecidos,fill = "Nuevos"), stat = "identity", alpha=.5)+
-  #geom_label(aes(Dia, Nuevos_Positivos, label = Nuevos_Positivos), vjust = 0.5,label.size = 0.10)+
-  geom_line(aes(y = Fallecidos, col = "Acumulados"), size=1) +
-  geom_point_interactive(aes(y = Fallecidos,tooltip = Fallecidos), col = "#8B1C62")+
-  scale_y_continuous(trans = "log10")+
-  labs(y = "Número de Fallecidos", color = " Fallecidos", fill = " ", 
-       #title = paste0("Numero de casos confirmados"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
-                        "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU")) +
-  scale_fill_manual(values = c("Nuevos" = "#43CD80")) +
-  scale_color_manual(values = c("Acumulados" = "#8B1C62")) +
-  ggtitle("Número de fallecidos COVID-19\n Perú (log10)")+
-  theme_minimal() +
-  theme(legend.position="bottom")
-
-
-f2=data %>%
-  dplyr::select(Dia,PCR_positivos, PCR_descartados)%>%
-  gather(type,value,-Dia)%>%
-  group_by(Dia)%>%
-  mutate(perc=round(value/sum(value)*100,2))%>%
-  ggplot(aes(x=Dia,y=value)) +
-  geom_bar_interactive(aes(tooltip=perc, fill=type),position="fill", stat="identity")+
-  labs(y = "proportion", fill = "Resultado",
-       #title = paste0("Proporción de positivos del total \nde muestras analizadas"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
-  scale_y_continuous(labels = scales::percent_format())+
-    theme_minimal() +
-    theme(legend.position="bottom")
-
-
-f2_1=data %>%
-  mutate(Positivos=replace_na(PR_diario_positivos,0)+PCR_diario_positivo,
-         Descartados=replace_na(PR_diario,0)-replace_na(PR_diario_positivos,0)+
-           PCR_descartados)%>%
-  dplyr::select(Dia,Positivos,Descartados)%>%
-  gather(type,value,-Dia)%>%
-  group_by(Dia)%>%
-  mutate(perc=round(value/sum(value)*100,2))%>%
-  ggplot(aes(x=Dia,y=value)) +
-  geom_bar_interactive(aes(tooltip=perc, fill=type),position="fill", stat="identity")+
-  labs(y = "proportion", fill = "Resultado",
-       #title = paste0("Proporción de positivos del total \nde muestras analizadas"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
-  scale_y_continuous(labels = scales::percent_format())+
-  theme_minimal() +
-  theme(legend.position="bottom")
-
-f3=data%>%
-  mutate(neg_new=PCR_diario-PCR_diario_positivo)%>%
-  dplyr::select(Dia, Descartados=neg_new, 
-                Positivos=PCR_diario_positivo)%>%
-  gather(type,value,-Dia)%>%
-  group_by(Dia)%>%
-  mutate(perc=round(value/sum(value)*100,2))%>%
-  ggplot(aes(x=Dia,y=value)) +
-  geom_bar_interactive(aes(tooltip=perc, fill=type),position="fill", stat="identity")+
-  labs(y = "proportion", fill = "Resultado",
-       #title = paste0("Proporción de positivos del total \nde muestras analizadas"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
-  scale_y_continuous(labels = scales::percent_format())+
-  theme_minimal() +
-  theme(legend.position="bottom")
-
-f3_1=data%>%
-  mutate(neg_new=PCR_diario-PCR_diario_positivo+
-           replace_na(PR_diario,0)+replace_na(PR_diario_positivos,0),
-         Nuevos_positivos=PCR_diario_positivo+replace_na(PR_diario_positivos,0))%>%
-  dplyr::select(Dia, Descartados=neg_new, 
-                Positivos=Nuevos_positivos)%>%
-  gather(type,value,-Dia)%>%
-  group_by(Dia)%>%
-  mutate(perc=round(value/sum(value)*100,2))%>%
-  ggplot(aes(x=Dia,y=value)) +
-  geom_bar_interactive(aes(tooltip=perc, fill=type),position="fill", stat="identity")+
-  labs(y = "proportion", fill = "Resultado",
-       #title = paste0("Proporción de positivos del total \nde muestras analizadas"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"))) +
-  scale_y_continuous(labels = scales::percent_format())+
-  theme_minimal() +
-  theme(legend.position="bottom")
-
-f5=data%>%#mutate(Pruebas_diaPR=replace_na(Pruebas_diaPR,0))%>%
-  select(Dia,
-         Moleculares=PCR_diario,
-         Pruebas_Rap=PR_diario)%>%
-  gather(tipo,numero, -Dia)%>%
-  ggplot(aes(fill=tipo, y=numero, x=Dia,tooltip=numero)) + 
-  geom_bar_interactive(stat="identity")+
-  labs(y = "Número de pruebas analizadas", color = " Casos", fill = " ", 
-       #title = paste0("Numero de casos confirmados"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m"),
-                        "\n Fuente Minsa. Repositorio:https://github.com/jincio/COVID_19_PERU"))+
-  ggtitle("Número de pruebas analizadas (moleculares y rápidas), Perú")+
-  theme(legend.position="bottom")
-
-
-
-f6=data%>%
-  slice(21:n())%>%
-  ggplot(aes(x=Dia))+
-  #ylim(0,1400)+
-  geom_line(aes(y=Hospitalizados_UCI))+
-  geom_point(aes(y = Hospitalizados_UCI), col = "#8B1C62")+
-  geom_text_repel(
-    aes(x=Dia,y=Hospitalizados_UCI,label = Hospitalizados_UCI), 
-    vjust = -0.3,
-    size = 3.1,
-    box.padding = 0.05)+
-  labs(y = "Hospitalizados camas UCI", color = " Casos", fill = " ", 
-       #title = paste0("Numero de casos confirmados"),
-       caption = paste0("Actualizado al", format(as.Date(max(data$Dia)),"%d/%m")))+
-  ggtitle("Hospitalizados en camas UCI")+
-  geom_hline(yintercept=276, linetype="dashed", 
-             color = "red", size=1)+
-  # geom_hline(yintercept=525, linetype="dashed", 
-  #            color = "orange", size=1)+
-  # geom_hline(yintercept=880, linetype="dashed", 
-  #            color = "blue", size=1)+
-  geom_hline(yintercept=1241, linetype="dashed", 
-             color = "blue", size=1)+
-  annotate(geom="text", 
-           label="Capacidad inicial", x=max(data$Dia), 
-           y=276, vjust=-1,hjust = 1)+
-  # annotate(geom="text", 
-  #          label="Capacidad al 20/04", x=max(data$Dia), 
-  #          y=525, vjust=-1,hjust = 2)  +
-  # annotate(geom="text", 
-  #          label="Capacidad al 05/05: 880", x=max(data$Dia), 
-  #          y=880, vjust=-1,hjust = 2) +
-  annotate(geom="text", 
-           label="Capacidad actual: 1241", x=max(data$Dia), 
-           y=1241, vjust=-1,hjust = 2) +
-  theme_minimal() +
-  theme(legend.position="bottom")
+**Evolución de las tendencia de casos covid positivos**
+```{r bases, echo=FALSE, message=FALSE}
+sinadef <- da_sinadef()
+positivos <- da_positivos()
+fallecidos <- da_fallecidos()
+```
+**Nacional**
+```{r positivos}
+grafico1 <- casos_diarios(positivos)[[2]]
+print(grafico1)
 ```
 
-```{r graficos2, message=FALSE, eval=FALSE}
-dia_list <- tibble(time= 1:length(dat2$Dia), .name_repair = "minimal")
-dat2 <-add_column(dat2, dia_list= dia_list)
-
-dat2$Dia<- as.Date(as.POSIXct(dat2$Dia, 'GMT'))
-
-# Fitting exp fn a data
-## Fitting linear model to get initial parameters y = \alpha * exp(beta * x)
-x <- unlist(dat2$dia_list$time)
-y <- unlist(dat2$Positivos)
-data.df <- data.frame(x = x, y = y)
-exp.model0 <-lm(log(y) ~ x, data.df)
-alpha.0 <- exp(coef(exp.model0)[1])
-beta.0 <- coef(exp.model0)[2]
-
-## Starting parameters
-start <- list(alpha = alpha.0, beta = beta.0)
-## Fitting nlm
-exp.model <- nls(y ~ alpha*exp(beta*x), data = data.df, start = start)
-#coef(exp.model)[1]
-#coef(exp.model)[2]
-alpha=coef(exp.model)[1]
-beta<- coef(exp.model)[2]
-form=paste0("y=",round(alpha,3),"*","exp(",round(beta,3),"*x)")
-#Serie de numero de casos confirmados
-library(scales)
-f7<-dat2 %>%
-  ggplot(aes(x = Dia)) +
-  scale_x_date(labels = date_format("%b-%d"), breaks = date_breaks("7 days"), expand = c(0,1))+
-  ylim(0,max(dat2$Positivos)*1.15)+
-  geom_area(aes(y = Positivos, col = "Acumulados"), size=1, fill="#c9c4e0") +
-  geom_point(aes(y = Positivos), col = "#474785") +
-  geom_text(aes(Dia, Positivos, label = Positivos), vjust = -2, size=3)+
-  geom_bar(aes(y = pos_new, fill = "Nuevos"), stat = "identity", alpha=.5)+
-  geom_text(aes(Dia, pos_new, label = pos_new), vjust = 2, size=2)+
-  #stat_smooth(aes(y=Positivos), method="glm", method.args = list(family = gaussian(link="log")),  se=FALSE, linetype=1, size=0.4, colour="blue") +
-  labs(color= NULL, fill = NULL, caption = paste0("Actualizado al ", format(as.Date(max(dat2$Dia)),"%d-%m"))) +
-  scale_fill_manual(values = c("Nuevos" = "#1c8b7d")) +
-  scale_color_manual(values = c("Acumulados" = "#c9c4e0", "Tendencia exponencial" = "blue")) +
-  theme(legend.position="bottom")+
-  annotate("segment", x=as.Date("2020-03-05"), xend=as.Date("2020-03-07"), y = 76, yend = 76, colour = "blue")+
-  #annotate("text", x=as.Date("2020-03-06"), y = 270, label = "Exponencial", size= 3)+
-  #annotate("text", x=as.Date("2020-03-07"), y = 65, label = form, size= 3, colour="blue")+
-  theme_minimal()
+**Regional**
+```{r positivos}
+grafico2 <- casos_diarios(positivos,mediamovil = 3)[[2]]+ theme_bw() + scale_fill_manual(values = "#00AFBB") +
+  scale_color_manual(values = "#FC4E07")
+print(grafico2)
 ```
 
-## Tendencia y número de casos (Acumulados y diarios) pruebas moleculares
+**Nacional**
+```{r fallecidos}
+grafico3 <- fallecidos_diarios(fallecidos,mediamovil = 7)[[2]] + theme_bw()+
+  scale_fill_manual(values = "#00AFBB") +
+  scale_color_manual(values = "#FC4E07")
+print(grafico3)
+```
 
-- Usa el cursor para ver el número 
+**Crecimiento de los casos covid**
+```{r crecimiento}
+grafico5 <- casos_crecimiento(positivos,semanal = TRUE)[[2]] + theme_bw()
+print(grafico5)
+```
 
-```{r Panelf1, message=FALSE, echo=FALSE}
-girafe(code = print(f1) )
+**Regional**
+
+```{r crecimiento regional}
+grafico6 <- casos_crecimiento(positivos,semanal = TRUE)[[2]] + theme_bw()
+print(grafico5)
+```
+
+**Crecimiento fallecidos covid**
+
+```{r fallecidos crecimiento}
+grafico7 <-fallecidos_crecimiento(fallecidos,semanal = TRUE)[[2]]+theme_bw()
+print(grafico7)
+```
+
+```{r fallecidos crecimiento regional}
+grafico8 <- fallecidos_crecimiento(fallecidos, semanal = TRUE)[[2]] +theme_bw()
+print(grafico8)
 ```
 
 
-## Tendencia y número de casos (Acumulados y diarios) pruebas moleculares y pruebas rápidas
+**Excesos de fallecidos a nivel Nacional**
+```{r exceso de fallecidos nacional, message=FALSE}
+grafico9 <- exceso_muertes(sinadef,metodo = TRUE)[[2]]+ theme_bw()+
+  theme(legend.position = "top")
+print(grafico9)
+```
 
-- Usa el cursor para ver el número 
+**Exceso de fallecido regional**
 
-```{r Panelf1_1, message=FALSE, echo=FALSE}
-
-girafe(code = print(f1_1) )
+```{r exceso fallecidos regional, message=FALSE}
+#grafico10 <-
 
 ```
 
-## Proporción de casos positivos del total de pruebas analizadas.
-
-```{r Panelf2, message=FALSE, echo=FALSE}
-# Panel para publicacion
-girafe(code=print(f2))
-
+**Mapa de calor del Exceso de Fallecido a nivel distrital**  
+```{r mapa calor}
+grafico11 <- panel_exceso(sinadef)
+print(grafico11)
 ```
 
-## Proporción de casos positivos del total de pruebas analizadas (moleculares+rápidas).
+**Piramide por sexo y edad**  
 
-```{r Panelf2_1, message=FALSE, echo=FALSE}
-# Panel para publicacion
-girafe(code=print(f2_1))
-
+*Distribución de los fallecidos covid por sexo y edad a nivel nacional*
+```{r piramide nacional}
+grafico12 <- piramide_fcovid(fallecidos)[[2]] +theme_bw()
+print(grafico12)
 ```
 
-## Proporción de casos positivos del total de pruebas moleculares analizadas (x dia)
+*Distribucion de fallecidos por sexo y edad a nivel regional*
+```{r piramide regional1}
+a<-data.frame(dep = unique(fallecidos$DEPARTAMENTO)[1:6]) %>%
+    dplyr::mutate(piramide = purrr::map(.x = dep, .f = ~piramide_fcovid(fallecidos, .x)[1] %>%as.data.frame())) %>%
+    tidyr::unnest(cols = c(piramide))
 
-```{r Panelf3, message=FALSE, echo=FALSE}
-girafe(code=print(f3))
+grafico13 <- a %>%
+      dplyr::mutate(n = ifelse(SEXO=="FEMENINO",
+                        -n, n)) %>%
+      ggplot2::ggplot(aes(x = EDAD_CAT,
+                 y = n,
+                 fill = SEXO,
+                 label = abs(n))) +
+      ggplot2::geom_col(position = "stack", alpha = 0.6) +
+      ggplot2::geom_text(size = 3, check_overlap = TRUE)+
+      ggplot2::scale_y_continuous(labels = abs) +
+      ggplot2::labs(x = "Edad", y = "Numero de fallecidos", title = "Distribucion nacional de fallecimientos COVID-19 \n por edad y sexo") +
+      ggplot2::scale_fill_manual(values = c("orange", "darkblue")) +
+      ggplot2::coord_flip()+ facet_wrap(~dep, scales = "free")+
+  theme(legend.position = "top")
+
+print(grafico13)
 ```
 
 
-## Proporción de casos positivos del total de pruebas moleculares y rápidas analizadas (x dia)
+```{r piramide regional2}
+a<-data.frame(dep = unique(fallecidos$DEPARTAMENTO)[10:15]) %>%
+    dplyr::mutate(piramide = purrr::map(.x = dep, .f = ~piramide_fcovid(fallecidos, .x)[1] %>%as.data.frame())) %>%
+    tidyr::unnest(cols = c(piramide))
 
-```{r Panelf3_1, message=FALSE, echo=FALSE}
-girafe(code=print(f3_1))
+grafico14 <- a %>%
+      dplyr::mutate(n = ifelse(SEXO=="FEMENINO",
+                        -n, n)) %>%
+      ggplot2::ggplot(aes(x = EDAD_CAT,
+                 y = n,
+                 fill = SEXO,
+                 label = abs(n))) +
+      ggplot2::geom_col(position = "stack", alpha = 0.6) +
+      ggplot2::geom_text(size = 3, check_overlap = TRUE)+
+      ggplot2::scale_y_continuous(labels = abs) +
+      ggplot2::labs(x = "Edad", y = "Numero de fallecidos", title = "Distribucion nacional de fallecimientos COVID-19 \n por edad y sexo") +
+      ggplot2::scale_fill_manual(values = c("orange", "darkblue")) +
+      ggplot2::coord_flip()+ facet_wrap(~dep, scales = "free")+
+  theme(legend.position = "top")
+
+print(grafico14)
 ```
 
-## Fallecidos reportados 
 
-```{r Panelfallecidos, message=FALSE, echo=FALSE}
+*Distribución de casos positivos por sexo y edad a nivel nacional*
+```{r piramide nacional covid}
+grafico15 <- piramide_pcovid(positivos)[[2]] + theme_bw()
+print(grafico15)
+```
 
-girafe(code = print(fallecidos) )
+*Distribución de casos positivos por sexo y edad a nivel regional*
+```{r piramide casos regional1}
+a<-data.frame(dep = unique(positivos$DEPARTAMENTO)[1:4]) %>%
+    dplyr::mutate(piramide = purrr::map(.x = dep, .f = ~piramide_pcovid(positivos, .x)[1] %>%as.data.frame())) %>%
+    tidyr::unnest(cols = c(piramide))
+
+grafico14 <- a %>%
+      dplyr::mutate(n = ifelse(SEXO=="FEMENINO",
+                        -n, n)) %>%
+      ggplot2::ggplot(aes(x = EDAD_CAT,
+                 y = n,
+                 fill = SEXO,
+                 label = abs(n))) +
+      ggplot2::geom_col(position = "stack", alpha = 0.6) +
+      ggplot2::geom_text(size = 3, check_overlap = TRUE)+
+      ggplot2::scale_y_continuous(labels = abs) +
+      ggplot2::labs(x = "Edad", y = "Numero de positivos", title = "Distribucion nacional de positivos COVID-19 \n por edad y sexo") +
+      ggplot2::scale_fill_manual(values = c("orange", "darkblue")) +
+      ggplot2::coord_flip()+ facet_wrap(~dep, scales = "free")+
+  theme(legend.position = "top")
+
+print(grafico14)
+```
+
+```{r piramide casos regional2}
+a<-data.frame(dep = unique(positivos$DEPARTAMENTO)[10:13]) %>%
+    dplyr::mutate(piramide = purrr::map(.x = dep, .f = ~piramide_pcovid(positivos, .x)[1] %>%as.data.frame())) %>%
+    tidyr::unnest(cols = c(piramide))
+
+grafico15 <- a %>%
+      dplyr::mutate(n = ifelse(SEXO=="FEMENINO",
+                        -n, n)) %>%
+      ggplot2::ggplot(aes(x = EDAD_CAT,
+                 y = n,
+                 fill = SEXO,
+                 label = abs(n))) +
+      ggplot2::geom_col(position = "stack", alpha = 0.6) +
+      ggplot2::geom_text(size = 3, check_overlap = TRUE)+
+      ggplot2::scale_y_continuous(labels = abs) +
+      ggplot2::labs(x = "Edad", y = "Numero de positivos", title = "Distribucion nacional de positivos COVID-19 \n por edad y sexo") +
+      ggplot2::scale_fill_manual(values = c("orange", "darkblue")) +
+      ggplot2::coord_flip()+ facet_wrap(~dep, scales = "free")+
+  theme(legend.position = "top")
+
+print(grafico15)
+```
+
+**Modelo SIRD**
+
+```{r resultado sird,echo=FALSE}
+resultados <- sird_villaverde(sinadef,"lima")
+```
+
+
+*Evolucion del R0*
+```{r r0}
+r0 <- resultados[["R0"]]
 
 ```
 
 
-## Número de pruebas moleculares + rápidas analizadas (acumulados y diarios)
+*Evolución del Número de fallecidos*
 
-- Usa el cursor para ver el número 
-
-
-```{r Panelf5, message=FALSE, echo=FALSE}
-# Panel para publicacion
-girafe(code = print(f5) )
-
-```
-
-
-## Hospitalizados Camas-UCI
-
-```{r}
-panel<- ggarrange(f6,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-          annotate_figure(panel,
-                top = text_grob("Hospitalizados unidades UCI, Perú", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: MINSA. Ver (https://perucovid19.netlify.app/propagacion)", color = "black", hjust = 1, x = 1, face = "italic", size = 8)
-                #left = text_grob("Figure arranged using ggpubr", color = "green", rot = 90),
-                #fig.lab = "Figure 1", fig.lab.face = "bold"
-)
-```
-
-## Comparaciones con otros países. 
-
-```{r comparacion1, echo=FALSE}
-confirmed <- "https://raw.github.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"
-
-WorldData<-import(file = confirmed)%>%
-  mutate(type="confirmed")%>%
-  tidyr::gather(Fecha,Valor,
-                -c(type,"Province/State",
-                        "Country/Region"))%>%
-  dplyr::select(Country="Country/Region",
-                                    Provincia="Province/State",
-                                    type,
-                                    Valor,
-                                    Fecha)
-
-paises<- c("Peru","Chile","Ecuador", "Brazil")
-
-d1=WorldData%>%filter(type=="confirmed",
-                   Country%in%paises,
-                   Valor>0)%>%
-  group_by(Country)%>%
-  mutate(Fecha=as.Date(Fecha,"%m/%d/"))%>%
-  mutate(start = first(Fecha),
-         Dstart=Fecha-start)%>%
-  ungroup()%>%
-  mutate(log=log(Valor+0.01))%>%
-  filter(Dstart>2)
-  
-p=d1%>%
-  ggplot(aes(x = Dstart,y=Valor,group=Country)) +
-  geom_line(aes(col = Country))+
-  scale_y_continuous(trans = "log10")+
-  geom_dl(aes(label = Country), 
-          method = list(dl.trans(x = x + 0.2), "last.points", cex = 0.8))+
-  labs(y="Confirmados", x="Número de días desde el primer caso")
-
-
-```
-
-```{r PanelAL1, echo=FALSE, fig.height=7, message=FALSE, warning=FALSE}
-panel<-ggarrange(p,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-
-annotate_figure(panel,
-                top = text_grob("Casos confirmados en escala log10", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: JHU", color = "black", hjust = 1, x = 1, face = "italic", size = 8))
-```
-
-Código explicado [Aquí](https://joseincio.com/post/ggplot-lines-en-log-y-y-axis-en-conteo/)
-
-### Comparación Fallecidos
-
-```{r comparacion2, echo=FALSE}
-deaths <- "https://raw.github.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv"
-
-WorldData<-import(file = deaths)%>%
-  mutate(type="deaths")%>%
-  tidyr::gather(Fecha,Valor,
-                -c(type,"Province/State",
-                        "Country/Region"))%>%
-  dplyr::select(Country="Country/Region",
-                                    Provincia="Province/State",
-                                    type,
-                                    Valor,
-                                    Fecha)
-
-paises<- c("Peru","Chile","Ecuador", "Brazil")
-
-d1=WorldData%>%filter(type=="deaths",
-                   Country%in%paises,
-                   Valor>0)%>%
-  group_by(Country)%>%
-  mutate(Fecha=as.Date(Fecha,"%m/%d/"))%>%
-  mutate(start = first(Fecha),
-         Dstart=Fecha-start)%>%
-  ungroup()%>%
-  mutate(log=log(Valor+0.01))%>%
-  filter(Dstart>2)
-  
-p=d1%>%
-  ggplot(aes(x = Dstart,y=Valor,group=Country)) +
-  geom_line(aes(col = Country))+
-  scale_y_continuous(trans = "log10")+
-  geom_dl(aes(label = Country), 
-          method = list(dl.trans(x = x + 0.2), "last.points", cex = 0.8))+
-  labs(y="Fallecidos", x="Número de días desde el primer caso")
-
-
-```
-
-```{r PanelAL2, echo=FALSE, fig.height=7, message=FALSE, warning=FALSE}
-panel<-ggarrange(p,
-          ncol=1,nrow=1,
-          font.label = list(size = 10, color = "black", face = "bold", family = NULL))
-
-annotate_figure(panel,
-                top = text_grob("Fallecidos en escala log10", color = "#474785", face = "bold", size = 14),
-                bottom = text_grob("Fuente: JHU", color = "black", hjust = 1, x = 1, face = "italic", size = 8))
-```
-
-
-## Tabla
-
-```{r}
-data%>%
-  dplyr::select(Dia,PCR,PCR_positivos,PCR_diario_positivo,
-                PR,PR_positivos,PR_diario_positivos)%>%
-  mutate(Dia = as.character(Dia)) %>% 
-  arrange(desc(Dia)) %>% 
-  DT::datatable(
-    options = list(pageLength = 100, 
-                   lengthMenu = c(10, 25, 40),
-                   language = list(lengthMenu = "Mostrar _MENU_ entradas",
-                                   info ="Mostrando _START_ al _END_ de _TOTAL_ entradas",
-                                   search = "Buscar:",
-                                   paginate = list(previous = "Anterior",
-                                                   'next' = "Siguiente"))
-                   ),
-    rownames = FALSE
-  )
-            
-```
 
 
 
