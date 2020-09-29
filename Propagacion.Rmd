@@ -26,40 +26,38 @@ library(purrr) ## Necesario
 library(MMWRweek) ## Necesario
 library(covidPeru)
 library(zoo)
-#install.packages("zoo")
 #devtools::install_github("jincio/covidPeru")
 ```
 
-
-###Número de casos positivos covid  
-```{r bases, echo=FALSE, message=FALSE}
+### Número de casos positivos covid 
+```{r bases, echo=FALSE, message=FALSE,include=FALSE}
 sinadef <- da_sinadef()
 positivos <- da_positivos()
 fallecidos <- da_fallecidos()
 ```
+
 **Evolución de los casos a nivel Nacional**
 ```{r NACIONAL}
 grafico1 <- casos_diarios(positivos)[[2]] + theme_bw()
 print(grafico1)
 ```
 
+A nivel agregado se puede observar como varia el número de casos declarados covid positivos, sin embargo esta fluctuación no refleja el comportamiento de esta variable sobre cada región.Las razones pueden explicar por el tamaño de la región Lima, el registro de los casos positivos diarios va determinar lo que se refleje a nivel nacional y no necesariamente lo que sucede en otras regiones. En ese sentido, se muestran algunos casos a nivel regional con la finalidad de poder ver la tendencia a un nivel más especifico.  
 **Región Junín**  
-A nivel agregado se puede observar como varia el número de casos declarados covid positivos, sin embargo esta fluctuación no refleja el comportamiento de esta variable sobre cada región.Las razones pueden explicar por el tamaño de la región Lima, el registro de los casos positivos diarios va determinar lo que se refleje a nivel nacional y no necesariamente lo que sucede en otras regiones. En ese sentido, se muestran algunos casos a nivel regional con la finalidad de poder ver la tendencia a un nivel más especifico.
-
 ```{r positivos}
-grafico2 <- casos_diarios(positivos,"Junin",mediamovil = 3)[[2]]+ theme_bw() + scale_fill_manual(values = "#00AFBB") +
+grafico2 <- casos_diarios(positivos,"Junin",mediamovil = 7)[[2]]+ theme_bw() + scale_fill_manual(values = "#00AFBB") +
   scale_color_manual(values = "#FC4E07")
 print(grafico2)
 ```
 
 **Región Puno**
 ```{r positivos2}
-grafico2 <- casos_diarios(positivos,"Puno",mediamovil = 3)[[2]]+ theme_bw() + scale_fill_manual(values = "#00AFBB") +
+grafico2 <- casos_diarios(positivos,"Puno",mediamovil = 7)[[2]]+ theme_bw() + scale_fill_manual(values = "#00AFBB") +
   scale_color_manual(values = "#FC4E07")
 print(grafico2)
 ```
 
-**Región Lima**
+**Región Lima**  
 El gráfico de Lima debería reflejar más la tendencia de los casos positivos a nivel nacional a comparación de las regiones de Junin y Puno.  
 ```{r positivos21}
 grafico2 <- casos_diarios(positivos,"Lima",mediamovil = 3)[[2]]+ theme_bw() + scale_fill_manual(values = "#00AFBB") +
@@ -68,9 +66,9 @@ print(grafico2)
 ```
 
 
-###Número de fallecidos covid  
+### Número de fallecidos covid
 **Nacional**  
-En esa misma linea, se presentan la evolución de los fallecidos a nivel nacional, asi como para las regiones de Lima, Puno y Junin.
+En esa misma linea, se presentan la evolución de los fallecidos a nivel nacional, asi como para las regiones de Lima, Puno y Junin.  
 ```{r fallecidos}
 grafico3 <- fallecidos_diarios(fallecidos,mediamovil = 7)[[2]] + theme_bw()+
   scale_fill_manual(values = "#00AFBB") +
@@ -103,65 +101,63 @@ print(grafico3)
 ```
 
 
-###Crecimiento o variabilidad de los casos positivos covid
+### Crecimiento o variabilidad de los casos positivos covid
 
-**Nacional**
+**Nacional**  
 Los gráficos anteriores mostraban en términos absolutos el número de casos registrados positivos a nivel regional y a nivel nacional. Pero también es importante tener una inspección en términos relativos, es decir, en qué porcentaje se ha incrementado o disminuido el número de casos con respecto al dia anterior. Ello ayuda a ver la variabilidad o no de los casos.
 
 ```{r crecimiento}
 grafico5 <- casos_crecimiento(positivos,semanal = TRUE)[[2]] + theme_bw()
 print(grafico5)
 ```
-
-**Región Loreto**
-De la misma forma que los gráficos anteriores, se presenta la dinámica a nivel regional.
+De la misma forma que los gráficos anteriores, se presenta la dinámica a nivel regional.  
+**Región Loreto**  
 ```{r crecimiento regional1}
 grafico6 <- casos_crecimiento(positivos,"Loreto",semanal = TRUE)[[2]] + theme_bw()
 print(grafico6)
 ```
 
-**Región Arequipa**
+**Región Arequipa**  
 ```{r crecimiento regional}
 grafico6 <- casos_crecimiento(positivos,"Arequipa",semanal = TRUE)[[2]] + theme_bw()
 print(grafico6)
 ```
 
 
-###Crecimiento o variabilidad de fallecidos covid
-
-**Nacional**
+### Crecimiento o variabilidad de fallecidos covid  
+**Nacional**  
 ```{r fallecidos crecimiento}
 grafico7 <-fallecidos_crecimiento(fallecidos,semanal = TRUE)[[2]]+theme_bw()
 print(grafico7)
 ```
 
-**Región Moquegua**
+**Región Moquegua**  
 ```{r fallecidos crecimiento regional}
 grafico8 <- fallecidos_crecimiento(fallecidos,"Moquegua", semanal = TRUE)[[2]] +theme_bw()
 print(grafico8)
 ```
 
-**Región Madre de Dios**
+**Región Madre de Dios**  
 ```{r fallecidos crecimiento regional2}
 grafico8 <- fallecidos_crecimiento(fallecidos,"Madre de dios", semanal = TRUE)[[2]] +theme_bw()
 print(grafico8)
 ```
 
-###Excesos de fallecidos a nivel Nacional
+### Excesos de fallecidos a nivel Nacional
 La pandemia del virus covid19 ha presionado la infraestructura del sector salud a niveles nunca antes registrados. Ello significó que el personal médico y la capacidad de atención fuera rebalsada, y debido a ello la aparición de un subregistro de fallecidos. \n
 Debido a tal acontecimiento, surgió una nueva metodología para calcular el correcto registro de fallecidos utilizando el Sistema Nacional de Defunciones(SINADEF).
 
 En este documento se presenta dos metologías para calcular el exceso de fallecidos a nivel nacional y a nivel regional. El primer método denominado *el método histórico* consiste en calcular el promedio de fallecido por día y compararlo con el registro del año 2020. El segundo método denominado *método 2020* consiste en proyectar el número de fallecidos desde la semana 10 hasta la semana actual utilizando unicamente la información del 2020. Se calcula el promedio de fallecidos hasta la semana 10 y se proyecta el promedio hasta la semana actual.
 
-```{r exceso de fallecidos nacional, message=FALSE}
+```{r exceso de fallecidos nacional, message=FALSE, echo=FALSE}
 grafico9 <- exceso_muertes(sinadef,metodo = TRUE)[[2]]+ theme_bw()+
   theme(legend.position = "top")
 print(grafico9)
 ```
 
-**Exceso de fallecido regional**
+**Exceso de fallecido regional**  
 En este casos se presenta el exceso de fallecidos a nivel regional para algunos departamentos y ver las diferencias a nivel nacional.
-```{r exceso fallecidos regional, message=FALSE}
+```{r exceso fallecidos regional, message=FALSE, echo=FALSE}
 a<-data.frame(dep = unique(fallecidos$DEPARTAMENTO)[c(1,7,14,21)]) %>%
     dplyr::mutate(exceso = purrr::map(.x = dep, .f = ~exceso_muertes(sinadef, .x)[1] %>%as.data.frame())) %>%
     tidyr::unnest(cols = c(exceso))
@@ -178,22 +174,26 @@ print(grafico10)
 
 ```
 
-###Mapa de calor del Exceso de Fallecido a nivel distrital
+### Mapa de calor del Exceso de Fallecido a nivel distrital
 Este gráfico permite realizar un seguimiento a nivel de cada región donde se registra un alto porcentaje de excesos de fallecidos a lo largo de la pandemia.
-```{r mapa calor}
+```{r mapa calor, echo=FALSE, message=FALSE, include=FALSE}
 grafico11 <- panel_exceso(sinadef)
+```
+
+```{r mapa de calor 2}
 print(grafico11)
 ```
-###Piramide por sexo y edad 
 
-**Distribución de los fallecidos covid por sexo y edad a nivel nacional**
-```{r piramide nacional}
+### Piramide por sexo y edad
+
+**Distribución de los fallecidos covid por sexo y edad a nivel nacional**  
+```{r piramide nacional, echo=FALSE, message=FALSE}
 grafico12 <- piramide_fcovid(fallecidos)[[2]] +theme_bw()
 print(grafico12)
 ```
 
-**Distribucion de fallecidos por sexo y edad a nivel regional**
-```{r piramide regional1}
+**Distribucion de fallecidos por sexo y edad a nivel regional**  
+```{r piramide regional1,echo=FALSE, message=FALSE}
 a<-data.frame(dep = unique(fallecidos$DEPARTAMENTO)[1:4]) %>%
     dplyr::mutate(piramide = purrr::map(.x = dep, .f = ~piramide_fcovid(fallecidos, .x)[1] %>%as.data.frame())) %>%
     tidyr::unnest(cols = c(piramide))
@@ -217,7 +217,7 @@ print(grafico13)
 ```
 
 
-```{r piramide regional2}
+```{r piramide regional2, echo=FALSE, message=FALSE}
 a<-data.frame(dep = unique(fallecidos$DEPARTAMENTO)[10:13]) %>%
     dplyr::mutate(piramide = purrr::map(.x = dep, .f = ~piramide_fcovid(fallecidos, .x)[1] %>%as.data.frame())) %>%
     tidyr::unnest(cols = c(piramide))
@@ -239,16 +239,13 @@ grafico14 <- a %>%
 
 print(grafico14)
 ```
-
-
-**Distribución de casos positivos por sexo y edad a nivel nacional**
-```{r piramide nacional covid}
+**Distribución de casos positivos por sexo y edad a nivel nacional**  
+```{r piramide nacional covid,echo=FALSE, message=FALSE}
 grafico15 <- piramide_pcovid(positivos)[[2]] + theme_bw()
 print(grafico15)
 ```
-
-**Distribución de casos positivos por sexo y edad a nivel regional**
-```{r piramide casos regional1}
+**Distribución de casos positivos por sexo y edad a nivel regional**  
+```{r piramide casos regional1,echo=FALSE, message=FALSE}
 a<-data.frame(dep = unique(positivos$DEPARTAMENTO)[1:4]) %>%
     dplyr::mutate(piramide = purrr::map(.x = dep, .f = ~piramide_pcovid(positivos, .x)[1] %>%as.data.frame())) %>%
     tidyr::unnest(cols = c(piramide))
@@ -271,7 +268,7 @@ grafico14 <- a %>%
 print(grafico14)
 ```
 
-```{r piramide casos regional2}
+```{r piramide casos regional2,echo=FALSE, message=FALSE}
 a<-data.frame(dep = unique(positivos$DEPARTAMENTO)[10:13]) %>%
     dplyr::mutate(piramide = purrr::map(.x = dep, .f = ~piramide_pcovid(positivos, .x)[1] %>%as.data.frame())) %>%
     tidyr::unnest(cols = c(piramide))
@@ -294,27 +291,24 @@ grafico15 <- a %>%
 print(grafico15)
 ```
 
-**Modelo SIRD**
+### Modelo SIRD
 
 ```{r resultado sird,echo=FALSE}
 resultados <- sird_villaverde(sinadef)
 ```
 
-
-*Evolucion del R0*
-```{r r0}
-r0 <- resultados[["R0"]]
-ggplot() +
-  geom_line(aes(x = c(1:nrow(r0)), y = r0),
-            colour = "darkblue") + labs(x = "Dia" , y = "R0") + 
-  scale_x_continuous(breaks = seq(1,nrow(r0),15), labels = seq(1,nrow(r0),15)) +
-  geom_hline(yintercept = 1, colour = "red") + labs(title = "Evolución del R0 a nivel Nacional",
-                                                    x = "Dia del inicio de la pandemia")+
-  theme_bw()
-  
+**Resultados Gráficos a nivel Nacional**  
+```{r general,echo=FALSE, message=FALSE}
+gg1 <- sird_graficos(resultados)[[1]]
+print(gg1)
 ```
-# Responsables 
 
+**Ro**  
+```{r ro,echo=FALSE, message=FALSE}
+gg2 <- sird_graficos(resultados)[[2]]
+print(gg2)
+```
+# Responsables
 Colaboran para la elaboración de los gráficos:
 
 - Francisco Rodríguez
