@@ -17,7 +17,7 @@ library(tidyverse)
 ```
 
 
-```{r Librerias, echo=FALSE, message=FALSE}
+```{r Librerias2, echo=FALSE, message=FALSE}
 library(dplyr) ## Necesario!
 library(readr) ## Necesario!
 library(ggplot2) ## Necesario!
@@ -38,7 +38,7 @@ positivos <- da_positivos()
 fallecidos <- da_fallecidos()
 ```
 **Evolución de los casos a nivel Nacional**
-```{r positivos}
+```{r NACIONAL}
 grafico1 <- casos_diarios(positivos)[[2]] + theme_bw()
 print(grafico1)
 ```
@@ -61,7 +61,7 @@ print(grafico2)
 
 **Región Lima**
 El gráfico de Lima debería reflejar más la tendencia de los casos positivos a nivel nacional a comparación de las regiones de Junin y Puno.  
-```{r positivos2}
+```{r positivos21}
 grafico2 <- casos_diarios(positivos,"Lima",mediamovil = 3)[[2]]+ theme_bw() + scale_fill_manual(values = "#00AFBB") +
   scale_color_manual(values = "#FC4E07")
 print(grafico2)
@@ -142,7 +142,7 @@ print(grafico8)
 ```
 
 **Región Madre de Dios**
-```{r fallecidos crecimiento regional}
+```{r fallecidos crecimiento regional2}
 grafico8 <- fallecidos_crecimiento(fallecidos,"Madre de dios", semanal = TRUE)[[2]] +theme_bw()
 print(grafico8)
 ```
